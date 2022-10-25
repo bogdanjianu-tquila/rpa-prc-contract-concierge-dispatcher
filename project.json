@@ -3,17 +3,20 @@
   "description": "Robotic Enterprise Framework",
   "main": "Main.xaml",
   "dependencies": {
-    "TQA.G2_Egnyte": "[1.0.5]",
-    "UiPath.Excel.Activities": "[2.12.3]",
-    "UiPath.System.Activities": "[22.4.5]",
+    "TQA.G2_Egnyte": "[1.1.10]",
+    "UiPath.Cryptography.Activities": "[1.2.1]",
+    "UiPath.Excel.Activities": "[2.16.0]",
+    "UiPath.GSuite.Activities": "[1.16.2]",
+    "UiPath.Persistence.Activities": "[1.4.1]",
+    "UiPath.System.Activities": "[22.10.1]",
     "UiPath.Testing.Activities": "[22.4.3]",
-    "UiPath.UIAutomation.Activities": "[22.4.7]"
+    "UiPath.UIAutomation.Activities": "[22.10.2]"
   },
   "webServices": [],
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "22.4.4.0",
-  "projectVersion": "1.0.0",
+  "projectVersion": "1.0.1",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
@@ -85,7 +88,7 @@
         "fileName": "Tests\\WorkflowTestCaseTemplate.xaml"
       }
     ],
-    "modernBehavior": false
+    "modernBehavior": true
   },
   "expressionLanguage": "VisualBasic",
   "entryPoints": [
