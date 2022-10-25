@@ -1,0 +1,204 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Delete_Files_And_Subfolders_From_Folder" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugas="clr-namespace:UiPath.GSuite.Activities.Sheets;assembly=UiPath.GSuite.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_DtZipFiles" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_DtProcessFiles" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_StrReportSpreadsheetID" Type="InArgument(x:String)" />
+    <x:Property Name="in_IntLongTimeout" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_UploadedFilesSheetName" Type="InArgument(x:String)" />
+    <x:Property Name="in_ZipFilesSheetName" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>947.333333333333,2341.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="62">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>TQA_G2_Egnyte</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Activities.System.Encode</x:String>
+      <x:String>UiPath.Activities.System.Compression.Workflow</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.GSuite.Activities.Sheets</x:String>
+      <x:String>UiPath.GSuite.Activities.Sheets.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.GSuite.Activities</x:String>
+      <x:String>UiPath.GSuite.Activities.Contracts</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities.Business</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="90">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Management.Automation</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>TimeSpan2</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>TQA.G2_Egnyte</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>UiPath.Cryptography</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Component checks for zip files and filters the Transaction Data datatable twice, looking for .zip files and once for files other than .zip.&#xD;&#xA;&#xD;&#xA;After the check we filter Transaction Data table twice to extract the zip files datatable and other files datatable.&#xD;&#xA;&#xD;&#xA;These will be used for the dispatcher report." DisplayName="Create Report" sap:VirtualizedContainerService.HintSize="602,2276.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_56">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Object" Name="strSubProcessName">
+        <Variable.Default>
+          <mva:VisualBasicValue x:TypeArguments="x:Object" ExpressionText="&quot;Create Report&quot;" />
+        </Variable.Default>
+      </Variable>
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="560,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
+    <ugas:GoogleSheetsApplicationScope ContinueOnError="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" FileId="{x:Null}" Filename="{x:Null}" ParentFolderId="{x:Null}" ParentFolderPath="{x:Null}" SpreadsheetName="{x:Null}" Account="Please select an account." Action="UseExisting" ConnectionAccountName="uipathbot2@g2.com" ConnectionId="fc012644-9653-ed11-ade6-0050f29e0988" DisplayName="Use Google Spreadsheet" sap:VirtualizedContainerService.HintSize="560,1794" sap2010:WorkflowViewState.IdRef="GoogleSheetsApplicationScope_1" Mode="EnterId" SpreadsheetId="[in_StrReportSpreadsheetID]" Timeout="[in_IntLongTimeout]" UseConnectionService="True">
+      <ugas:GoogleSheetsApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ugas:IGoogleSheetTarget">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ugas:IGoogleSheetTarget" Name="Report_Spreadsheet" />
+          </ActivityAction.Argument>
+          <Sequence sap:VirtualizedContainerService.HintSize="526,1504" sap2010:WorkflowViewState.IdRef="Sequence_64">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If Condition="[IsNothing(in_DtProcessFiles) AndAlso (in_DtProcessFiles.RowCount &gt; 0)]" DisplayName="Check If Any Process Files" sap:VirtualizedContainerService.HintSize="484,686" sap2010:WorkflowViewState.IdRef="If_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,494" sap2010:WorkflowViewState.IdRef="Sequence_67">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uga:AddNewSheet Columns="{x:Null}" ContinueOnError="{x:Null}" PositionIndex="{x:Null}" Rows="{x:Null}" SpreadsheetId="{x:Null}" AuthScopesInvalid="False" DisplayName="Add New Sheet" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,139.333333333333" sap2010:WorkflowViewState.IdRef="AddNewSheet_1" SheetName="[in_UploadedFilesSheetName]" />
+                  <uga:WriteRange ContinueOnError="{x:Null}" Request="{x:Null}" Result="{x:Null}" SpreadsheetId="{x:Null}" AuthScopesInvalid="False" DataTable="[in_DtProcessFiles]" DisplayName="Write Range" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,222.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_2" IncludeHeaders="True" IsInsideBatchUpdateScope="False" SheetName="[in_UploadedFilesSheetName]" StartingCell="A1" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_68">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+            <If Condition="[IsNothing(in_DtZipFiles) AndAlso (in_DtZipFiles.RowCount &gt; 0)]" DisplayName="Check If Any Zip Files" sap:VirtualizedContainerService.HintSize="484,686" sap2010:WorkflowViewState.IdRef="If_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,494" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uga:AddNewSheet Columns="{x:Null}" ContinueOnError="{x:Null}" PositionIndex="{x:Null}" Rows="{x:Null}" SpreadsheetId="{x:Null}" AuthScopesInvalid="False" DisplayName="Add New Sheet" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,139.333333333333" sap2010:WorkflowViewState.IdRef="AddNewSheet_2" SheetName="[in_ZipFilesSheetName]" />
+                  <uga:WriteRange ContinueOnError="{x:Null}" Request="{x:Null}" Result="{x:Null}" SpreadsheetId="{x:Null}" AuthScopesInvalid="False" DataTable="[in_DtZipFiles]" DisplayName="Write Range" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,222.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_3" IncludeHeaders="True" IsInsideBatchUpdateScope="False" SheetName="[in_ZipFilesSheetName]" StartingCell="A1" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_66">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </ugas:GoogleSheetsApplicationScope.Body>
+      <ugas:GoogleSheetsApplicationScope.UserEmail>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </ugas:GoogleSheetsApplicationScope.UserEmail>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ugas:GoogleSheetsApplicationScope>
+    <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="560,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
+  </Sequence>
+</Activity>
