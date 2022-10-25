@@ -11,7 +11,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>947.333333333333,1485.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>807.333333333333,2976</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="90">
@@ -120,7 +120,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="480.666666666667,1682.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="817.333333333333,2911.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strHashedFileName" />
       <Variable x:TypeArguments="x:String" Name="strFileName" />
@@ -132,9 +132,9 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="438.666666666667,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
-    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="438.666666666667,55.3333333333333" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="438.666666666667,52" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="775.333333333333,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="775.333333333333,55.3333333333333" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="775.333333333333,52" sap2010:WorkflowViewState.IdRef="CommentOut_2">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="570,144" sap2010:WorkflowViewState.IdRef="Sequence_38">
           <sap:WorkflowViewStateService.ViewState>
@@ -293,7 +293,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <Assign DisplayName="Assign File Name" sap:VirtualizedContainerService.HintSize="438.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_7">
+    <Assign DisplayName="Assign File Name" sap:VirtualizedContainerService.HintSize="775.333333333333,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_7">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[strFileName]</OutArgument>
       </Assign.To>
@@ -306,7 +306,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <Assign DisplayName="Assign Full File Path" sap:VirtualizedContainerService.HintSize="438.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_8">
+    <Assign DisplayName="Assign Full File Path" sap:VirtualizedContainerService.HintSize="775.333333333333,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_8">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[strFullFilePath]</OutArgument>
       </Assign.To>
@@ -319,21 +319,21 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <uca:HashText Algorithm="SHA1" DisplayName="Hash File Name" Encoding="[System.Text.Encoding.UTF8]" sap:VirtualizedContainerService.HintSize="438.666666666667,81.3333333333333" sap2010:WorkflowViewState.IdRef="HashText_4" Input="[strFullFilePath]" Result="[strHashedFileName]">
+    <uca:HashText Algorithm="SHA1" DisplayName="Hash File Name" Encoding="[System.Text.Encoding.UTF8]" sap:VirtualizedContainerService.HintSize="775.333333333333,81.3333333333333" sap2010:WorkflowViewState.IdRef="HashText_4" Input="[strFullFilePath]" Result="[strHashedFileName]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </uca:HashText>
-    <ucas:UploadStorageFile FileResource="{x:Null}" sap2010:Annotation.AnnotationText="Activity timeout is in milliseconds.&#xD;&#xA;&#xD;&#xA;Modern activities use timeouts in seconds so for Upload Storage File we need to multiply the timeout argument by 1000" Destination="[strHashedFileName]" DisplayName="Upload Storage File" sap:VirtualizedContainerService.HintSize="438.666666666667,334" sap2010:WorkflowViewState.IdRef="UploadStorageFile_8" Path="[strFullFilePath]" StorageBucketName="[in_StrStorageBucketName]" TimeoutMS="[in_IntLongTimeout * 1000]">
+    <ucas:UploadStorageFile FileResource="{x:Null}" sap2010:Annotation.AnnotationText="Activity timeout is in milliseconds.&#xD;&#xA;&#xD;&#xA;Modern activities use timeouts in seconds so for Upload Storage File we need to multiply the timeout argument by 1000" Destination="[strHashedFileName]" DisplayName="Upload Storage File" sap:VirtualizedContainerService.HintSize="775.333333333333,334" sap2010:WorkflowViewState.IdRef="UploadStorageFile_8" Path="[strFullFilePath]" StorageBucketName="[in_StrStorageBucketName]" TimeoutMS="[in_IntLongTimeout * 1000]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ucas:UploadStorageFile>
-    <TryCatch DisplayName="Try adding queue item" sap:VirtualizedContainerService.HintSize="438.666666666667,294.666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+    <TryCatch DisplayName="Try adding queue item" sap:VirtualizedContainerService.HintSize="775.333333333333,294.666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_6">
       <TryCatch.Try>
         <ui:AddQueueItem ServiceBaseAddress="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_7" Priority="Normal" QueueType="[in_StrOrchestratorQueueName]" Reference="[strHashedFileName]" TimeoutMS="[in_IntLongTimeout * 1000]">
           <ui:AddQueueItem.ItemInformation>
@@ -342,6 +342,12 @@
             </InArgument>
             <InArgument x:TypeArguments="x:String" x:Key="Storage Bucket File">
               <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strHashedFileName" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="Customer">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.Item(&quot;Customer&quot;).ToString" />
+            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="Uploaded On Egnyte">
+              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TransactionItem.Item(&quot;Egnyte Upload Timestamp&quot;).ToString" />
             </InArgument>
           </ui:AddQueueItem.ItemInformation>
         </ui:AddQueueItem>
@@ -358,7 +364,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:OrchestratorHttpException" Name="exception" />
             </ActivityAction.Argument>
-            <If Condition="[exception.Message.Contains(&quot;Duplicate&quot;)]" DisplayName="Check if duplicate reference exception" sap:VirtualizedContainerService.HintSize="664,348" sap2010:WorkflowViewState.IdRef="If_11">
+            <If Condition="[exception.Message.Contains(&quot;Duplicate&quot;)]" DisplayName="Check if duplicate reference exception" sap:VirtualizedContainerService.HintSize="664,347.333333333333" sap2010:WorkflowViewState.IdRef="If_11">
               <If.Then>
                 <Sequence sap:VirtualizedContainerService.HintSize="376,185.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_39">
                   <sap:WorkflowViewStateService.ViewState>
@@ -384,7 +390,7 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="438.666666666667,52" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="775.333333333333,252" sap2010:WorkflowViewState.IdRef="CommentOut_5">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="296.666666666667,173.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_50">
           <sap:WorkflowViewStateService.ViewState>
@@ -398,19 +404,19 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="ugas:IGoogleSheetTarget" Name="Report_Spreadsheet" />
                 </ActivityAction.Argument>
-                <Sequence sap:VirtualizedContainerService.HintSize="418,380" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                <Sequence sap:VirtualizedContainerService.HintSize="418,372" sap2010:WorkflowViewState.IdRef="Sequence_42">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,288" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,280" sap2010:WorkflowViewState.IdRef="Sequence_41">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <uga:AppendRow ContinueOnError="{x:Null}" AuthScopesInvalid="False" CellReference="A1" DisplayName="Append Row" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,196" sap2010:WorkflowViewState.IdRef="AppendRow_4" Row="[{in_TransactionItem.Item(&quot;File path&quot;).ToString}]" SheetName="Sheet1" SpreadsheetId="[in_StrReportSpreadsheetID]" />
+                    <uga:AppendRow ContinueOnError="{x:Null}" AuthScopesInvalid="False" CellReference="A1" DisplayName="Append Row" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,188" sap2010:WorkflowViewState.IdRef="AppendRow_4" Row="[{in_TransactionItem.Item(&quot;File path&quot;).ToString}]" SheetName="Sheet1" SpreadsheetId="[in_StrReportSpreadsheetID]" />
                   </Sequence>
                 </Sequence>
               </ActivityAction>
@@ -431,23 +437,23 @@
       </ui:CommentOut.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="438.666666666667,52" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="775.333333333333,1098" sap2010:WorkflowViewState.IdRef="CommentOut_6">
       <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,144" sap2010:WorkflowViewState.IdRef="Sequence_51">
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="738.666666666667,1019.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_51">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Flowchart sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+          <Flowchart sap:VirtualizedContainerService.HintSize="696.666666666667,927.333333333333" sap2010:WorkflowViewState.IdRef="Flowchart_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
                 <av:Size x:Key="ShapeSize">60,74.6666666666667</av:Size>
@@ -528,28 +534,28 @@
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">172.656666666667,796.333333333334</av:Point>
-                          <av:Size x:Key="ShapeSize">254.666666666667,80.6666666666667</av:Size>
+                          <av:Size x:Key="ShapeSize">254.666666666667,81.3333333333333</av:Size>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ugas:GoogleSheetsApplicationScope ContinueOnError="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" FileId="{x:Null}" Filename="{x:Null}" ParentFolderId="{x:Null}" ParentFolderPath="{x:Null}" SpreadsheetName="{x:Null}" Account="Please select an account." Action="UseExisting" ConnectionAccountName="uipathbot2@g2.com" ConnectionId="fc012644-9653-ed11-ade6-0050f29e0988" DisplayName="Use Google Spreadsheet" sap:VirtualizedContainerService.HintSize="254.666666666667,80.6666666666667" sap2010:WorkflowViewState.IdRef="GoogleSheetsApplicationScope_1" Mode="EnterId" SpreadsheetId="[in_StrReportSpreadsheetID]" Timeout="[CInt(in_Config(&quot;LongTimeout&quot;))]" UseConnectionService="True">
+                      <ugas:GoogleSheetsApplicationScope ContinueOnError="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" FileId="{x:Null}" Filename="{x:Null}" ParentFolderId="{x:Null}" ParentFolderPath="{x:Null}" SpreadsheetName="{x:Null}" Account="Please select an account." Action="UseExisting" ConnectionAccountName="uipathbot2@g2.com" ConnectionId="fc012644-9653-ed11-ade6-0050f29e0988" DisplayName="Use Google Spreadsheet" sap:VirtualizedContainerService.HintSize="254.666666666667,81.3333333333333" sap2010:WorkflowViewState.IdRef="GoogleSheetsApplicationScope_1" Mode="EnterId" SpreadsheetId="[in_StrReportSpreadsheetID]" Timeout="[CInt(in_Config(&quot;LongTimeout&quot;))]" UseConnectionService="True">
                         <ugas:GoogleSheetsApplicationScope.Body>
                           <ActivityAction x:TypeArguments="ugas:IGoogleSheetTarget">
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="ugas:IGoogleSheetTarget" Name="Report_Spreadsheet" />
                             </ActivityAction.Argument>
-                            <Sequence sap:VirtualizedContainerService.HintSize="418,384" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                            <Sequence sap:VirtualizedContainerService.HintSize="418,380" sap2010:WorkflowViewState.IdRef="Sequence_29">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,292" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,288" sap2010:WorkflowViewState.IdRef="Sequence_28">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <uga:AppendRow ContinueOnError="{x:Null}" AuthScopesInvalid="False" CellReference="A1" DisplayName="Append Row" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,200" sap2010:WorkflowViewState.IdRef="AppendRow_2" Row="[{in_TransactionItem.Item(&quot;File path&quot;).ToString}]" SheetName="Sheet1" SpreadsheetId="[in_StrReportSpreadsheetID]" />
+                                <uga:AppendRow ContinueOnError="{x:Null}" AuthScopesInvalid="False" CellReference="A1" DisplayName="Append Row" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,196" sap2010:WorkflowViewState.IdRef="AppendRow_2" Row="[{in_TransactionItem.Item(&quot;File path&quot;).ToString}]" SheetName="Sheet1" SpreadsheetId="[in_StrReportSpreadsheetID]" />
                               </Sequence>
                             </Sequence>
                           </ActivityAction>
@@ -594,11 +600,11 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">168.895,127.166666666667</av:Point>
-                  <av:Size x:Key="ShapeSize">262,62</av:Size>
+                  <av:Size x:Key="ShapeSize">262,61.3333333333333</av:Size>
                   <av:PointCollection x:Key="ConnectorLocation">299.895,189.166666666667 299.895,239.166666666667</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign DisplayName="Assign File Name" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign DisplayName="Assign File Name" sap:VirtualizedContainerService.HintSize="262,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[strFileName]</OutArgument>
                 </Assign.To>
@@ -616,11 +622,11 @@
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <av:Point x:Key="ShapeLocation">168.895,239.166666666667</av:Point>
-                      <av:Size x:Key="ShapeSize">262,62</av:Size>
+                      <av:Size x:Key="ShapeSize">262,61.3333333333333</av:Size>
                       <av:PointCollection x:Key="ConnectorLocation">299.895,301.166666666667 299.895,331.166666666667 300,331.166666666667 300,363.666666666667</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="Assign Full File Path" sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign DisplayName="Assign Full File Path" sap:VirtualizedContainerService.HintSize="262,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[strFullFilePath]</OutArgument>
                     </Assign.To>
@@ -646,7 +652,7 @@
       </ui:CommentOut.Body>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
