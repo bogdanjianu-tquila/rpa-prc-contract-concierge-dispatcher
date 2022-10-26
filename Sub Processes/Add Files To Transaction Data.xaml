@@ -3,7 +3,7 @@
     <x:Property sap2010:Annotation.AnnotationText="Folder path of files that will be added" Name="in_StrFolderPath" Type="InArgument(x:String)" />
     <x:Property Name="io_TransactionData" Type="InOutArgument(sd:DataTable)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>788,1070.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>934,1070.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="31">
@@ -122,7 +122,7 @@
                 <OutArgument x:TypeArguments="x:String">[strCustomerName]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[CurrentFile.FullName.Split("\"c)(2).ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String">[CurrentFile.FullName.Split("\"c)(3).ToString]</InArgument>
               </Assign.Value>
             </Assign>
             <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strCustomerName, CurrentFile.FullName, CurrentFile.CreationTime.AddHours(1).ToString(&quot;MMM dd, yyyy hh:mm tt&quot;)}]" DataTable="[io_TransactionData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,190" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
