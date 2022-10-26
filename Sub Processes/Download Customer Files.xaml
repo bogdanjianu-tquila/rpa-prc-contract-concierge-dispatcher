@@ -15,7 +15,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>947.333333333333,1288</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>947.333333333333,1298.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="49">
@@ -115,16 +115,11 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Nvigates to a specified page in Egnyte, downloads the folder of files and subfolders from that page, unzips the resulting zip file and outputs the location of the files as a path.&#xD;&#xA;&#xD;&#xA;This is done for each row in a customers datatable that is passed in as an argument." DisplayName="Download Customer Files" sap:VirtualizedContainerService.HintSize="476,1223.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Nvigates to a specified page in Egnyte, downloads the folder of files and subfolders from that page, unzips the resulting zip file and outputs the location of the files as a path.&#xA;&#xA;This is done for each row in a customers datatable that is passed in as an argument." DisplayName="Download Customer Files" sap:VirtualizedContainerService.HintSize="476,1234" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:Object" Name="strSubProcessName">
-        <Variable.Default>
-          <mva:VisualBasicValue x:TypeArguments="x:Object" ExpressionText="&quot;Download Customer Files&quot;" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:Object" Default="[&quot;Download Customer Files&quot;]" Name="strSubProcessName" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -133,14 +128,14 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="434,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_DtCustomerFolders]" DisplayName="For Each Row in Customers DT" sap:VirtualizedContainerService.HintSize="434,756.666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_1" MaxIterations="1">
+    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="434,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_DtCustomerFolders]" DisplayName="For Each Row in Customers DT" sap:VirtualizedContainerService.HintSize="434,762" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentCustomer" />
           </ActivityAction.Argument>
-          <Sequence sap:VirtualizedContainerService.HintSize="376,638.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          <Sequence sap:VirtualizedContainerService.HintSize="376,643.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_16">
             <Sequence.Variables>
               <Variable x:TypeArguments="si:FileInfo" Name="fiDownloadedZipFile" />
               <Variable x:TypeArguments="si:DirectoryInfo" Name="diExtractedContentsFolder" />
@@ -150,22 +145,22 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <t:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To Submitted Contracts" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_13" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" in_StrHeaderKeyWord="[in_StrSubmittedContractsHeaderKeyWord]" in_StrURL="[String.Format(in_StrEgnyteDowloadFolderURL, &#xD;&#xA;in_StrEgnyteCustomersFolderURL, &#xD;&#xA;CurrentCustomer(&quot;Item name&quot;).ToString, &#xD;&#xA;in_StrSubmittedContractsHeaderKeyWord)]" />
-            <t:Egnyte___Download_Folder DisplayName="Egnyte - Download Folder" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="Egnyte___Download_Folder_2" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" in_IntDefaultTimeoutXL="[in_IntExtraLongTimeout]" in_StrDownloadsFolder="[in_StrDownloadsFolder]" in_StrFileName="[CurrentCustomer.Item(&quot;Item name&quot;).ToString]" in_StrIgnoreFileExtensions="[in_StrIgnoreFileExtensions]" out_FiDownloadedFile="[fiDownloadedZipFile]">
+            <t:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To Submitted Contracts" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_13" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" in_StrHeaderKeyWord="[in_StrSubmittedContractsHeaderKeyWord]" in_StrURL="[String.Format(in_StrEgnyteDowloadFolderURL, &#xA;in_StrEgnyteCustomersFolderURL, &#xA;CurrentCustomer(&quot;Item name&quot;).ToString, &#xA;in_StrSubmittedContractsHeaderKeyWord)]" />
+            <t:Egnyte___Download_Folder DisplayName="Egnyte - Download Folder" sap:VirtualizedContainerService.HintSize="334,135.333333333333" sap2010:WorkflowViewState.IdRef="Egnyte___Download_Folder_2" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" in_IntDefaultTimeoutXL="[in_IntExtraLongTimeout]" in_StrDownloadsFolder="[in_StrDownloadsFolder]" in_StrFileName="[CurrentCustomer.Item(&quot;Item name&quot;).ToString]" in_StrIgnoreFileExtensions="[in_StrIgnoreFileExtensions]" out_FiDownloadedFile="[fiDownloadedZipFile]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </t:Egnyte___Download_Folder>
-            <uascw:ExtractFiles Content="{x:Null}" File="{x:Null}" Password="{x:Null}" CodePage="Default" DestinationFolder="[in_StrDownloadsFolder]" DestinationFolderInfo="[diExtractedContentsFolder]" DisplayName="Extract/Unzip Downloaded Files" ExtractToADedicatedFolder="True" FileToExtract="[fiDownloadedZipFile.FullName]" sap:VirtualizedContainerService.HintSize="334,209.333333333333" sap2010:WorkflowViewState.IdRef="ExtractFiles_2" SkipUnsupportedFiles="False">
+            <uascw:ExtractFiles Content="{x:Null}" File="{x:Null}" Password="{x:Null}" CodePage="Default" DestinationFolder="[in_StrDownloadsFolder]" DestinationFolderInfo="[diExtractedContentsFolder]" DisplayName="Extract/Unzip Downloaded Files" ExtractToADedicatedFolder="True" FileToExtract="[fiDownloadedZipFile.FullName]" sap:VirtualizedContainerService.HintSize="334,212" sap2010:WorkflowViewState.IdRef="ExtractFiles_2" SkipUnsupportedFiles="False">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </uascw:ExtractFiles>
-            <Assign DisplayName="Assign Downloaded Folders Path" sap:VirtualizedContainerService.HintSize="334,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign DisplayName="Assign Downloaded Folders Path" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[out_StrDownloadedFoldersPath]</OutArgument>
               </Assign.To>
