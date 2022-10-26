@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>947.333333333333,2168</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>934,2280</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="49">
@@ -106,10 +106,9 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Navigates to the customer folders location and extracts the customers list as a datatable." DisplayName="Extract Transaction Data" sap:VirtualizedContainerService.HintSize="885.333333333333,2103.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Navigates to the customer folders location and extracts the customers list as a datatable." DisplayName="Extract Transaction Data" sap:VirtualizedContainerService.HintSize="885.333333333333,2215.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="boolDownloadsFolderExists" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtCustomersFolder" />
@@ -174,87 +173,89 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Extract Customer Folders.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="843.333333333333,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Sub Processes\Extract Customer Folders.xaml">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="843.333333333333,284.666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="388.666666666667,206" sap2010:WorkflowViewState.IdRef="Sequence_115">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Extract Customer Folders.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="346.666666666667,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Sub Processes\Extract Customer Folders.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DtCustomersFolder">[dtCustomersFolder]</OutArgument>
+              <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">[CDbl(in_Config("DefaultDelay"))]</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">[CInt(in_Config("ShortTimeout"))]</InArgument>
+              <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[CInt(in_Config("LongTimeout"))]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_StrCustomersHeaderKeyword">[in_Config("HeaderKeyword_Customers").ToString]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_StrCustomerFoldersURL">[in_Config("EgnyteCustomerFolders_URL").ToString]</InArgument>
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="843.333333333333,368.666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,290" sap2010:WorkflowViewState.IdRef="Sequence_116">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <If sap2010:Annotation.AnnotationText="We first check if there are any Non-Saas folders in the customer folders dt.&#xA;&#xA;If there are we filter the datable for any folders that are not Non-Saas to remove the Non-Saas" Condition="[dtCustomersFolder.AsEnumerable.Any(Function (drRow) drRow.Item(&quot;Item name&quot;).ToString.ToLower.Trim.Contains(&quot;Non-Saas&quot;.Trim.ToLower))]" DisplayName="Check If Non Saas Customer Folders" sap:VirtualizedContainerService.HintSize="200,198" sap2010:WorkflowViewState.IdRef="If_22">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="Sequence_113">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="sd:DataTable" Name="dtFilteredCustomers" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_30">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="sd:DataTable">[dtFilteredCustomers]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="sd:DataTable">[dtCustomersFolder.AsEnumerable.Where(Function (drRow) drRow.Item("Item name").ToString.ToLower.Trim.Contains("Non-Saas".Trim.ToLower) = False).CopyToDataTable]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_114">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Download Customer Files.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="843.333333333333,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Sub Processes\Download Customer Files.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DtCustomersFolder">[dtCustomersFolder]</OutArgument>
         <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">[CDbl(in_Config("DefaultDelay"))]</InArgument>
         <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">[CInt(in_Config("ShortTimeout"))]</InArgument>
         <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[CInt(in_Config("LongTimeout"))]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrCustomersHeaderKeyword">[in_Config("HeaderKeyword_Customers").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrCustomerFoldersURL">[in_Config("EgnyteCustomerFolders_URL").ToString]</InArgument>
-      </ui:InvokeWorkflowFile.Arguments>
-    </ui:InvokeWorkflowFile>
-    <If sap2010:Annotation.AnnotationText="We first check if there are any Non-Saas folders in the customer folders dt.&#xA;&#xA;If there are we filter the datable for any folders that are not Non-Saas to remove the Non-Saas" Condition="[dtCustomersFolder.AsEnumerable.Any(Function (drRow) drRow.Item(&quot;Item name&quot;).ToString.ToLower.Trim.Contains(&quot;Non-Saas&quot;.Trim.ToLower))]" DisplayName="Check If Non Saas Customer Folders" sap:VirtualizedContainerService.HintSize="843.333333333333,427.333333333333" sap2010:WorkflowViewState.IdRef="If_22">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="Sequence_113">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="sd:DataTable" Name="dtFilteredCustomers" />
-          </Sequence.Variables>
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_30">
-            <Assign.To>
-              <OutArgument x:TypeArguments="sd:DataTable">[dtFilteredCustomers]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="sd:DataTable">[dtCustomersFolder.AsEnumerable.Where(Function (drRow) drRow.Item("Item name").ToString.ToLower.Trim.Contains("Non-Saas".Trim.ToLower) = False).CopyToDataTable]</InArgument>
-            </Assign.Value>
-          </Assign>
-        </Sequence>
-      </If.Then>
-      <If.Else>
-        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_114">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-        </Sequence>
-      </If.Else>
-    </If>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Download Customer Files.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="843.333333333333,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Sub Processes\Download Customer Files.xaml">
-      <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">
-          <mva:VisualBasicValue x:TypeArguments="x:Double" ExpressionText="CDbl(in_Config(&quot;DefaultDelay&quot;))" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">
-          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ShortTimeout&quot;))" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">
-          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;LongTimeout&quot;))" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtCustomerFolders">
-          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dtCustomersFolder" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrSubmittedContractsHeaderKeyWord">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;HeaderKeyword_SubmittedContracts&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntExtraLongTimeout">
-          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ExtraLongTimeout&quot;))" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolder">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strDownloadsFolder" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrIgnoreFileExtensions">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;IgnoreFileExtensions&quot;).ToString" />
-        </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_StrDownloadedFoldersPath">
-          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strDownloadedFoldersPath" />
-        </OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrEgnyteDowloadFolderURL">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;EgnyteDownloadFolder_URL&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrEgnyteCustomersFolderURL">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;EgnyteCustomerFolders_URL&quot;).ToString" />
-        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtCustomerFolders">[dtCustomersFolder]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrSubmittedContractsHeaderKeyWord">[in_Config("HeaderKeyword_SubmittedContracts").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntExtraLongTimeout">[CInt(in_Config("ExtraLongTimeout"))]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolder">[strDownloadsFolder]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrIgnoreFileExtensions">[in_Config("IgnoreFileExtensions").ToString]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_StrDownloadedFoldersPath">[strDownloadedFoldersPath]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrEgnyteDowloadFolderURL">[in_Config("EgnyteDownloadFolder_URL").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrEgnyteCustomersFolderURL">[in_Config("EgnyteCustomerFolders_URL").ToString]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Add Files To Transaction Data.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="843.333333333333,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Sub Processes\Add Files To Transaction Data.xaml">

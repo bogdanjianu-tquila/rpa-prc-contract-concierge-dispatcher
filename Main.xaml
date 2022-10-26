@@ -679,7 +679,7 @@
                                           <ActivityAction.Argument>
                                             <DelegateInArgument x:TypeArguments="ugad:IGoogleDriveTarget" Name="GoogleDrive" />
                                           </ActivityAction.Argument>
-                                          <Sequence DisplayName="Create Report Spreadsheet" sap:VirtualizedContainerService.HintSize="376,292" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                                          <Sequence DisplayName="Create Report Spreadsheet" sap:VirtualizedContainerService.HintSize="376,284" sap2010:WorkflowViewState.IdRef="Sequence_48">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
