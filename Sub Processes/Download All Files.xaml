@@ -117,7 +117,7 @@
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Navigates to a specified page in Egnyte, downloads the folder of files and subfolders from that page, unzips the resulting zip file and outputs the location of the files as a path.&#xA;&#xA;This is done for each row in a customers datatable that is passed in as an argument." DisplayName="Download Customer Files" sap:VirtualizedContainerService.HintSize="476,1340.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Nvigates to a specified page in Egnyte, downloads the folder of files and subfolders from that page, unzips the resulting zip file and outputs the location of the files as a path.&#xA;&#xA;This is done for each row in a customers datatable that is passed in as an argument." DisplayName="Download Customer Files" sap:VirtualizedContainerService.HintSize="476,1340.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Object" Default="[&quot;Download Customer Files&quot;]" Name="strSubProcessName" />
     </Sequence.Variables>
