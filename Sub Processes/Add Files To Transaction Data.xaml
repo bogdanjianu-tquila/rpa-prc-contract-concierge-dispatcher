@@ -122,7 +122,7 @@
                 <OutArgument x:TypeArguments="x:String">[strCustomerName]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[CurrentFile.FullName.Split("\"c)(3).ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String">[CurrentFile.FullName.Split("\"c)(4).ToString]</InArgument>
               </Assign.Value>
             </Assign>
             <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strCustomerName, CurrentFile.FullName, CurrentFile.CreationTime.AddHours(1).ToString(&quot;MMM dd, yyyy hh:mm tt&quot;)}]" DataTable="[io_TransactionData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,190" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
