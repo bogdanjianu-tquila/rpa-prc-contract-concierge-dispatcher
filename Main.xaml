@@ -63,7 +63,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="45">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="90">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -109,6 +109,7 @@
       <AssemblyReference>UiPath.Persistence.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="[Process title]&#xA;[Process description]&#xA;[Additional information (e.g., author, contact information and applications involved and required external setup)]" DisplayName="General Business Process" sap:VirtualizedContainerService.HintSize="740,836" sap2010:WorkflowViewState.IdRef="StateMachine_1">
@@ -593,7 +594,18 @@
                                     </ui:InvokeWorkflowFile>
                                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Framework\CloseAllApplications.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379.333333333333,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_37" UnSafe="False" WorkflowFileName="Framework\CloseAllApplications.xaml">
                                       <ui:InvokeWorkflowFile.Arguments>
-                                        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
+                                        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">
+                                          <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, x:Object)" ExpressionText="Config" />
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">
+                                          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(Config(&quot;LongTimeout&quot;))" />
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">
+                                          <mva:VisualBasicValue x:TypeArguments="x:Double" ExpressionText="CDbl(Config(&quot;DefaultDelay&quot;))" />
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">
+                                          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(Config(&quot;ShortTimeout&quot;))" />
+                                        </InArgument>
                                       </ui:InvokeWorkflowFile.Arguments>
                                     </ui:InvokeWorkflowFile>
                                     <If sap2010:Annotation.AnnotationText="Overwrite queue name from in configuration file in case the argument in_OrchestratorQueueName is specified.&#xA;This provides backward compatibility with &lt; 2018.3." Condition="[Not String.IsNullOrWhiteSpace(in_OrchestratorQueueName)]" DisplayName="If in_OrchestratorQueueName is specified" sap:VirtualizedContainerService.HintSize="379.333333333333,181.333333333333" sap2010:WorkflowViewState.IdRef="If_10">
