@@ -1,6 +1,9 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="CloseAllApplications" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:t="clr-namespace:TQA_G2_Egnyte;assembly=TQA.G2_Egnyte" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_IntLongTimeout" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_DblDelay" Type="InArgument(x:Double)" />
+    <x:Property Name="in_IntShortTimeout" Type="InArgument(x:Int32)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -96,7 +99,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log message (close applications)" sap:VirtualizedContainerService.HintSize="798,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Closing applications...&quot;]" />
-    <t:Egnyte___Check_Login DisplayName="Egnyte - Check Login" sap:VirtualizedContainerService.HintSize="798,22" sap2010:WorkflowViewState.IdRef="Egnyte___Check_Login_1" in_DblDefaultDelay="[CDbl(in_Config(&quot;DefaultDelay&quot;))]" in_IntDefaultTimeout="[CInt(in_Config(&quot;ShortTimeout&quot;))]" out_BoolUserLoggedIn="[boolUserLoggedIn]" />
+    <t:Egnyte___Check_Login DisplayName="Egnyte - Check Login" sap:VirtualizedContainerService.HintSize="798,22" sap2010:WorkflowViewState.IdRef="Egnyte___Check_Login_1" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeout="[in_IntShortTimeout]" out_BoolUserLoggedIn="[boolUserLoggedIn]" />
     <If sap2010:Annotation.AnnotationText="If user is logged in robot logs user out and closes Egnyte from the login screen.&#xA;&#xA;If user is not logged in robot just closes Egnyte from the login screen." Condition="[boolUserLoggedIn]" DisplayName="Check If User Is Logged In" sap:VirtualizedContainerService.HintSize="798,536.666666666667" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -111,8 +114,8 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;User is logged in. Proceeding to log out.&quot;]" />
-          <t:Egnyte___Logout DisplayName="Egnyte - Logout" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Egnyte___Logout_1" in_DblDefaultDelay="[CDbl(in_Config(&quot;DefaultDelay&quot;))]" in_IntDefaultTimeoutL="[CInt(in_Config(&quot;LongTimeout&quot;))]" in_IntDefaultTimeoutS="[CInt(in_Config(&quot;ShortTimeout&quot;))]" />
-          <t:Egnyte___Close_Egnyte DisplayName="Egnyte - Close Egnyte" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Egnyte___Close_Egnyte_1" in_DblDefaultDelay="[CDbl(in_Config(&quot;DefaultDelay&quot;))]" in_IntDefaultTimeout="[CInt(in_Config(&quot;ShortTimeout&quot;))]" />
+          <t:Egnyte___Logout DisplayName="Egnyte - Logout" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Egnyte___Logout_1" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" />
+          <t:Egnyte___Close_Egnyte DisplayName="Egnyte - Close Egnyte" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Egnyte___Close_Egnyte_1" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeout="[in_IntLongTimeout]" />
         </Sequence>
       </If.Then>
       <If.Else>
