@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>934,2604.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>947.333333333333,2280</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="49">
@@ -109,7 +109,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Navigates to the customer folders location and extracts the customers list as a datatable." DisplayName="Extract Transaction Data" sap:VirtualizedContainerService.HintSize="885.333333333333,2540" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Navigates to the customer folders location and extracts the customers list as a datatable." DisplayName="Extract Transaction Data" sap:VirtualizedContainerService.HintSize="885.333333333333,2215.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="boolDownloadsFolderExists" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtCustomersFolder" />
@@ -174,27 +174,6 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="843.333333333333,284.666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="388.666666666667,206" sap2010:WorkflowViewState.IdRef="Sequence_115">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Extract Customer Folders.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="346.666666666667,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Sub Processes\Extract Customer Folders.xaml">
-            <ui:InvokeWorkflowFile.Arguments>
-              <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DtCustomersFolder">[dtCustomersFolder]</OutArgument>
-              <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">[CDbl(in_Config("DefaultDelay"))]</InArgument>
-              <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">[CInt(in_Config("ShortTimeout"))]</InArgument>
-              <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[CInt(in_Config("LongTimeout"))]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_StrCustomersHeaderKeyword">[in_Config("HeaderKeyword_Customers").ToString]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_StrCustomerFoldersURL">[in_Config("EgnyteCustomerFolders_URL").ToString]</InArgument>
-            </ui:InvokeWorkflowFile.Arguments>
-          </ui:InvokeWorkflowFile>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
     <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="843.333333333333,368.666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_2">
       <ui:CommentOut.Body>
         <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,290" sap2010:WorkflowViewState.IdRef="Sequence_116">
@@ -278,44 +257,22 @@
     </ui:CommentOut>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Download All Files.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="843.333333333333,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Sub Processes\Download All Files.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">
-          <mva:VisualBasicValue x:TypeArguments="x:Double" ExpressionText="CDbl(in_Config(&quot;DefaultDelay&quot;))" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">
-          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ShortTimeout&quot;))" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">
-          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;LongTimeout&quot;))" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">[CDbl(in_Config("DefaultDelay"))]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">[CInt(in_Config("ShortTimeout"))]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[CInt(in_Config("LongTimeout"))]</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_StrSubmittedContractsHeaderKeyWord" />
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntExtraLongTimeout">
-          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ExtraLongTimeout&quot;))" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolder">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;DownloadsFolder&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrIgnoreFileExtensions">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;IgnoreFileExtensions&quot;).ToString" />
-        </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_StrDownloadedFoldersPath">
-          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strDownloadedFoldersPath" />
-        </OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrCustomersURL">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;EgnyteCustomersURL&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrZipFileName">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;DownloadedZipFileName&quot;).ToString" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntExtraLongTimeout">[CInt(in_Config("ExtraLongTimeout"))]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolder">[in_Config("DownloadsFolder").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrIgnoreFileExtensions">[in_Config("IgnoreFileExtensions").ToString]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_StrDownloadedFoldersPath">[strDownloadedFoldersPath]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrCustomersURL">[in_Config("EgnyteCustomersURL").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrZipFileName">[in_Config("DownloadedZipFileName").ToString]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Add Files To Transaction Data.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="843.333333333333,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Sub Processes\Add Files To Transaction Data.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderPath">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strDownloadedFoldersPath" />
-        </InArgument>
-        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_TransactionData">
-          <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="io_DtTransactionData" />
-        </InOutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderPath">[strDownloadedFoldersPath]</InArgument>
+        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_TransactionData">[io_DtTransactionData]</InOutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="843.333333333333,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
