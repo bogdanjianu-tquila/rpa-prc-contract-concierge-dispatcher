@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1161,1721</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1161,1616</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Recursive_function_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="43">
@@ -96,13 +96,12 @@
       <AssemblyReference>UiPath.Cryptography</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Extract Files" sap:VirtualizedContainerService.HintSize="915,1656" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Extract Files" sap:VirtualizedContainerService.HintSize="915,1551" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="boolNextPageEnabled" />
       <Variable x:TypeArguments="x:String" Name="strFolderURL" />
@@ -114,26 +113,22 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <te:Egnyte___Extract_Page_Table DisplayName="Egnyte - Extract Page Table" sap:VirtualizedContainerService.HintSize="873,22" sap2010:WorkflowViewState.IdRef="Egnyte___Extract_Page_Table_1" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" out_DtFolderFiles="[dtFilesDT]" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtFilesDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="873,973" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtFilesDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="873,868" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="839,857" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="839,752" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
-              <Variable x:TypeArguments="s:String[]" Name="arrExtensions">
-                <Variable.Default>
-                  <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="{}{&quot;.pdf&quot;,&quot;.xlsx&quot;,&quot;.xls&quot;,&quot;.csv&quot;,&quot;.docx&quot;,&quot;.doc&quot;,&quot;.zip&quot;,&quot;.jpeg&quot;,&quot;.jpg&quot;,&quot;.png&quot;}" />
-                </Variable.Default>
-              </Variable>
+              <Variable x:TypeArguments="s:String[]" Default="[{&quot;.pdf&quot;,&quot;.xlsx&quot;,&quot;.xls&quot;,&quot;.csv&quot;,&quot;.docx&quot;,&quot;.doc&quot;,&quot;.zip&quot;,&quot;.jpeg&quot;,&quot;.jpg&quot;,&quot;.png&quot;}]" Name="arrExtensions" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[arrExtensions.Contains(Path.GetExtension(CurrentRow.Item(&quot;Item name&quot;).ToString.ToLower))]" DisplayName="If File" sap:VirtualizedContainerService.HintSize="797,765" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[arrExtensions.Contains(Path.GetExtension(CurrentRow.Item(&quot;Item name&quot;).ToString.ToLower))]" DisplayName="If File" sap:VirtualizedContainerService.HintSize="797,660" sap2010:WorkflowViewState.IdRef="If_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -141,7 +136,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="376,605" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence sap:VirtualizedContainerService.HintSize="376,421" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -149,43 +144,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Processing file&quot;]" />
-                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-                    <ui:CommentOut.Body>
-                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <te:Egnyte___Extract_Folder_Table DisplayName="Egnyte - Extract Folder Table" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Egnyte___Extract_Folder_Table_2" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" out_DtFolderFiles="[dtFilesDT]" />
-                      </Sequence>
-                    </ui:CommentOut.Body>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:CommentOut>
                   <te:Egnyte___Open_File DisplayName="Egnyte - Open File" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="Egnyte___Open_File_1" in_DblDelay="0.2" in_IntLongTimeout="30" in_IntShortTimeout="5" in_StrItemName="[CurrentRow.Item(&quot;Item name&quot;).ToString]" />
-                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                    <ui:CommentOut.Body>
-                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="326,280" sap2010:WorkflowViewState.IdRef="Sequence_5">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <te:Egnyte___Download_File out_StrDownloadedFilePath="{x:Null}" DisplayName="Egnyte - Download File" sap:VirtualizedContainerService.HintSize="284,188" sap2010:WorkflowViewState.IdRef="Egnyte___Download_File_1" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" in_IntDefaultTimeoutXS="2" in_StrDownloadsFolder="C:\Users\BogdanJianu\Downloads" in_StrFileName="[CurrentRow.Item(&quot;Item name&quot;).ToString]" />
-                      </Sequence>
-                    </ui:CommentOut.Body>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:CommentOut>
                   <te:Egnyte___Exit_File_Viewer DisplayName="Egnyte - Exit File Viewer" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Egnyte___Exit_File_Viewer_1" in_DblDelay="0.2" in_IntLongTimeout="30" in_IntShortTimeout="5" />
                 </Sequence>
               </If.Then>
