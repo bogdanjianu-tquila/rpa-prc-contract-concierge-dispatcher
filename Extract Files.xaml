@@ -1,11 +1,12 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Recursive_function" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:te="clr-namespace:TQA_G2.Egnyte;assembly=TQA.G2" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_StrFolderURL" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrFolderName" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1161,2699</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1102,2965</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Recursive_function_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="43">
@@ -55,7 +56,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="43">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="44">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -99,37 +100,55 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Extract Files" sap:VirtualizedContainerService.HintSize="967,2634" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Extract Files" sap:VirtualizedContainerService.HintSize="967,2900" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="boolNextPageEnabled" />
       <Variable x:TypeArguments="x:String" Name="strFolderURL" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtFilesDT" />
+      <Variable x:TypeArguments="x:Object" Default="[&quot;Extract Files&quot;]" Name="strSubProcessName" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To Submitted Contracts" sap:VirtualizedContainerService.HintSize="925,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_3" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" in_StrURL="[in_StrFolderURL]" />
+    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="925,93" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="925,192" sap2010:WorkflowViewState.IdRef="CommentOut_9">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_23">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To Submitted Contracts" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_3" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" in_StrFolderName="[in_StrFolderName]" in_StrURL="[in_StrFolderURL]" />
+        </Sequence>
+      </ui:CommentOut.Body>
+    </ui:CommentOut>
     <te:Egnyte___Extract_Page_Table DisplayName="Egnyte - Extract Page Table" sap:VirtualizedContainerService.HintSize="925,22" sap2010:WorkflowViewState.IdRef="Egnyte___Extract_Page_Table_1" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" out_DtFolderFiles="[dtFilesDT]" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtFilesDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="925,1370" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtFilesDT]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="925,1200" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="891,1254" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="891,1084" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
-              <Variable x:TypeArguments="s:String[]" Default="[{&quot;.pdf&quot;,&quot;.xlsx&quot;,&quot;.xls&quot;,&quot;.csv&quot;,&quot;.docx&quot;,&quot;.doc&quot;,&quot;.zip&quot;,&quot;.jpeg&quot;,&quot;.jpg&quot;,&quot;.png&quot;}]" Name="arrExtensions" />
+              <Variable x:TypeArguments="s:String[]" Name="arrExtensions">
+                <Variable.Default>
+                  <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="{}{&quot;.pdf&quot;,&quot;.xlsx&quot;,&quot;.xls&quot;,&quot;.csv&quot;,&quot;.docx&quot;,&quot;.doc&quot;,&quot;.zip&quot;,&quot;.jpeg&quot;,&quot;.jpg&quot;,&quot;.png&quot;,&quot;.lnk&quot;}" />
+                </Variable.Default>
+              </Variable>
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[arrExtensions.Contains(Path.GetExtension(CurrentRow.Item(&quot;Item name&quot;).ToString.ToLower))]" DisplayName="If File" sap:VirtualizedContainerService.HintSize="849,1162" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[arrExtensions.Contains(Path.GetExtension(CurrentRow.Item(&quot;Item name&quot;).ToString.ToLower))]" DisplayName="If File" sap:VirtualizedContainerService.HintSize="849,992" sap2010:WorkflowViewState.IdRef="If_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -175,7 +194,7 @@
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence sap:VirtualizedContainerService.HintSize="478,1002" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence sap:VirtualizedContainerService.HintSize="478,832" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="strPreviousFolderURL" />
                   </Sequence.Variables>
@@ -213,24 +232,14 @@
                       </Sequence>
                     </ui:CommentOut.Body>
                   </ui:CommentOut>
-                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,192" sap2010:WorkflowViewState.IdRef="CommentOut_8">
-                    <ui:CommentOut.Body>
-                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_22">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To URL" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_1" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" in_StrURL="[strFolderURL]" />
-                      </Sequence>
-                    </ui:CommentOut.Body>
-                  </ui:CommentOut>
+                  <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To URL" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_1" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" in_StrFolderName="[CurrentRow.Item(&quot;Item name&quot;).ToString]" in_StrURL="[strFolderURL]" />
                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Extract Files.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="436,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Extract Files.xaml">
                     <ui:InvokeWorkflowFile.Arguments>
                       <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderURL">[strFolderURL]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderName">[CurrentRow.Item("Item name").ToString]</InArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
-                  <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To Submitted Contracts" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_4" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" in_StrURL="[in_StrFolderURL]" />
+                  <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To Submitted Contracts" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_4" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" in_StrFolderName="[in_StrFolderName]" in_StrURL="[in_StrFolderURL]" />
                 </Sequence>
               </If.Else>
             </If>
@@ -253,16 +262,22 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="376,267" sap2010:WorkflowViewState.IdRef="Sequence_11">
+        <Sequence sap:VirtualizedContainerService.HintSize="376,362.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_11">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <te:Egnyte___Click_Next_Page DisplayName="Egnyte - Click Next Page" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Egnyte___Click_Next_Page_1" in_DblDefaultDelay="0.2" in_IntLongTimeout="30" in_IntShortTimeout="5" />
+          <ui:Comment sap:VirtualizedContainerService.HintSize="334,55.6666666666667" sap2010:WorkflowViewState.IdRef="Comment_1" Text="add navigate to url here&#xA;" />
           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Extract Files.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Extract Files.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderURL">[strFolderURL]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderURL">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_StrFolderURL" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderName">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_StrFolderName" />
+              </InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
         </Sequence>
@@ -303,7 +318,7 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To URL" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_2" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" in_StrURL="[in_StrFolderURL]" />
+                <te:Egnyte___Navigate_To_URL in_StrFolderName="{x:Null}" DisplayName="Egnyte - Navigate To URL" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_2" in_DblDefaultDelay="0.2" in_IntDefaultTimeoutL="30" in_IntDefaultTimeoutS="5" in_StrURL="[in_StrFolderURL]" />
               </Sequence>
             </ui:CommentOut.Body>
           </ui:CommentOut>
@@ -322,5 +337,6 @@
         </Sequence>
       </If.Else>
     </If>
+    <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="925,93" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
   </Sequence>
 </Activity>
