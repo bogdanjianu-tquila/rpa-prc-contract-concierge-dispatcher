@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Initialize_Applications" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:te="clr-namespace:TQA_G2.Egnyte;assembly=TQA.G2" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Initialize_Applications" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:te="clr-namespace:TQA_G2.Egnyte;assembly=TQA.G2" xmlns:this="clr-namespace:" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_DblDelay" Type="InArgument(x:Double)" />
     <x:Property Name="in_IntExtraShortTimeout" Type="InArgument(x:Int32)">
@@ -16,11 +16,20 @@
     <x:Property Name="in_StrDownloadsFolder" Type="InArgument(x:String)" />
     <x:Property Name="io_DtReportData" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_ArrInScopeFileTypes" Type="InArgument(s:String[])" />
+    <x:Property Name="in_StrQueueName" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrStorageBucketName" Type="InArgument(x:String)" />
+    <x:Property Name="in_IntCustomerPathIndex" Type="InArgument(x:Int32)" />
   </x:Members>
+  <this:Initialize_Applications.in_StrStorageBucketName>
+    <InArgument x:TypeArguments="x:String" />
+  </this:Initialize_Applications.in_StrStorageBucketName>
+  <this:Initialize_Applications.in_IntCustomerPathIndex>
+    <InArgument x:TypeArguments="x:Int32" />
+  </this:Initialize_Applications.in_IntCustomerPathIndex>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1468,2312</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1406,3782.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="51">
@@ -126,9 +135,18 @@
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Sub-process to process file by checking if it exists, opening it, extracting metadata, downloading the file, creating queue item, uploading to storage bucket, deleting file and closing the file in Egnyte." DisplayName="Process File" sap:VirtualizedContainerService.HintSize="1478,2247.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Sub-process to process file by checking if it exists, opening it, extracting metadata, downloading the file, creating queue item, uploading to storage bucket, deleting file and closing the file in Egnyte." DisplayName="Process File" sap:VirtualizedContainerService.HintSize="1416,3718" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Object" Default="[&quot;Process File&quot;]" Name="strSubProcessName" />
+      <Variable x:TypeArguments="x:Boolean" Name="boolFileExists" />
+      <Variable x:TypeArguments="x:String" Name="strDirectLink" />
+      <Variable x:TypeArguments="x:String" Name="strEgnyteFilePath" />
+      <Variable x:TypeArguments="x:String" Name="strFileName" />
+      <Variable x:TypeArguments="x:String" Name="strLastUpdatedBy" />
+      <Variable x:TypeArguments="x:String" Name="strModifiedDate" />
+      <Variable x:TypeArguments="x:String" Name="strDownloadedFilePath" />
+      <Variable x:TypeArguments="x:String" Name="strFileID" />
+      <Variable x:TypeArguments="x:String" Name="strCustomerName" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -137,122 +155,212 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="1416,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
-    <Sequence sap:VirtualizedContainerService.HintSize="1416,1808" sap2010:WorkflowViewState.IdRef="Sequence_14">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="x:Boolean" Name="boolFileExists" />
-        <Variable x:TypeArguments="x:String" Name="strDirectLink" />
-        <Variable x:TypeArguments="x:String" Name="strEgnyteFilePath" />
-        <Variable x:TypeArguments="x:String" Name="strFileName" />
-        <Variable x:TypeArguments="x:String" Name="strLastUpdatedBy" />
-        <Variable x:TypeArguments="x:String" Name="strModifiedDate" />
-        <Variable x:TypeArguments="x:String" Name="strDownloadedFilePath" />
-      </Sequence.Variables>
+    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="1354,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
+    <te:Egnyte___Check_File_Exists DisplayName="Egnyte - Check File Exists" sap:VirtualizedContainerService.HintSize="1354,144" sap2010:WorkflowViewState.IdRef="Egnyte___Check_File_Exists_1" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrItemName="[in_StrItemName]" out_BoolFileExists="[boolFileExists]" />
+    <If Condition="[boolFileExists]" DisplayName="Check If File Exists" sap:VirtualizedContainerService.HintSize="1354,692" sap2010:WorkflowViewState.IdRef="If_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <te:Egnyte___Check_File_Exists DisplayName="Egnyte - Check File Exists" sap:VirtualizedContainerService.HintSize="1354,144" sap2010:WorkflowViewState.IdRef="Egnyte___Check_File_Exists_1" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrItemName="[in_StrItemName]" out_BoolFileExists="[boolFileExists]" />
-      <If Condition="[boolFileExists]" DisplayName="Check If File Exists" sap:VirtualizedContainerService.HintSize="1354,693.333333333333" sap2010:WorkflowViewState.IdRef="If_2">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <If.Then>
-          <Sequence DisplayName="File Exists" sap:VirtualizedContainerService.HintSize="400,225.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_10">
+      <If.Then>
+        <Sequence DisplayName="File Exists" sap:VirtualizedContainerService.HintSize="400,225.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_34" Level="Info" Message="[&quot;File exists: &quot;+in_StrItemName]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="File Does Not Exist" sap:VirtualizedContainerService.HintSize="908,520" sap2010:WorkflowViewState.IdRef="Sequence_13">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Boolean" Name="boolPreviousPage" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <te:Egnyte___Check_Previous_Page DisplayName="Check Previous Page Exists" sap:VirtualizedContainerService.HintSize="846,32" sap2010:WorkflowViewState.IdRef="Egnyte___Check_Previous_Page_1" in_DblDefaultDelay="[in_DblDelay]" in_IntExtraShortTimeout="[in_IntExtraShortTimeout]" in_IntLongTimeout="[in_IntLongTimeout]" out_BoolPreviousPageEnabled="[boolPreviousPage]" />
+          <If Condition="[boolPreviousPage]" DisplayName="Check If Previous Page Exists" sap:VirtualizedContainerService.HintSize="846,326" sap2010:WorkflowViewState.IdRef="If_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_34" Level="Info" Message="[&quot;File exists: &quot;+in_StrItemName]" />
-          </Sequence>
-        </If.Then>
-        <If.Else>
-          <Sequence DisplayName="File Does Not Exist" sap:VirtualizedContainerService.HintSize="908,520.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_13">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:Boolean" Name="boolPreviousPage" />
-            </Sequence.Variables>
+            <If.Then>
+              <Sequence DisplayName="Previous Page Exists" sap:VirtualizedContainerService.HintSize="400,154" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <te:Egnyte___Click_Previous_Page DisplayName="Click Previous Page Button" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="Egnyte___Click_Previous_Page_1" in_DblDefaultDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Previous Page Does Not Exist" sap:VirtualizedContainerService.HintSize="400,154" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw Previous Page Exception" Exception="[new System.Exception(&quot;File &lt;&quot;+in_StrItemName+&quot;&gt; could not be found.&quot;)]" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="Throw_1" />
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </If.Else>
+    </If>
+    <te:Egnyte___Open_File DisplayName="Egnyte - Open File" sap:VirtualizedContainerService.HintSize="1354,62" sap2010:WorkflowViewState.IdRef="Egnyte___Open_File_2" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrItemName="[in_StrItemName]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </te:Egnyte___Open_File>
+    <te:Egnyte___Extract_File_Details DisplayName="Egnyte - Extract File Details" sap:VirtualizedContainerService.HintSize="1354,32" sap2010:WorkflowViewState.IdRef="Egnyte___Extract_File_Details_1" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrFileNameRegex="[in_StrFileNameRegex]" in_StrFilePathRegex="[in_StrFilePathRegex]" in_StrLastUpdatedByRegex="[in_StrLastUpdatedByRegex]" in_StrModifiedDateRegex="[in_StrModifiedDateRegex]" out_StrDirectLink="[strDirectLink]" out_StrEgnyteFilePath="[strEgnyteFilePath]" out_StrFileID="[strFileID]" out_StrFileName="[strFileName]" out_StrLastUpdatedBy="[strLastUpdatedBy]" out_StrModifiedDate="[strModifiedDate]" />
+    <If sap2010:Annotation.AnnotationText="Only .pdf, .doc and .docx are in scope" Condition="[in_ArrInScopeFileTypes.Contains(Path.GetExtension(strFileName).ToString.ToLower)]" DisplayName="Check If In Scope File" sap:VirtualizedContainerService.HintSize="1354,1878.66666666667" sap2010:WorkflowViewState.IdRef="If_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence DisplayName="File Is In Scope" sap:VirtualizedContainerService.HintSize="908,1676" sap2010:WorkflowViewState.IdRef="Sequence_15">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Boolean" Name="boolDownloadedFileExists" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <te:Egnyte___Download_File DisplayName="Egnyte - Download File" sap:VirtualizedContainerService.HintSize="846,198" sap2010:WorkflowViewState.IdRef="Egnyte___Download_File_1" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" in_IntDefaultTimeoutXS="[in_IntExtraShortTimeout]" in_StrDownloadsFolder="[in_StrDownloadsFolder]" in_StrFileName="[strFileName]" out_StrDownloadedFilePath="[strDownloadedFilePath]" />
+          <Assign DisplayName="Assign Customer Name" sap:VirtualizedContainerService.HintSize="846,71.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[strCustomerName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[strEgnyteFilePath.Split("/"c)(in_IntCustomerPathIndex)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <TryCatch DisplayName="Try Catch - Add Queue Item" sap:VirtualizedContainerService.HintSize="846,304.666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch.Try>
+              <ui:AddQueueItem ServiceBaseAddress="{x:Null}" DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,32" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_StrQueueName]" Reference="[strFileID]" TimeoutMS="[in_IntLongTimeout]">
+                <ui:AddQueueItem.ItemInformation>
+                  <InArgument x:TypeArguments="x:String" x:Key="File Name">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strFileName" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Customer Name">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCustomerName" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Direct Link">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strDirectLink" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte File Path">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strEgnyteFilePath" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Last Updated By">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strLastUpdatedBy" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Modified Date">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strModifiedDate" />
+                  </InArgument>
+                </ui:AddQueueItem.ItemInformation>
+              </ui:AddQueueItem>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="ui:OrchestratorHttpException" sap:VirtualizedContainerService.HintSize="404.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="ui:OrchestratorHttpException">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ui:OrchestratorHttpException" Name="exception" />
+                  </ActivityAction.Argument>
+                  <If Condition="[exception.Message.Contains(&quot;Duplicate&quot;)]" DisplayName="Check If Duplicate Exception" sap:VirtualizedContainerService.HintSize="846,397.333333333333" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If.Then>
+                      <Sequence DisplayName="Duplicate Exception" sap:VirtualizedContainerService.HintSize="400,225.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_36" Level="Info" Message="[&quot;Item with reference &lt;&quot;+strFileID+&quot;&gt; already exists and will not be added.&quot;]" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Other Add Queue Item Exception" sap:VirtualizedContainerService.HintSize="400,154" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Rethrow DisplayName="Rethrow Add Queue Item Exception" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+          <ucas:UploadStorageFile FileResource="{x:Null}" Destination="[strFileID]" DisplayName="Upload Storage File" sap:VirtualizedContainerService.HintSize="846,252" sap2010:WorkflowViewState.IdRef="UploadStorageFile_1" Path="[strDownloadedFilePath]" StorageBucketName="[in_StrStorageBucketName]" TimeoutMS="[in_IntLongTimeout]" />
+          <ui:FileExistsX DisplayName="File Exists" Exists="[boolDownloadedFileExists]" sap:VirtualizedContainerService.HintSize="846,144" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[strDownloadedFilePath]" />
+          <If Condition="[boolDownloadedFileExists]" DisplayName="Check If Downloaded File Exists" sap:VirtualizedContainerService.HintSize="846,384" sap2010:WorkflowViewState.IdRef="If_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <te:Egnyte___Check_Previous_Page DisplayName="Check Previous Page Exists" sap:VirtualizedContainerService.HintSize="846,32" sap2010:WorkflowViewState.IdRef="Egnyte___Check_Previous_Page_1" in_DblDefaultDelay="[in_DblDelay]" in_IntExtraShortTimeout="[in_IntExtraShortTimeout]" in_IntLongTimeout="[in_IntLongTimeout]" out_BoolPreviousPageEnabled="[boolPreviousPage]" />
-            <If Condition="[boolPreviousPage]" DisplayName="Check If Previous Page Exists" sap:VirtualizedContainerService.HintSize="846,326.666666666667" sap2010:WorkflowViewState.IdRef="If_1">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <If.Then>
-                <Sequence DisplayName="Previous Page Exists" sap:VirtualizedContainerService.HintSize="400,154" sap2010:WorkflowViewState.IdRef="Sequence_11">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <te:Egnyte___Click_Previous_Page DisplayName="Click Previous Page Button" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="Egnyte___Click_Previous_Page_1" in_DblDefaultDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" />
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence DisplayName="Previous Page Does Not Exist" sap:VirtualizedContainerService.HintSize="400,154" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Throw DisplayName="Throw Previous Page Exception" Exception="[new System.Exception(&quot;File &lt;&quot;+in_StrItemName+&quot;&gt; could not be found.&quot;)]" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="Throw_1" />
-                </Sequence>
-              </If.Else>
-            </If>
-          </Sequence>
-        </If.Else>
-      </If>
-      <te:Egnyte___Open_File DisplayName="Egnyte - Open File" sap:VirtualizedContainerService.HintSize="1354,62" sap2010:WorkflowViewState.IdRef="Egnyte___Open_File_2" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrItemName="[in_StrItemName]">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </te:Egnyte___Open_File>
-      <te:Egnyte___Extract_File_Details DisplayName="Egnyte - Extract File Details" sap:VirtualizedContainerService.HintSize="1354,32" sap2010:WorkflowViewState.IdRef="Egnyte___Extract_File_Details_1" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrFileNameRegex="[in_StrFileNameRegex]" in_StrFilePathRegex="[in_StrFilePathRegex]" in_StrLastUpdatedByRegex="[in_StrLastUpdatedByRegex]" in_StrModifiedDateRegex="[in_StrModifiedDateRegex]" out_StrDirectLink="[strDirectLink]" out_StrEgnyteFilePath="[strEgnyteFilePath]" out_StrFileName="[strFileName]" out_StrLastUpdatedBy="[strLastUpdatedBy]" out_StrModifiedDate="[strModifiedDate]" />
-      <If sap2010:Annotation.AnnotationText="Only .pdf, .doc and .docx are in scope" Condition="[in_ArrInScopeFileTypes.Contains(Path.GetExtension(strFileName).ToString.ToLower)]" DisplayName="Check If In Scope File" sap:VirtualizedContainerService.HintSize="1354,522.666666666667" sap2010:WorkflowViewState.IdRef="If_3">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <If.Then>
-          <Sequence DisplayName="File Is In Scope" sap:VirtualizedContainerService.HintSize="346,320" sap2010:WorkflowViewState.IdRef="Sequence_15">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <te:Egnyte___Download_File DisplayName="Egnyte - Download File" sap:VirtualizedContainerService.HintSize="284,198" sap2010:WorkflowViewState.IdRef="Egnyte___Download_File_1" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" in_IntDefaultTimeoutXS="[in_IntExtraShortTimeout]" in_StrDownloadsFolder="[in_StrDownloadsFolder]" in_StrFileName="[strFileName]" out_StrDownloadedFilePath="[strDownloadedFilePath]" />
-          </Sequence>
-        </If.Then>
-        <If.Else>
-          <Sequence DisplayName="File Not In Scope" sap:VirtualizedContainerService.HintSize="396,225.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_16">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_35" Level="Info" Message="[&quot;File &lt;&quot;+strFileName+&quot;&gt; is not in scope.&quot;]" />
-          </Sequence>
-        </If.Else>
-      </If>
-      <te:Egnyte___Exit_File_Viewer DisplayName="Egnyte - Exit File Viewer" sap:VirtualizedContainerService.HintSize="1354,32" sap2010:WorkflowViewState.IdRef="Egnyte___Exit_File_Viewer_2" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" />
-    </Sequence>
-    <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="1416,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
+            <If.Then>
+              <Sequence DisplayName="Downloaded File Exists" sap:VirtualizedContainerService.HintSize="400,212" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="338,90" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[strDownloadedFilePath]" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Downloaded File Does Not Exist" sap:VirtualizedContainerService.HintSize="400,154" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Throw DisplayName="Throw File Does Not Exist" Exception="[new System.Exception(&quot;Downloaded file does not exist at path &lt;&quot;+strDownloadedFilePath+&quot;&gt;&quot;)]" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="Throw_2" />
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="File Not In Scope" sap:VirtualizedContainerService.HintSize="400,225.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_35" Level="Info" Message="[&quot;File &lt;&quot;+strFileName+&quot;&gt; is not in scope.&quot;]" />
+        </Sequence>
+      </If.Else>
+    </If>
+    <te:Egnyte___Exit_File_Viewer DisplayName="Egnyte - Exit File Viewer" sap:VirtualizedContainerService.HintSize="1354,32" sap2010:WorkflowViewState.IdRef="Egnyte___Exit_File_Viewer_2" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" />
+    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strCustomerName, strFileName, strModifiedDate, strLastUpdatedBy, strEgnyteFilePath, strDirectLink}]" DataTable="[io_DtReportData]" DisplayName="Add File Info To Report Datatable" sap:VirtualizedContainerService.HintSize="1354,198" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+    <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="1354,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
   </Sequence>
 </Activity>
