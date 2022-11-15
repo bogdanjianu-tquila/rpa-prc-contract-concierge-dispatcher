@@ -3,7 +3,7 @@
   "description": "Robotic Enterprise Framework",
   "main": "Main.xaml",
   "dependencies": {
-    "TQA.G2": "[1.8.11]",
+    "TQA.G2": "[1.8.12]",
     "UiPath.Cryptography.Activities": "[1.2.1]",
     "UiPath.Excel.Activities": "[2.16.0]",
     "UiPath.GSuite.Activities": "[1.16.2]",
