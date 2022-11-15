@@ -1,8 +1,8 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Delete_Files_And_Subfolders_From_Folder" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Delete_Files_And_Subfolders_From_Folder" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_StrDownloadsFolderPath" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1087.33333333333,1244.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1087.33333333333,1238</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="31">
@@ -85,12 +85,17 @@
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Checks if downloads folder exists and if it does it deletes it.&#xD;&#xA;&#xD;&#xA;This is done to start on a clean slate and remove any residual files from a previous run." DisplayName="Delete Files And Subfolders From Folder" sap:VirtualizedContainerService.HintSize="908,1180" sap2010:WorkflowViewState.IdRef="Sequence_56">
+  <Sequence sap2010:Annotation.AnnotationText="Workflow to create downloads folder if it doesn't exist&#xD;&#xA;" DisplayName="Create Downloads Folder" sap:VirtualizedContainerService.HintSize="908,1173.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_56">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:Object" Default="[&quot;Delete Files And Subfolders From Folder&quot;]" Name="strSubProcessName" />
+      <Variable x:TypeArguments="x:Object" Name="strSubProcessName">
+        <Variable.Default>
+          <mva:VisualBasicValue x:TypeArguments="x:Object" ExpressionText="&quot;Create Downloads Folder&quot;" />
+        </Variable.Default>
+      </Variable>
       <Variable x:TypeArguments="x:Boolean" Name="boolFolderExists" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -103,27 +108,27 @@
     <ui:FolderExistsX DisplayName="Folder Exists" Exists="[boolFolderExists]" sap:VirtualizedContainerService.HintSize="846,145.333333333333" sap2010:WorkflowViewState.IdRef="FolderExistsX_1" Path="[in_StrDownloadsFolderPath]" />
     <If Condition="[boolFolderExists]" DisplayName="Check If Folder Exists" sap:VirtualizedContainerService.HintSize="846,531.333333333333" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="400,357.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_57">
+        <Sequence sap:VirtualizedContainerService.HintSize="400,226.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_57">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Deleting folder: &quot;+in_StrDownloadsFolderPath]" />
-          <ui:DeleteFolderX DisplayName="Delete Folder" sap:VirtualizedContainerService.HintSize="338,90.6666666666667" sap2010:WorkflowViewState.IdRef="DeleteFolderX_1" Path="[in_StrDownloadsFolderPath]" Recursive="True" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Folder exists: &quot;+in_StrDownloadsFolderPath]" />
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence sap:VirtualizedContainerService.HintSize="400,226.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_58">
+        <Sequence sap:VirtualizedContainerService.HintSize="400,357.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_58">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Folder does not exist: &quot;+in_StrDownloadsFolderPath]" />
+          <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Downloads Folder" sap:VirtualizedContainerService.HintSize="338,90.6666666666667" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[in_StrDownloadsFolderPath]" />
         </Sequence>
       </If.Else>
     </If>
-    <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="798,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
+    <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="846,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
   </Sequence>
 </Activity>
