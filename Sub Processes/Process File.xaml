@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Initialize_Applications" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:te="clr-namespace:TQA_G2.Egnyte;assembly=TQA.G2" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Initialize_Applications" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:te="clr-namespace:TQA_G2.Egnyte;assembly=TQA.G2" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_DblDelay" Type="InArgument(x:Double)" />
     <x:Property Name="in_IntExtraShortTimeout" Type="InArgument(x:Int32)">
@@ -9,14 +9,21 @@
     <x:Property Name="in_IntLongTimeout" Type="InArgument(x:Int32)" />
     <x:Property Name="in_IntShortTimeout" Type="InArgument(x:Int32)" />
     <x:Property Name="in_StrItemName" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrFileNameRegex" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrFilePathRegex" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrLastUpdatedByRegex" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrModifiedDateRegex" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrDownloadsFolder" Type="InArgument(x:String)" />
+    <x:Property Name="io_DtReportData" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_ArrInScopeFileTypes" Type="InArgument(s:String[])" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1468,1749.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1468,2312</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="98">
+    <scg:List x:TypeArguments="x:String" Capacity="51">
       <x:String>System.Activities.XamlIntegration</x:String>
       <x:String>System.Activities.Validation</x:String>
       <x:String>System.Activities</x:String>
@@ -71,7 +78,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <sco:Collection x:TypeArguments="AssemblyReference">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="45">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -117,10 +124,9 @@
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
       <AssemblyReference>TQA.G2</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
-    </sco:Collection>
+    </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Sub-process to process file by checking if it exists, opening it, extracting metadata, downloading the file, creating queue item, uploading to storage bucket, deleting file and closing the file in Egnyte." DisplayName="Process File" sap:VirtualizedContainerService.HintSize="1478,1684.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Sub-process to process file by checking if it exists, opening it, extracting metadata, downloading the file, creating queue item, uploading to storage bucket, deleting file and closing the file in Egnyte." DisplayName="Process File" sap:VirtualizedContainerService.HintSize="1478,2247.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Object" Default="[&quot;Process File&quot;]" Name="strSubProcessName" />
     </Sequence.Variables>
@@ -132,9 +138,15 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="1416,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
-    <Sequence sap:VirtualizedContainerService.HintSize="1416,1245.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_14">
+    <Sequence sap:VirtualizedContainerService.HintSize="1416,1808" sap2010:WorkflowViewState.IdRef="Sequence_14">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Boolean" Name="boolFileExists" />
+        <Variable x:TypeArguments="x:String" Name="strDirectLink" />
+        <Variable x:TypeArguments="x:String" Name="strEgnyteFilePath" />
+        <Variable x:TypeArguments="x:String" Name="strFileName" />
+        <Variable x:TypeArguments="x:String" Name="strLastUpdatedBy" />
+        <Variable x:TypeArguments="x:String" Name="strModifiedDate" />
+        <Variable x:TypeArguments="x:String" Name="strDownloadedFilePath" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -211,7 +223,34 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </te:Egnyte___Open_File>
-      <te:Egnyte___Extract_File_Details in_DblDelay="{x:Null}" in_IntLongTimeout="{x:Null}" in_IntShortTimeout="{x:Null}" in_StrFileNameRegex="{x:Null}" in_StrFilePathRegex="{x:Null}" in_StrLastUpdatedByRegex="{x:Null}" in_StrModifiedDateRegex="{x:Null}" out_StrDirectLink="{x:Null}" out_StrEgnyteFilePath="{x:Null}" out_StrFileName="{x:Null}" out_StrLastUpdatedBy="{x:Null}" out_StrModifiedDate="{x:Null}" DisplayName="Egnyte - Extract File Details" sap:VirtualizedContainerService.HintSize="1354,32" sap2010:WorkflowViewState.IdRef="Egnyte___Extract_File_Details_1" />
+      <te:Egnyte___Extract_File_Details DisplayName="Egnyte - Extract File Details" sap:VirtualizedContainerService.HintSize="1354,32" sap2010:WorkflowViewState.IdRef="Egnyte___Extract_File_Details_1" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrFileNameRegex="[in_StrFileNameRegex]" in_StrFilePathRegex="[in_StrFilePathRegex]" in_StrLastUpdatedByRegex="[in_StrLastUpdatedByRegex]" in_StrModifiedDateRegex="[in_StrModifiedDateRegex]" out_StrDirectLink="[strDirectLink]" out_StrEgnyteFilePath="[strEgnyteFilePath]" out_StrFileName="[strFileName]" out_StrLastUpdatedBy="[strLastUpdatedBy]" out_StrModifiedDate="[strModifiedDate]" />
+      <If sap2010:Annotation.AnnotationText="Only .pdf, .doc and .docx are in scope" Condition="[in_ArrInScopeFileTypes.Contains(Path.GetExtension(strFileName).ToString.ToLower)]" DisplayName="Check If In Scope File" sap:VirtualizedContainerService.HintSize="1354,522.666666666667" sap2010:WorkflowViewState.IdRef="If_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence DisplayName="File Is In Scope" sap:VirtualizedContainerService.HintSize="346,320" sap2010:WorkflowViewState.IdRef="Sequence_15">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <te:Egnyte___Download_File DisplayName="Egnyte - Download File" sap:VirtualizedContainerService.HintSize="284,198" sap2010:WorkflowViewState.IdRef="Egnyte___Download_File_1" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" in_IntDefaultTimeoutXS="[in_IntExtraShortTimeout]" in_StrDownloadsFolder="[in_StrDownloadsFolder]" in_StrFileName="[strFileName]" out_StrDownloadedFilePath="[strDownloadedFilePath]" />
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="File Not In Scope" sap:VirtualizedContainerService.HintSize="396,225.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_16">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_35" Level="Info" Message="[&quot;File &lt;&quot;+strFileName+&quot;&gt; is not in scope.&quot;]" />
+          </Sequence>
+        </If.Else>
+      </If>
       <te:Egnyte___Exit_File_Viewer DisplayName="Egnyte - Exit File Viewer" sap:VirtualizedContainerService.HintSize="1354,32" sap2010:WorkflowViewState.IdRef="Egnyte___Exit_File_Viewer_2" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" />
     </Sequence>
     <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="1416,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />

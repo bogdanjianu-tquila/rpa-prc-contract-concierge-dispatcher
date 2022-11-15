@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1016.66666666667,910.666666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1018,910.666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="98">
@@ -142,7 +142,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <ui:ShouldStop DisplayName="Check Stop Signal" sap:VirtualizedContainerService.HintSize="860.666666666667,22" sap2010:WorkflowViewState.IdRef="ShouldStop_2" Result="[ShouldStop]" />
-          <If Condition="[dt_TransactionData.Rows.Count &lt; (TransactionNumber - 1)]" DisplayName="Check if transaction number exceeded customer count" sap:VirtualizedContainerService.HintSize="860.666666666667,348.666666666667" sap2010:WorkflowViewState.IdRef="If_16">
+          <If Condition="[dt_ReportingData.Rows.Count &lt; (TransactionNumber - 1)]" DisplayName="Check if transaction number exceeded customer count" sap:VirtualizedContainerService.HintSize="860.666666666667,348.666666666667" sap2010:WorkflowViewState.IdRef="If_16">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -258,7 +258,7 @@
                       <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionField1">[TransactionField1]</OutArgument>
                       <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionField2">[TransactionField2]</OutArgument>
                       <OutArgument x:TypeArguments="x:String" x:Key="out_TransactionID">[TransactionID]</OutArgument>
-                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtTransactionData">[dt_TransactionData]</InOutArgument>
+                      <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dtTransactionData">[dt_ReportingData]</InOutArgument>
                     </ui:InvokeWorkflowFile.Arguments>
                   </ui:InvokeWorkflowFile>
                 </TryCatch.Try>
@@ -349,7 +349,7 @@
                           <InArgument x:TypeArguments="sd:DataRow" x:Key="in_TransactionItem">[TransactionItem]</InArgument>
                           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="in_StrReportSpreadsheetID">[strReportSpreadsheetID]</InArgument>
-                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtTransactionData">[dt_TransactionData]</InArgument>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtTransactionData">[dt_ReportingData]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="in_StrStorageBucketName">[Config("FilesStorageBucket").ToString]</InArgument>
                           <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[CInt(Config("LongTimeout"))]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="in_StrOrchestratorQueueName">[Config("OrchestratorQueueName").ToString]</InArgument>
@@ -679,7 +679,7 @@
                                         <InArgument x:TypeArguments="x:String" x:Key="in_StrRootFolderPath">[Config("DownloadsFolder").ToString]</InArgument>
                                       </ui:InvokeWorkflowFile.Arguments>
                                     </ui:InvokeWorkflowFile>
-                                    <ui:BuildDataTable DataTable="[dt_TransactionData]" DisplayName="Build Transaction Data DT" sap:VirtualizedContainerService.HintSize="436.666666666667,68.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Customer&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;File_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Modified_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Last_x0020_Updated_x0020_By&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Egnyte_x0020_Path&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Direct_x0020_Link&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;">
+                                    <ui:BuildDataTable DataTable="[dt_ReportingData]" DisplayName="Build Transaction Data DT" sap:VirtualizedContainerService.HintSize="436.666666666667,68.6666666666667" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Customer&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;File_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Modified_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Last_x0020_Updated_x0020_By&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Egnyte_x0020_Path&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Direct_x0020_Link&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -701,13 +701,13 @@
                                                 <ActivityAction.Argument>
                                                   <DelegateInArgument x:TypeArguments="ugad:IGoogleDriveTarget" Name="GoogleDrive" />
                                                 </ActivityAction.Argument>
-                                                <Sequence DisplayName="Create Report Spreadsheet" sap:VirtualizedContainerService.HintSize="400,324" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                                                <Sequence DisplayName="Create Report Spreadsheet" sap:VirtualizedContainerService.HintSize="400,322" sap2010:WorkflowViewState.IdRef="Sequence_48">
                                                   <sap:WorkflowViewStateService.ViewState>
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
-                                                  <uga:CreateNewSpreadsheet Columns="{x:Null}" ContinueOnError="{x:Null}" Rows="{x:Null}" AuthScopesInvalid="False" DisplayName="Create New Spreadsheet" DriveTarget="[GoogleDrive]" FileURL="[strReportURL]" sap:VirtualizedContainerService.HintSize="338,210" sap2010:WorkflowViewState.IdRef="CreateNewSpreadsheet_1" ParentFolderName="Contracts Concierge" ParentId="1hSTmS9o0q2o5T8oeS832v0UTYcg1ZXRt" ParentIdSelectionMode="Browse" SpreadsheetId="[strReportSpreadsheetID]" SpreadsheetName="[String.Format(Config(&quot;DispatcherReportName&quot;).ToString, DateTime.Now.ToString(&quot;MMddyyyy&quot;))]" />
+                                                  <uga:CreateNewSpreadsheet Columns="{x:Null}" ContinueOnError="{x:Null}" Rows="{x:Null}" AuthScopesInvalid="False" DisplayName="Create New Spreadsheet" DriveTarget="[GoogleDrive]" FileURL="[strReportURL]" sap:VirtualizedContainerService.HintSize="338,200" sap2010:WorkflowViewState.IdRef="CreateNewSpreadsheet_1" ParentFolderName="Contracts Concierge" ParentId="1hSTmS9o0q2o5T8oeS832v0UTYcg1ZXRt" ParentIdSelectionMode="Browse" SpreadsheetId="[strReportSpreadsheetID]" SpreadsheetName="[String.Format(Config(&quot;DispatcherReportName&quot;).ToString, DateTime.Now.ToString(&quot;MMddyyyy&quot;))]" />
                                                 </Sequence>
                                               </ActivityAction>
                                             </ugad:GoogleDriveApplicationScope.Body>
@@ -737,7 +737,7 @@
                                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Extract Transaction Data.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="340,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_32" UnSafe="False" WorkflowFileName="Sub Processes\Extract Transaction Data.xaml">
                                             <ui:InvokeWorkflowFile.Arguments>
                                               <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
-                                              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DtTransactionData">[dt_TransactionData]</InOutArgument>
+                                              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_DtTransactionData">[dt_ReportingData]</InOutArgument>
                                             </ui:InvokeWorkflowFile.Arguments>
                                           </ui:InvokeWorkflowFile>
                                         </Sequence>
@@ -858,7 +858,7 @@
                                             </sap:WorkflowViewStateService.ViewState>
                                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Extract Report Datatables.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_38" UnSafe="False" WorkflowFileName="Sub Processes\Extract Report Datatables.xaml">
                                               <ui:InvokeWorkflowFile.Arguments>
-                                                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtTransactionData">[dt_TransactionData]</InArgument>
+                                                <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtTransactionData">[dt_ReportingData]</InArgument>
                                                 <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DtZipFiles">[dtZipFiles]</OutArgument>
                                                 <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DtProcessFiles">[dtProcessFiles]</OutArgument>
                                               </ui:InvokeWorkflowFile.Arguments>
@@ -1124,7 +1124,7 @@
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Optionally used to include additional information about the transaction item." Name="TransactionField2" />
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Optionally used to include additional information about the transaction item." Name="TransactionField1" />
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Transaction ID used for information and logging purposes. Ideally, the ID should be unique for each transaction. " Name="TransactionID" />
-      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="Used in case transactions are stored in a DataTable, for example, after being retrieved from a spreadsheet." Name="dt_TransactionData" />
+      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="Used in case transactions are stored in a DataTable, for example, after being retrieved from a spreadsheet." Name="dt_ReportingData" />
       <Variable x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="Used to control the number of consecutive system exceptions." Default="0" Name="ConsecutiveSystemExceptions" />
       <Variable x:TypeArguments="x:String" Name="strReportURL" />
       <Variable x:TypeArguments="x:String" Name="strReportSpreadsheetID" />
