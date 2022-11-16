@@ -4,7 +4,7 @@
     <x:Property Name="out_DtOtherFiles" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="in_DtReportData" Type="InArgument(sd:DataTable)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1087.33333333333,1625.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1087.33333333333,1622.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="31">
@@ -88,9 +88,10 @@
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Component checks for zip files and filters the Transaction Data datatable twice, looking for .zip files and once for files other than .zip.&#xA;&#xA;After the check we filter Transaction Data table twice to extract the zip files datatable and other files datatable.&#xA;&#xA;These will be used for the dispatcher report." DisplayName="Extract Report Datatables" sap:VirtualizedContainerService.HintSize="908,1560.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_56">
+  <Sequence sap2010:Annotation.AnnotationText="Component checks for zip files and filters the Transaction Data datatable twice, looking for .zip files and once for files other than .zip.&#xA;&#xA;After the check we filter Transaction Data table twice to extract the zip files datatable and other files datatable.&#xA;&#xA;These will be used for the dispatcher report." DisplayName="Extract Report Datatables" sap:VirtualizedContainerService.HintSize="908,1558" sap2010:WorkflowViewState.IdRef="Sequence_56">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Object" Default="[&quot;Extract Report Datatables&quot;]" Name="strSubProcessName" />
     </Sequence.Variables>
@@ -100,10 +101,10 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="846,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
-    <If Condition="[in_DtReportData.AsEnumerable.Any(Function (drRow) drRow.Item(&quot;File path&quot;).ToString.ToLower.Trim.contains(&quot;.zip&quot;))]" DisplayName="Check If Transaction Data Contains Zip Files" sap:VirtualizedContainerService.HintSize="846,512.666666666667" sap2010:WorkflowViewState.IdRef="If_2">
+    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="846,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
+    <If Condition="[in_DtReportData.AsEnumerable.Any(Function (drRow) drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.zip&quot;))]" DisplayName="Check If Transaction Data Contains Zip Files" sap:VirtualizedContainerService.HintSize="846,508.666666666667" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="400,338.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_59">
+        <Sequence sap:VirtualizedContainerService.HintSize="400,336.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_59">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dtZipFiles" />
           </Sequence.Variables>
@@ -112,31 +113,31 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Transaction data contains zip files.&quot;]" />
-          <Assign DisplayName="Assign Zip Files Datatable" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Transaction data contains zip files.&quot;]" />
+          <Assign DisplayName="Assign Zip Files Datatable" sap:VirtualizedContainerService.HintSize="338,71.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[out_DtOtherFiles]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="sd:DataTable">[in_DtReportData.AsEnumerable.Where(Function (drRow) drRow.Item("File path").ToString.ToLower.Trim.contains(".zip")).CopyToDataTable]</InArgument>
+              <InArgument x:TypeArguments="sd:DataTable">[in_DtReportData.AsEnumerable.Where(Function (drRow) drRow.Item("File Name").ToString.ToLower.Trim.contains(".zip")).CopyToDataTable]</InArgument>
             </Assign.Value>
           </Assign>
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence sap:VirtualizedContainerService.HintSize="400,226.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_60">
+        <Sequence sap:VirtualizedContainerService.HintSize="400,225.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_60">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Transaction data does not contain zip files.&quot;]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Transaction data does not contain zip files.&quot;]" />
         </Sequence>
       </If.Else>
     </If>
-    <If Condition="[in_DtReportData.AsEnumerable.Any(Function (drRow) Not drRow.Item(&quot;File path&quot;).ToString.ToLower.Trim.contains(&quot;.zip&quot;))]" DisplayName="Check If Transaction Data Contains Files" sap:VirtualizedContainerService.HintSize="846,512.666666666667" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[in_DtReportData.AsEnumerable.Any(Function (drRow) Not drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.zip&quot;))]" DisplayName="Check If Transaction Data Contains Files" sap:VirtualizedContainerService.HintSize="846,508.666666666667" sap2010:WorkflowViewState.IdRef="If_3">
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="400,338.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_61">
+        <Sequence sap:VirtualizedContainerService.HintSize="400,336.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_61">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dtZipFiles" />
           </Sequence.Variables>
@@ -145,28 +146,28 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;Transaction data contains files for the process.&quot;]" />
-          <Assign DisplayName="Assign Process Files Datatable" sap:VirtualizedContainerService.HintSize="338,72" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Info" Message="[&quot;Transaction data contains files for the process.&quot;]" />
+          <Assign DisplayName="Assign Process Files Datatable" sap:VirtualizedContainerService.HintSize="338,71.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">[out_DtProcessFiles]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="sd:DataTable">[in_DtReportData.AsEnumerable.Where(Function (drRow) Not drRow.Item("File path").ToString.ToLower.Trim.contains(".zip")).CopyToDataTable]</InArgument>
+              <InArgument x:TypeArguments="sd:DataTable">[in_DtReportData.AsEnumerable.Where(Function (drRow) Not drRow.Item("File Name").ToString.ToLower.Trim.contains(".zip")).CopyToDataTable]</InArgument>
             </Assign.Value>
           </Assign>
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence sap:VirtualizedContainerService.HintSize="400,226.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_62">
+        <Sequence sap:VirtualizedContainerService.HintSize="400,225.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_62">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;Transaction does not contain files for the process.&quot;]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;Transaction does not contain files for the process.&quot;]" />
         </Sequence>
       </If.Else>
     </If>
-    <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="798,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
+    <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="846,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
   </Sequence>
 </Activity>
