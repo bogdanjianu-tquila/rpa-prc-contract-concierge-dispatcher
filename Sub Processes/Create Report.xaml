@@ -98,6 +98,7 @@
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Component checks for zip files and filters the Transaction Data datatable twice, looking for .zip files and once for files other than .zip.&#xA;&#xA;After the check we filter Transaction Data table twice to extract the zip files datatable and other files datatable.&#xA;&#xA;These will be used for the dispatcher report." DisplayName="Create Report" sap:VirtualizedContainerService.HintSize="602,2856" sap2010:WorkflowViewState.IdRef="Sequence_56">
@@ -123,7 +124,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[Not(IsNothing(in_DtProcessFiles) AndAlso (in_DtProcessFiles.RowCount &gt; 0))]" DisplayName="Check If Any Process Files" sap:VirtualizedContainerService.HintSize="484,1016" sap2010:WorkflowViewState.IdRef="If_5">
+            <If Condition="[Not(IsNothing(in_DtProcessFiles)) AndAlso (in_DtProcessFiles.RowCount &gt; 0)]" DisplayName="Check If Any Process Files" sap:VirtualizedContainerService.HintSize="484,1016" sap2010:WorkflowViewState.IdRef="If_5">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -217,7 +218,7 @@
                 </Sequence>
               </If.Else>
             </If>
-            <If Condition="[Not(IsNothing(in_DtOtherFiles) AndAlso (in_DtOtherFiles.RowCount &gt; 0))]" DisplayName="Check If Any Zip Files" sap:VirtualizedContainerService.HintSize="484,923.333333333333" sap2010:WorkflowViewState.IdRef="If_4">
+            <If Condition="[Not(IsNothing(in_DtOtherFiles)) AndAlso (in_DtOtherFiles.RowCount &gt; 0)]" DisplayName="Check If Any Zip Files" sap:VirtualizedContainerService.HintSize="484,923.333333333333" sap2010:WorkflowViewState.IdRef="If_4">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
