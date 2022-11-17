@@ -19,6 +19,8 @@
     <x:Property Name="in_StrQueueName" Type="InArgument(x:String)" />
     <x:Property Name="in_StrStorageBucketName" Type="InArgument(x:String)" />
     <x:Property Name="in_IntCustomerPathIndex" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_IntRetryScopeRetryNumber" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_TmspRetryScopeRetryInterval" Type="InArgument(x:TimeSpan)" />
   </x:Members>
   <this:Initialize_Applications.in_StrStorageBucketName>
     <InArgument x:TypeArguments="x:String" />
@@ -26,10 +28,13 @@
   <this:Initialize_Applications.in_IntCustomerPathIndex>
     <InArgument x:TypeArguments="x:Int32" />
   </this:Initialize_Applications.in_IntCustomerPathIndex>
+  <this:Initialize_Applications.in_TmspRetryScopeRetryInterval>
+    <InArgument x:TypeArguments="x:TimeSpan" />
+  </this:Initialize_Applications.in_TmspRetryScopeRetryInterval>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1406,4084.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1386,4468.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="51">
@@ -136,7 +141,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Sub-process to process file by checking if it exists, opening it, extracting metadata, downloading the file, creating queue item, uploading to storage bucket, deleting file and closing the file in Egnyte." DisplayName="Process File" sap:VirtualizedContainerService.HintSize="1416,4020" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Sub-process to process file by checking if it exists, opening it, extracting metadata, downloading the file, creating queue item, uploading to storage bucket, deleting file and closing the file in Egnyte." DisplayName="Process File" sap:VirtualizedContainerService.HintSize="1396,4404" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Object" Default="[&quot;Process File&quot;]" Name="strSubProcessName" />
       <Variable x:TypeArguments="x:Boolean" Name="boolFileExists" />
@@ -156,9 +161,9 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="1354,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
-    <te:Egnyte___Check_File_Exists DisplayName="Egnyte - Check File Exists" sap:VirtualizedContainerService.HintSize="1354,144" sap2010:WorkflowViewState.IdRef="Egnyte___Check_File_Exists_1" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrItemName="[in_StrItemName]" out_BoolFileExists="[boolFileExists]" />
-    <If Condition="[boolFileExists]" DisplayName="Check If File Exists" sap:VirtualizedContainerService.HintSize="1354,693.333333333333" sap2010:WorkflowViewState.IdRef="If_2">
+    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="1354,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_32" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
+    <te:Egnyte___Check_File_Exists DisplayName="Egnyte - Check File Exists" sap:VirtualizedContainerService.HintSize="1354,134" sap2010:WorkflowViewState.IdRef="Egnyte___Check_File_Exists_1" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrItemName="[in_StrItemName]" out_BoolFileExists="[boolFileExists]" />
+    <If Condition="[boolFileExists]" DisplayName="Check If File Exists" sap:VirtualizedContainerService.HintSize="1354,682.666666666667" sap2010:WorkflowViewState.IdRef="If_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -227,7 +232,7 @@
       </sap:WorkflowViewStateService.ViewState>
     </te:Egnyte___Open_File>
     <te:Egnyte___Extract_File_Details DisplayName="Egnyte - Extract File Details" sap:VirtualizedContainerService.HintSize="1354,32" sap2010:WorkflowViewState.IdRef="Egnyte___Extract_File_Details_1" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrFileNameRegex="[in_StrFileNameRegex]" in_StrFilePathRegex="[in_StrFilePathRegex]" in_StrLastUpdatedByRegex="[in_StrLastUpdatedByRegex]" in_StrModifiedDateRegex="[in_StrModifiedDateRegex]" out_StrDirectLink="[strDirectLink]" out_StrEgnyteFilePath="[strEgnyteFilePath]" out_StrFileID="[strFileID]" out_StrFileName="[strFileName]" out_StrLastUpdatedBy="[strLastUpdatedBy]" out_StrModifiedDate="[strModifiedDate]" />
-    <If sap2010:Annotation.AnnotationText="Only .pdf, .doc and .docx are in scope" Condition="[in_ArrInScopeFileTypes.Contains(Path.GetExtension(strFileName).ToString.ToLower)]" DisplayName="Check If In Scope File" sap:VirtualizedContainerService.HintSize="1354,2179.33333333333" sap2010:WorkflowViewState.IdRef="If_3">
+    <If sap2010:Annotation.AnnotationText="Only .pdf, .doc and .docx are in scope" Condition="[in_ArrInScopeFileTypes.Contains(Path.GetExtension(strFileName).ToString.ToLower)]" DisplayName="Check If In Scope File" sap:VirtualizedContainerService.HintSize="1354,2634" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -236,7 +241,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="File Is In Scope" sap:VirtualizedContainerService.HintSize="908,1976" sap2010:WorkflowViewState.IdRef="Sequence_15">
+        <Sequence DisplayName="File Is In Scope" sap:VirtualizedContainerService.HintSize="788,2441.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_15">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Boolean" Name="boolDownloadedFileExists" />
           </Sequence.Variables>
@@ -245,8 +250,8 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <te:Egnyte___Download_File DisplayName="Egnyte - Download File" sap:VirtualizedContainerService.HintSize="846,198" sap2010:WorkflowViewState.IdRef="Egnyte___Download_File_1" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" in_IntDefaultTimeoutXS="[in_IntExtraShortTimeout]" in_StrDownloadsFolder="[in_StrDownloadsFolder]" in_StrFileName="[strFileName]" out_StrDownloadedFilePath="[strDownloadedFilePath]" />
-          <Assign DisplayName="Assign Customer Name" sap:VirtualizedContainerService.HintSize="846,72" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <te:Egnyte___Download_File DisplayName="Egnyte - Download File" sap:VirtualizedContainerService.HintSize="746,188" sap2010:WorkflowViewState.IdRef="Egnyte___Download_File_1" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" in_IntDefaultTimeoutXS="[in_IntExtraShortTimeout]" in_StrDownloadsFolder="[in_StrDownloadsFolder]" in_StrFileName="[strFileName]" out_StrDownloadedFilePath="[strDownloadedFilePath]" />
+          <Assign DisplayName="Assign Customer Name" sap:VirtualizedContainerService.HintSize="746,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[strCustomerName]</OutArgument>
             </Assign.To>
@@ -254,9 +259,9 @@
               <InArgument x:TypeArguments="x:String">[strEgnyteFilePath.Split("/"c)(in_IntCustomerPathIndex)]</InArgument>
             </Assign.Value>
           </Assign>
-          <TryCatch DisplayName="Try Catch - Add Queue Item" sap:VirtualizedContainerService.HintSize="846,480" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch DisplayName="Try Catch - Add Queue Item" sap:VirtualizedContainerService.HintSize="746,1066" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <TryCatch.Try>
-              <ui:AddQueueItem ServiceBaseAddress="{x:Null}" sap2010:Annotation.AnnotationText="The timeout is multiplied by 1000 because the modern activities require timeouts in seconds and the classic ones required timeouts im milliseconds.&#xD;&#xA;&#xD;&#xA;For the project we are using as default seconds for timeouts and converting them to milliseconds in the classic activities." DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,235.333333333333" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_StrQueueName]" Reference="[strFileID]" TimeoutMS="[in_IntLongTimeout * 1000]">
+              <ui:AddQueueItem ServiceBaseAddress="{x:Null}" sap2010:Annotation.AnnotationText="The timeout is multiplied by 1000 because the modern activities require timeouts in seconds and the classic ones required timeouts im milliseconds.&#xA;&#xA;For the project we are using as default seconds for timeouts and converting them to milliseconds in the classic activities." DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,225.333333333333" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_StrQueueName]" Reference="[strFileID]" TimeoutMS="[in_IntLongTimeout * 1000]">
                 <ui:AddQueueItem.ItemInformation>
                   <InArgument x:TypeArguments="x:String" x:Key="File Name">[strFileName]</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="Customer Name">[strCustomerName]</InArgument>
@@ -273,10 +278,10 @@
               </ui:AddQueueItem>
             </TryCatch.Try>
             <TryCatch.Catches>
-              <Catch x:TypeArguments="ui:OrchestratorHttpException" sap:VirtualizedContainerService.HintSize="404.666666666667,21.3333333333333" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+              <Catch x:TypeArguments="ui:OrchestratorHttpException" sap:VirtualizedContainerService.HintSize="712,896.666666666667" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
@@ -284,41 +289,112 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ui:OrchestratorHttpException" Name="exception" />
                   </ActivityAction.Argument>
-                  <If Condition="[exception.Message.Contains(&quot;Duplicate&quot;)]" DisplayName="Check If Duplicate Exception" sap:VirtualizedContainerService.HintSize="846,399.333333333333" sap2010:WorkflowViewState.IdRef="If_4">
-                    <If.Then>
-                      <Sequence DisplayName="Duplicate Exception" sap:VirtualizedContainerService.HintSize="400,225.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_17">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_36" Level="Info" Message="[&quot;Item with reference &lt;&quot;+strFileID+&quot;&gt; already exists and will not be added.&quot;]" />
-                      </Sequence>
-                    </If.Then>
-                    <If.Else>
-                      <Sequence DisplayName="Other Add Queue Item Exception" sap:VirtualizedContainerService.HintSize="400,154" sap2010:WorkflowViewState.IdRef="Sequence_18">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <Rethrow DisplayName="Rethrow Add Queue Item Exception" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
-                      </Sequence>
-                    </If.Else>
-                  </If>
+                  <Sequence sap:VirtualizedContainerService.HintSize="706,826.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If Condition="[exception.Message.Contains(&quot;Timeout&quot;)]" DisplayName="Check If Timeout Exception" sap:VirtualizedContainerService.HintSize="664,347.333333333333" sap2010:WorkflowViewState.IdRef="If_6">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="242,144" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:RetryScope DisplayName="Retry Scope - Add Queue Item" sap:VirtualizedContainerService.HintSize="200,52" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="[in_IntRetryScopeRetryNumber]" RetryInterval="[in_TmspRetryScopeRetryInterval]">
+                            <ui:RetryScope.ActivityBody>
+                              <ActivityAction>
+                                <Sequence DisplayName="Action - Add Queue Item" sap:VirtualizedContainerService.HintSize="242,317.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ui:AddQueueItem ServiceBaseAddress="{x:Null}" sap2010:Annotation.AnnotationText="The timeout is multiplied by 1000 because the modern activities require timeouts in seconds and the classic ones required timeouts im milliseconds.&#xA;&#xA;For the project we are using as default seconds for timeouts and converting them to milliseconds in the classic activities." DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,225.333333333333" sap2010:WorkflowViewState.IdRef="AddQueueItem_2" Priority="Normal" QueueType="[in_StrQueueName]" Reference="[strFileID]" TimeoutMS="[in_IntLongTimeout * 1000]">
+                                    <ui:AddQueueItem.ItemInformation>
+                                      <InArgument x:TypeArguments="x:String" x:Key="File Name">[strFileName]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Customer Name">[strCustomerName]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Egnyte Direct Link">[strDirectLink]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Egnyte File Path">[strEgnyteFilePath]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Egnyte Last Updated By">[strLastUpdatedBy]</InArgument>
+                                      <InArgument x:TypeArguments="x:String" x:Key="Egnyte Modified Date">[strModifiedDate]</InArgument>
+                                    </ui:AddQueueItem.ItemInformation>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </ui:AddQueueItem>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:RetryScope.ActivityBody>
+                            <ui:RetryScope.Condition>
+                              <ActivityFunc x:TypeArguments="x:Boolean" />
+                            </ui:RetryScope.Condition>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:RetryScope>
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="376,185.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_37" Level="Info" Message="[&quot;Not a timeout error. Checking if duplicate exception error.&quot;]" />
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <If Condition="[exception.Message.Contains(&quot;Duplicate&quot;)]" DisplayName="Check If Duplicate Exception" sap:VirtualizedContainerService.HintSize="664,347.333333333333" sap2010:WorkflowViewState.IdRef="If_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence DisplayName="Duplicate Exception" sap:VirtualizedContainerService.HintSize="376,185.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_36" Level="Info" Message="[&quot;Item with reference &lt;&quot;+strFileID+&quot;&gt; already exists and will not be added.&quot;]" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Other Add Queue Item Exception" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Rethrow DisplayName="Rethrow Add Queue Item Exception" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
                 </ActivityAction>
               </Catch>
             </TryCatch.Catches>
           </TryCatch>
-          <ucas:UploadStorageFile FileResource="{x:Null}" sap2010:Annotation.AnnotationText="The timeout is multiplied by 1000 because the modern activities require timeouts in seconds and the classic ones required timeouts im milliseconds.&#xD;&#xA;&#xD;&#xA;For the project we are using as default seconds for timeouts and converting them to milliseconds in the classic activities." Destination="[strFileID]" DisplayName="Upload Storage File" sap:VirtualizedContainerService.HintSize="846,376" sap2010:WorkflowViewState.IdRef="UploadStorageFile_1" Path="[strDownloadedFilePath]" StorageBucketName="[in_StrStorageBucketName]" TimeoutMS="[in_IntLongTimeout * 1000]">
+          <ucas:UploadStorageFile FileResource="{x:Null}" sap2010:Annotation.AnnotationText="The timeout is multiplied by 1000 because the modern activities require timeouts in seconds and the classic ones required timeouts im milliseconds.&#xA;&#xA;For the project we are using as default seconds for timeouts and converting them to milliseconds in the classic activities." Destination="[strFileID]" DisplayName="Upload Storage File" sap:VirtualizedContainerService.HintSize="746,366" sap2010:WorkflowViewState.IdRef="UploadStorageFile_1" Path="[strDownloadedFilePath]" StorageBucketName="[in_StrStorageBucketName]" TimeoutMS="[in_IntLongTimeout * 1000]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ucas:UploadStorageFile>
-          <ui:FileExistsX DisplayName="File Exists" Exists="[boolDownloadedFileExists]" sap:VirtualizedContainerService.HintSize="846,144" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[strDownloadedFilePath]" />
-          <If Condition="[boolDownloadedFileExists]" DisplayName="Check If Downloaded File Exists" sap:VirtualizedContainerService.HintSize="846,384" sap2010:WorkflowViewState.IdRef="If_5">
+          <ui:FileExistsX DisplayName="File Exists" Exists="[boolDownloadedFileExists]" sap:VirtualizedContainerService.HintSize="746,134" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[strDownloadedFilePath]" />
+          <If Condition="[boolDownloadedFileExists]" DisplayName="Check If Downloaded File Exists" sap:VirtualizedContainerService.HintSize="746,334" sap2010:WorkflowViewState.IdRef="If_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -326,40 +402,40 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Downloaded File Exists" sap:VirtualizedContainerService.HintSize="400,212" sap2010:WorkflowViewState.IdRef="Sequence_19">
+              <Sequence DisplayName="Downloaded File Exists" sap:VirtualizedContainerService.HintSize="376,172" sap2010:WorkflowViewState.IdRef="Sequence_19">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="338,90" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[strDownloadedFilePath]" />
+                <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[strDownloadedFilePath]" />
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Downloaded File Does Not Exist" sap:VirtualizedContainerService.HintSize="400,154" sap2010:WorkflowViewState.IdRef="Sequence_20">
+              <Sequence DisplayName="Downloaded File Does Not Exist" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_20">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Throw DisplayName="Throw File Does Not Exist" Exception="[new System.Exception(&quot;Downloaded file does not exist at path &lt;&quot;+strDownloadedFilePath+&quot;&gt;&quot;)]" sap:VirtualizedContainerService.HintSize="338,32" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                <Throw DisplayName="Throw File Does Not Exist" Exception="[new System.Exception(&quot;Downloaded file does not exist at path &lt;&quot;+strDownloadedFilePath+&quot;&gt;&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_2" />
               </Sequence>
             </If.Else>
           </If>
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="File Not In Scope" sap:VirtualizedContainerService.HintSize="400,225.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_16">
+        <Sequence DisplayName="File Not In Scope" sap:VirtualizedContainerService.HintSize="376,185.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_16">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_35" Level="Info" Message="[&quot;File &lt;&quot;+strFileName+&quot;&gt; is not in scope.&quot;]" />
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,93.3333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_35" Level="Info" Message="[&quot;File &lt;&quot;+strFileName+&quot;&gt; is not in scope.&quot;]" />
         </Sequence>
       </If.Else>
     </If>
-    <te:Egnyte___Exit_File_Viewer DisplayName="Egnyte - Exit File Viewer" sap:VirtualizedContainerService.HintSize="1354,32" sap2010:WorkflowViewState.IdRef="Egnyte___Exit_File_Viewer_2" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" />
+    <te:Egnyte___Exit_File_Viewer DisplayName="Egnyte - Exit File Viewer" sap:VirtualizedContainerService.HintSize="1354,22" sap2010:WorkflowViewState.IdRef="Egnyte___Exit_File_Viewer_2" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" />
     <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{strCustomerName, strFileName, strModifiedDate, strLastUpdatedBy, strEgnyteFilePath, strDirectLink}]" DataTable="[io_DtReportData]" DisplayName="Add File Info To Report Datatable" sap:VirtualizedContainerService.HintSize="1354,198" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
     <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="1354,103.333333333333" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
   </Sequence>
