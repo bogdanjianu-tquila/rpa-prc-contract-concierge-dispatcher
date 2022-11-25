@@ -263,13 +263,27 @@
             <TryCatch.Try>
               <ui:AddQueueItem ServiceBaseAddress="{x:Null}" sap2010:Annotation.AnnotationText="The timeout is multiplied by 1000 because the modern activities require timeouts in seconds and the classic ones required timeouts im milliseconds.&#xA;&#xA;For the project we are using as default seconds for timeouts and converting them to milliseconds in the classic activities." DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,244" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_StrQueueName]" Reference="[strFileID]" TimeoutMS="[in_IntLongTimeout * 1000]">
                 <ui:AddQueueItem.ItemInformation>
-                  <InArgument x:TypeArguments="x:String" x:Key="File Name">[strFileName]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Customer Name">[strCustomerName]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Direct Link">[strDirectLink]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte File Path">[strEgnyteFilePath]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Last Updated By">[strLastUpdatedBy]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Modified Date">[strModifiedDate]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Target File">[strFileID]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="File Name">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strFileName" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Customer Name">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCustomerName" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Direct Link">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strDirectLink" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte File Path">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strEgnyteFilePath" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Last Updated By">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strLastUpdatedBy" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Modified Date">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strModifiedDate" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Target File">
+                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strFileID+Path.GetExtension(strDownloadedFilePath)" />
+                  </InArgument>
                 </ui:AddQueueItem.ItemInformation>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
