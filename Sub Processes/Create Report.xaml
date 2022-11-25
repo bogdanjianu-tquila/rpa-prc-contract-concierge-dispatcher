@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Delete_Files_And_Subfolders_From_Folder" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ug="clr-namespace:UiPath.GSuite;assembly=UiPath.GSuite" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ugas="clr-namespace:UiPath.GSuite.Activities.Sheets;assembly=UiPath.GSuite.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Delete_Files_And_Subfolders_From_Folder" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ug="clr-namespace:UiPath.GSuite;assembly=UiPath.GSuite" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_DtProcessFiles" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_StrReportSpreadsheetID" Type="InArgument(x:String)" />
@@ -7,7 +7,7 @@
     <x:Property Name="in_DtOtherFiles" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_OtherFilesSheetName" Type="InArgument(x:String)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>878,2108</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1146,1014.66666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="62">
@@ -62,7 +62,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="90">
+    <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -110,9 +110,10 @@
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
       <AssemblyReference>UiPath.GSuite</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
-    </scg:List>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+    </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Component checks for zip files and filters the Transaction Data datatable twice, looking for .zip files and once for files other than .zip.&#xA;&#xA;After the check we filter Transaction Data table twice to extract the zip files datatable and other files datatable.&#xA;&#xA;These will be used for the dispatcher report." DisplayName="Create Report" sap:VirtualizedContainerService.HintSize="602,2003.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_56">
+  <Sequence sap2010:Annotation.AnnotationText="Component checks for zip files and filters the Transaction Data datatable twice, looking for .zip files and once for files other than .zip.&#xA;&#xA;After the check we filter Transaction Data table twice to extract the zip files datatable and other files datatable.&#xA;&#xA;These will be used for the dispatcher report." DisplayName="Create Report" sap:VirtualizedContainerService.HintSize="496,950" sap2010:WorkflowViewState.IdRef="Sequence_56">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Object" Default="[&quot;Create Report&quot;]" Name="strSubProcessName" />
     </Sequence.Variables>
@@ -122,8 +123,8 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="560,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
-    <uga:GSuiteApplicationScope Account="{x:Null}" ApiKey="{x:Null}" ContinueOnError="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Folder="{x:Null}" KeyPath="{x:Null}" Password="{x:Null}" SecureCredentialSecret="{x:Null}" ServiceAccountEmail="{x:Null}" TimeoutMS="{x:Null}" UserEmail="{x:Null}" AuthenticationType="OAuthClientID" DataStoreLocation="Orchestrator" DisplayName="GSuite Application Scope" HasDomainWideAccesss="False" sap:VirtualizedContainerService.HintSize="560,1220.66666666667" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_2" KeyType="JSON" OAuthClient="UiPath" Services="Unselected">
+    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="434,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
+    <uga:GSuiteApplicationScope Account="{x:Null}" ApiKey="{x:Null}" ContinueOnError="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Folder="{x:Null}" KeyPath="{x:Null}" Password="{x:Null}" SecureCredentialSecret="{x:Null}" ServiceAccountEmail="{x:Null}" UserEmail="{x:Null}" AuthenticationType="OAuthClientID" DataStoreLocation="Orchestrator" DisplayName="GSuite Scope - Write Spreadsheet" HasDomainWideAccesss="False" sap:VirtualizedContainerService.HintSize="434,410" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_2" KeyType="JSON" OAuthClient="UiPath" Services="Unselected" TimeoutMS="[in_IntLongTimeout]">
       <uga:GSuiteApplicationScope.AuthenticationScopes>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
           <InArgument x:TypeArguments="x:String">https://www.googleapis.com/auth/drive.file</InArgument>
@@ -135,76 +136,29 @@
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ug:SimpleObjectContainer" Name="GSuiteScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526,1108" sap2010:WorkflowViewState.IdRef="Sequence_81">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,287.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_81">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[Not(IsNothing(in_DtProcessFiles)) AndAlso (in_DtProcessFiles.RowCount &gt; 0)]" DisplayName="Check If Any Process Files" sap:VirtualizedContainerService.HintSize="484,923.333333333333" sap2010:WorkflowViewState.IdRef="If_6">
+            <If Condition="[Not(IsNothing(in_DtProcessFiles)) AndAlso (in_DtProcessFiles.RowCount &gt; 0)]" DisplayName="Check If Any Process Files" sap:VirtualizedContainerService.HintSize="338,62.6666666666667" sap2010:WorkflowViewState.IdRef="If_6">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="376,728.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_77">
+                <Sequence DisplayName="Check Process Files" sap:VirtualizedContainerService.HintSize="400,696" sap2010:WorkflowViewState.IdRef="Sequence_77">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Writing processed files report.&quot;]" />
-                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_4">
-                    <ui:CommentOut.Body>
-                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="476,321.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_76">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_DtProcessFiles]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
-                          <ui:ForEachRow.Body>
-                            <ActivityAction x:TypeArguments="sd:DataRow">
-                              <ActivityAction.Argument>
-                                <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
-                              </ActivityAction.Argument>
-                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="Sequence_75">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_2">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="x:Object">[CurrentRow.Item("File path")]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="x:String">[CurrentRow.Item("File path").ToString.Replace("C:\Temp\","")]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </Sequence>
-                            </ActivityAction>
-                          </ui:ForEachRow.Body>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:ForEachRow>
-                      </Sequence>
-                    </ui:CommentOut.Body>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:CommentOut>
-                  <uga:RenameSheet ContinueOnError="{x:Null}" GoogleSpreadsheet="{x:Null}" SpreadSheetId="{x:Null}" AuthScopesInvalid="False" DisplayName="Rename Sheet" sap:VirtualizedContainerService.HintSize="334,142" sap2010:WorkflowViewState.IdRef="RenameSheet_3" NewSheetName="[in_UploadedFilesSheetName]" OriginalSheetName="Sheet1" SpreadsheetId="[in_StrReportSpreadsheetID]" />
-                  <uga:WriteRange ContinueOnError="{x:Null}" GoogleSpreadsheet="{x:Null}" Request="{x:Null}" Result="{x:Null}" AuthScopesInvalid="False" DataTable="[in_DtProcessFiles]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334,227.333333333333" sap2010:WorkflowViewState.IdRef="WriteRange_4" IncludeHeaders="True" IsInsideBatchUpdateScope="False" SheetName="[in_UploadedFilesSheetName]" SpreadsheetId="[in_StrReportSpreadsheetID]" StartingCell="A1" />
+                  <ui:LogMessage DisplayName="Check Process Files Log Message" sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Writing processed files report.&quot;]" />
+                  <uga:RenameSheet ContinueOnError="{x:Null}" GoogleSpreadsheet="{x:Null}" SpreadSheetId="{x:Null}" AuthScopesInvalid="False" DisplayName="Rename Sheet - Process Files" sap:VirtualizedContainerService.HintSize="338,152" sap2010:WorkflowViewState.IdRef="RenameSheet_3" NewSheetName="[in_UploadedFilesSheetName]" OriginalSheetName="Sheet1" SpreadsheetId="[in_StrReportSpreadsheetID]" />
+                  <uga:WriteRange ContinueOnError="{x:Null}" GoogleSpreadsheet="{x:Null}" Request="{x:Null}" Result="{x:Null}" AuthScopesInvalid="False" DataTable="[in_DtProcessFiles]" DisplayName="Write Range - Process Files" sap:VirtualizedContainerService.HintSize="338,237.333333333333" sap2010:WorkflowViewState.IdRef="WriteRange_4" IncludeHeaders="True" IsInsideBatchUpdateScope="False" SheetName="[in_UploadedFilesSheetName]" SpreadsheetId="[in_StrReportSpreadsheetID]" StartingCell="A1" />
                 </Sequence>
               </If.Then>
               <If.Else>
@@ -217,7 +171,7 @@
                 </Sequence>
               </If.Else>
             </If>
-            <If Condition="[Not(IsNothing(in_DtOtherFiles)) AndAlso (in_DtOtherFiles.RowCount &gt; 0)]" DisplayName="Check If Any Zip Files" sap:VirtualizedContainerService.HintSize="484,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_7">
+            <If Condition="[Not(IsNothing(in_DtOtherFiles)) AndAlso (in_DtOtherFiles.RowCount &gt; 0)]" DisplayName="Check If Any Zip Files" sap:VirtualizedContainerService.HintSize="484,900.666666666667" sap2010:WorkflowViewState.IdRef="If_7">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -225,15 +179,15 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="376,636" sap2010:WorkflowViewState.IdRef="Sequence_79">
+                <Sequence DisplayName="Check Other Files" sap:VirtualizedContainerService.HintSize="400,696" sap2010:WorkflowViewState.IdRef="Sequence_79">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Writing zip files report.&quot;]" />
-                  <uga:AddNewSheet Columns="{x:Null}" ContinueOnError="{x:Null}" GoogleSpreadsheet="{x:Null}" PositionIndex="{x:Null}" Rows="{x:Null}" AuthScopesInvalid="False" DisplayName="Add New Sheet" sap:VirtualizedContainerService.HintSize="334,142" sap2010:WorkflowViewState.IdRef="AddNewSheet_3" SheetName="[in_OtherFilesSheetName]" SpreadsheetId="[in_StrReportSpreadsheetID]" />
-                  <uga:WriteRange ContinueOnError="{x:Null}" GoogleSpreadsheet="{x:Null}" Request="{x:Null}" Result="{x:Null}" AuthScopesInvalid="False" DataTable="[in_DtOtherFiles]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334,227.333333333333" sap2010:WorkflowViewState.IdRef="WriteRange_5" IncludeHeaders="True" IsInsideBatchUpdateScope="False" SheetName="[in_OtherFilesSheetName]" SpreadsheetId="[in_StrReportSpreadsheetID]" StartingCell="A1" />
+                  <ui:LogMessage DisplayName="Check Other Files Log Message " sap:VirtualizedContainerService.HintSize="338,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Info" Message="[&quot;Writing zip files report.&quot;]" />
+                  <uga:AddNewSheet Columns="{x:Null}" ContinueOnError="{x:Null}" GoogleSpreadsheet="{x:Null}" PositionIndex="{x:Null}" Rows="{x:Null}" AuthScopesInvalid="False" DisplayName="Add New Sheet - Other Files Sheet" sap:VirtualizedContainerService.HintSize="338,152" sap2010:WorkflowViewState.IdRef="AddNewSheet_3" SheetName="[in_OtherFilesSheetName]" SpreadsheetId="[in_StrReportSpreadsheetID]" />
+                  <uga:WriteRange ContinueOnError="{x:Null}" GoogleSpreadsheet="{x:Null}" Request="{x:Null}" Result="{x:Null}" AuthScopesInvalid="False" DataTable="[in_DtOtherFiles]" DisplayName="Write Range - Other Files" sap:VirtualizedContainerService.HintSize="338,237.333333333333" sap2010:WorkflowViewState.IdRef="WriteRange_5" IncludeHeaders="True" IsInsideBatchUpdateScope="False" SheetName="[in_OtherFilesSheetName]" SpreadsheetId="[in_StrReportSpreadsheetID]" StartingCell="A1" />
                 </Sequence>
               </If.Then>
               <If.Else>
@@ -250,145 +204,6 @@
         </ActivityAction>
       </uga:GSuiteApplicationScope.Body>
     </uga:GSuiteApplicationScope>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="560,252.666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_5">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="300.666666666667,174" sap2010:WorkflowViewState.IdRef="Sequence_82">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ugas:GoogleSheetsApplicationScope ContinueOnError="{x:Null}" FileId="{x:Null}" Filename="{x:Null}" ParentFolderId="{x:Null}" ParentFolderPath="{x:Null}" SpreadsheetName="{x:Null}" Account="uipathbot2@g2.com" Action="UseExisting" ConnectionAccountName="uipathbot2@g2.com" ConnectionId="fc012644-9653-ed11-ade6-0050f29e0988" CredentialID="700682542140-smqbdnbhn69c59hujncfq0b6cnrqgllq.apps.googleusercontent.com" CredentialSecret="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" DisplayName="Use Google Spreadsheet" sap:VirtualizedContainerService.HintSize="258.666666666667,82" sap2010:WorkflowViewState.IdRef="GoogleSheetsApplicationScope_1" Mode="EnterId" SpreadsheetId="[in_StrReportSpreadsheetID]" Timeout="[in_IntLongTimeout]" UseConnectionService="False" UserEmail="uipathbot2@g2.com">
-            <ugas:GoogleSheetsApplicationScope.Body>
-              <ActivityAction x:TypeArguments="ugas:IGoogleSheetTarget">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="ugas:IGoogleSheetTarget" Name="Report_Spreadsheet" />
-                </ActivityAction.Argument>
-                <Sequence sap:VirtualizedContainerService.HintSize="242,237.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_64">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[Not(IsNothing(in_DtProcessFiles)) AndAlso (in_DtProcessFiles.RowCount &gt; 0)]" DisplayName="Check If Any Process Files" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_5">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <If.Then>
-                      <Sequence sap:VirtualizedContainerService.HintSize="376,728.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_67">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Writing processed files report.&quot;]" />
-                        <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-                          <ui:CommentOut.Body>
-                            <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="476,321.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_72">
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_DtProcessFiles]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-                                <ui:ForEachRow.Body>
-                                  <ActivityAction x:TypeArguments="sd:DataRow">
-                                    <ActivityAction.Argument>
-                                      <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
-                                    </ActivityAction.Argument>
-                                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="304,154" sap2010:WorkflowViewState.IdRef="Sequence_70">
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                      <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_1">
-                                        <Assign.To>
-                                          <OutArgument x:TypeArguments="x:Object">[CurrentRow.Item("File path")]</OutArgument>
-                                        </Assign.To>
-                                        <Assign.Value>
-                                          <InArgument x:TypeArguments="x:String">[CurrentRow.Item("File path").ToString.Replace("C:\Temp\","")]</InArgument>
-                                        </Assign.Value>
-                                      </Assign>
-                                    </Sequence>
-                                  </ActivityAction>
-                                </ui:ForEachRow.Body>
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                              </ui:ForEachRow>
-                            </Sequence>
-                          </ui:CommentOut.Body>
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                        </ui:CommentOut>
-                        <uga:RenameSheet ContinueOnError="{x:Null}" SpreadSheetId="{x:Null}" SpreadsheetId="{x:Null}" AuthScopesInvalid="False" DisplayName="Rename Sheet" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,142" sap2010:WorkflowViewState.IdRef="RenameSheet_1" NewSheetName="[in_UploadedFilesSheetName]" OriginalSheetName="Sheet1" />
-                        <uga:WriteRange ContinueOnError="{x:Null}" Request="{x:Null}" Result="{x:Null}" SpreadsheetId="{x:Null}" AuthScopesInvalid="False" DataTable="[in_DtProcessFiles]" DisplayName="Write Range" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,227.333333333333" sap2010:WorkflowViewState.IdRef="WriteRange_2" IncludeHeaders="True" IsInsideBatchUpdateScope="False" SheetName="[in_UploadedFilesSheetName]" StartingCell="A1" />
-                      </Sequence>
-                    </If.Then>
-                    <If.Else>
-                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_68">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </Sequence>
-                    </If.Else>
-                  </If>
-                  <If Condition="[Not(IsNothing(in_DtOtherFiles)) AndAlso (in_DtOtherFiles.RowCount &gt; 0)]" DisplayName="Check If Any Zip Files" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_4">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                    <If.Then>
-                      <Sequence sap:VirtualizedContainerService.HintSize="376,636" sap2010:WorkflowViewState.IdRef="Sequence_65">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Writing zip files report.&quot;]" />
-                        <uga:AddNewSheet Columns="{x:Null}" ContinueOnError="{x:Null}" PositionIndex="{x:Null}" Rows="{x:Null}" SpreadsheetId="{x:Null}" AuthScopesInvalid="False" DisplayName="Add New Sheet" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,142" sap2010:WorkflowViewState.IdRef="AddNewSheet_2" SheetName="[in_OtherFilesSheetName]" />
-                        <uga:WriteRange ContinueOnError="{x:Null}" Request="{x:Null}" Result="{x:Null}" SpreadsheetId="{x:Null}" AuthScopesInvalid="False" DataTable="[in_DtOtherFiles]" DisplayName="Write Range" GoogleSpreadsheet="[Report_Spreadsheet]" sap:VirtualizedContainerService.HintSize="334,227.333333333333" sap2010:WorkflowViewState.IdRef="WriteRange_3" IncludeHeaders="True" IsInsideBatchUpdateScope="False" SheetName="[in_OtherFilesSheetName]" StartingCell="A1" />
-                      </Sequence>
-                    </If.Then>
-                    <If.Else>
-                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_66">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </Sequence>
-                    </If.Else>
-                  </If>
-                </Sequence>
-              </ActivityAction>
-            </ugas:GoogleSheetsApplicationScope.Body>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ugas:GoogleSheetsApplicationScope>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
-    <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="560,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
+    <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="434,104.666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
   </Sequence>
 </Activity>
