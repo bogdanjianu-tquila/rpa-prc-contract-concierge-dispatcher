@@ -138,6 +138,7 @@
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
       <AssemblyReference>TQA.G2</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence sap2010:Annotation.AnnotationText="Sub-process to process file by checking if it exists, opening it, extracting metadata, downloading the file, creating queue item, uploading to storage bucket, deleting file and closing the file in Egnyte." DisplayName="Process File" sap:VirtualizedContainerService.HintSize="1416,3540.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_9">
@@ -262,27 +263,13 @@
             <TryCatch.Try>
               <ui:AddQueueItem ServiceBaseAddress="{x:Null}" sap2010:Annotation.AnnotationText="The timeout is multiplied by 1000 because the modern activities require timeouts in seconds and the classic ones required timeouts im milliseconds.&#xA;&#xA;For the project we are using as default seconds for timeouts and converting them to milliseconds in the classic activities." DisplayName="Add Queue Item" sap:VirtualizedContainerService.HintSize="200,244" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_StrQueueName]" Reference="[strFileID]" TimeoutMS="[in_IntLongTimeout * 1000]">
                 <ui:AddQueueItem.ItemInformation>
-                  <InArgument x:TypeArguments="x:String" x:Key="File Name">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strFileName" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Customer Name">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCustomerName" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Direct Link">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strDirectLink" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte File Path">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strEgnyteFilePath" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Last Updated By">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strLastUpdatedBy" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Modified Date">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strModifiedDate" />
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="Target File">
-                    <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strFileID" />
-                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="File Name">[strFileName]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Customer Name">[strCustomerName]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Direct Link">[strDirectLink]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte File Path">[strEgnyteFilePath]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Last Updated By">[strLastUpdatedBy]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Egnyte Modified Date">[strModifiedDate]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="Target File">[strFileID]</InArgument>
                 </ui:AddQueueItem.ItemInformation>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -303,13 +290,13 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ui:OrchestratorHttpException" Name="exception" />
                   </ActivityAction.Argument>
-                  <Sequence sap:VirtualizedContainerService.HintSize="860,858.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                  <Sequence sap:VirtualizedContainerService.HintSize="908,922" sap2010:WorkflowViewState.IdRef="Sequence_23">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[exception.Message.Contains(&quot;Timeout&quot;)]" DisplayName="Check If Timeout Exception" sap:VirtualizedContainerService.HintSize="846,400.666666666667" sap2010:WorkflowViewState.IdRef="If_6">
+                    <If Condition="[exception.Message.Contains(&quot;Timeout&quot;)]" DisplayName="Check If Timeout Exception" sap:VirtualizedContainerService.HintSize="950,400.666666666667" sap2010:WorkflowViewState.IdRef="If_6">
                       <If.Then>
                         <Sequence sap:VirtualizedContainerService.HintSize="400,184.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_21">
                           <sap:WorkflowViewStateService.ViewState>
@@ -367,7 +354,7 @@
                         </Sequence>
                       </If.Else>
                     </If>
-                    <If Condition="[exception.Message.Contains(&quot;Duplicate&quot;)]" DisplayName="Check If Duplicate Exception" sap:VirtualizedContainerService.HintSize="846,359.333333333333" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If Condition="[exception.Message.Contains(&quot;Duplicate&quot;)]" DisplayName="Check If Duplicate Exception" sap:VirtualizedContainerService.HintSize="950,400.666666666667" sap2010:WorkflowViewState.IdRef="If_4">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -400,7 +387,7 @@
               </Catch>
             </TryCatch.Catches>
           </TryCatch>
-          <ucas:UploadStorageFile FileResource="{x:Null}" sap2010:Annotation.AnnotationText="The timeout is multiplied by 1000 because the modern activities require timeouts in seconds and the classic ones required timeouts im milliseconds.&#xA;&#xA;For the project we are using as default seconds for timeouts and converting them to milliseconds in the classic activities." Destination="[strFileID]" DisplayName="Upload Storage File" sap:VirtualizedContainerService.HintSize="438.666666666667,274.666666666667" sap2010:WorkflowViewState.IdRef="UploadStorageFile_1" Path="[strDownloadedFilePath]" StorageBucketName="[in_StrStorageBucketName]" TimeoutMS="[in_IntLongTimeout * 1000]">
+          <ucas:UploadStorageFile FileResource="{x:Null}" sap2010:Annotation.AnnotationText="The timeout is multiplied by 1000 because the modern activities require timeouts in seconds and the classic ones required timeouts im milliseconds.&#xA;&#xA;For the project we are using as default seconds for timeouts and converting them to milliseconds in the classic activities." Destination="[strFileID+Path.GetExtension(strDownloadedFilePath)]" DisplayName="Upload Storage File" sap:VirtualizedContainerService.HintSize="438.666666666667,274.666666666667" sap2010:WorkflowViewState.IdRef="UploadStorageFile_1" Path="[strDownloadedFilePath]" StorageBucketName="[in_StrStorageBucketName]" TimeoutMS="[in_IntLongTimeout * 1000]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
