@@ -359,9 +359,9 @@
           </sap:WorkflowViewStateService.ViewState>
           <Transition.Condition>[SystemException Is Nothing And BusinessException is Nothing]</Transition.Condition>
           <Transition.To>
-            <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="581.333333333333,1972.66666666667" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+            <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="625.333333333333,2264.66666666667" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
               <State.Entry>
-                <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="534.666666666667,1816.66666666667" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="578.666666666667,2108.66666666667" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -369,7 +369,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <TryCatch.Try>
-                    <Sequence sap:VirtualizedContainerService.HintSize="496,1568.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                    <Sequence sap:VirtualizedContainerService.HintSize="540,1860.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_47">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="sd:DataTable" Name="dtOtherFiles" />
                         <Variable x:TypeArguments="sd:DataTable" Name="dtProcessFiles" />
@@ -379,7 +379,7 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Extract Report Datatables.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" UnSafe="False" WorkflowFileName="Sub Processes\Extract Report Datatables.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Extract Report Datatables.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="478,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" UnSafe="False" WorkflowFileName="Sub Processes\Extract Report Datatables.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DtProcessFiles">[dtProcessFiles]</OutArgument>
                           <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DtOtherFiles">[dtOtherFiles]</OutArgument>
@@ -392,7 +392,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:InvokeWorkflowFile>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Create Report.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_43" UnSafe="False" WorkflowFileName="Sub Processes\Create Report.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Create Report.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="478,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_43" UnSafe="False" WorkflowFileName="Sub Processes\Create Report.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtProcessFiles">
                             <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dtProcessFiles" />
@@ -420,7 +420,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:InvokeWorkflowFile>
-                      <uga:GSuiteApplicationScope Account="{x:Null}" ApiKey="{x:Null}" ContinueOnError="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Folder="{x:Null}" KeyPath="{x:Null}" Password="{x:Null}" SecureCredentialSecret="{x:Null}" ServiceAccountEmail="{x:Null}" UserEmail="{x:Null}" AuthenticationType="OAuthClientID" DataStoreLocation="Orchestrator" DisplayName="GSuite Scope - Send Gmail" HasDomainWideAccesss="False" sap:VirtualizedContainerService.HintSize="434,605.333333333333" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_2" KeyType="JSON" OAuthClient="UiPath" Services="Unselected" TimeoutMS="[CInt(Config(&quot;LongTimeout&quot;)) * 1000]">
+                      <uga:GSuiteApplicationScope Account="{x:Null}" ApiKey="{x:Null}" ContinueOnError="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Folder="{x:Null}" KeyPath="{x:Null}" Password="{x:Null}" SecureCredentialSecret="{x:Null}" ServiceAccountEmail="{x:Null}" UserEmail="{x:Null}" AuthenticationType="OAuthClientID" DataStoreLocation="Orchestrator" DisplayName="GSuite Scope - Send Gmail" HasDomainWideAccesss="False" sap:VirtualizedContainerService.HintSize="478,605.333333333333" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_2" KeyType="JSON" OAuthClient="UiPath" Services="Unselected" TimeoutMS="[CInt(Config(&quot;LongTimeout&quot;)) * 1000]">
                         <uga:GSuiteApplicationScope.AuthenticationScopes>
                           <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                             <InArgument x:TypeArguments="x:String">https://mail.google.com/</InArgument>
@@ -438,7 +438,7 @@
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <uga:SendEmail AttachmentList="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" AuthScopesInvalid="False" Body="[&quot;Hello,&quot;+Environment.NewLine+Environment.NewLine+&quot;Here Is the Contracts Concierge report URL: &quot;+strReportURL+Environment.NewLine+Environment.NewLine+&quot;Regards,&quot;+Environment.NewLine+Environment.NewLine+&quot;RPA Robot&quot;]" DisplayName="Send Report Mail Message" sap:VirtualizedContainerService.HintSize="338,360.666666666667" sap2010:WorkflowViewState.IdRef="SendEmail_1" IsDraft="False" IsHTML="False" Subject="Test" To="[{&quot;bogdan@tquila-automation.com&quot;}]">
+                              <uga:SendEmail AttachmentList="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" AuthScopesInvalid="False" Body="[&quot;Hello,&quot;+Environment.NewLine+Environment.NewLine+&quot;Here Is the Contracts Concierge report URL: &quot;+strReportURL+Environment.NewLine+Environment.NewLine+&quot;Regards,&quot;+Environment.NewLine+Environment.NewLine+&quot;RPA Robot&quot;]" DisplayName="Send Report Mail Message" sap:VirtualizedContainerService.HintSize="338,360.666666666667" sap2010:WorkflowViewState.IdRef="SendEmail_1" IsDraft="False" IsHTML="False" Subject="[String.Format(Config(&quot;Dispatcher_ReportEmailSubject&quot;).ToString, DateTime.Now.ToString(&quot;MMddyyyy&quot;))]" To="[Config(&quot;Dispatcher_ReportEmailRecipient&quot;).ToString.Split(&quot;,&quot;c)]">
                                 <uga:SendEmail.Attachments>
                                   <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
                                 </uga:SendEmail.Attachments>
@@ -447,27 +447,27 @@
                           </ActivityAction>
                         </uga:GSuiteApplicationScope.Body>
                       </uga:GSuiteApplicationScope>
-                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="434,62.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_7">
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="478,62.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_7">
                         <ui:CommentOut.Body>
-                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="572,786.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="592,826.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_61">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <umab:GmailApplicationCard Account="uipathbot2@g2.com" ClientId="700682542140-smqbdnbhn69c59hujncfq0b6cnrqgllq.apps.googleusercontent.com" ClientSecret="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" ConnectionAccountName="uipathbot2@g2.com" ConnectionId="7a301a1e-b853-ed11-ade6-0050f29e0988" DisplayName="Use Gmail" EmailAddress="uipathbot2@g2.com" sap:VirtualizedContainerService.HintSize="510,664.666666666667" sap2010:WorkflowViewState.IdRef="GmailApplicationCard_2" Timeout="[CInt(Config(&quot;LongTimeout&quot;))]" UseConnectionService="False">
+                            <umab:GmailApplicationCard Account="uipathbot2@g2.com" ClientId="700682542140-smqbdnbhn69c59hujncfq0b6cnrqgllq.apps.googleusercontent.com" ClientSecret="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" ConnectionAccountName="uipathbot2@g2.com" ConnectionId="7a301a1e-b853-ed11-ade6-0050f29e0988" DisplayName="Use Gmail" EmailAddress="uipathbot2@g2.com" sap:VirtualizedContainerService.HintSize="530,704.666666666667" sap2010:WorkflowViewState.IdRef="GmailApplicationCard_2" Timeout="[CInt(Config(&quot;LongTimeout&quot;))]" UseConnectionService="False">
                               <umab:GmailApplicationCard.Body>
                                 <ActivityAction x:TypeArguments="um:IMailQuickHandle">
                                   <ActivityAction.Argument>
                                     <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Gmail" />
                                   </ActivityAction.Argument>
-                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,468" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,508" sap2010:WorkflowViewState.IdRef="Sequence_54">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <umab:SendMailX Bcc="{x:Null}" Body="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Gmail]" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="434,376" sap2010:WorkflowViewState.IdRef="SendMailX_1" Importance="Normal" IsDraft="False" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="Test" To="bogdan@tquila-automation.com" UseDocumentAsBody="False">
+                                    <umab:SendMailX Bcc="{x:Null}" Body="{x:Null}" Cc="{x:Null}" HtmlBodyFromText="{x:Null}" ReplyTo="{x:Null}" Account="[Gmail]" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="434,386" sap2010:WorkflowViewState.IdRef="SendMailX_1" Importance="Normal" IsDraft="False" MaxBodyDocumentSizeMB="2" Sensitivity="Normal" Subject="Test" To="bogdan@tquila-automation.com" UseDocumentAsBody="False">
                                       <umab:SendMailX.Files>
                                         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
                                       </umab:SendMailX.Files>
@@ -503,15 +503,15 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:CommentOut>
-                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="434,62.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="478,334.666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_5">
                         <ui:CommentOut.Body>
-                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="441.333333333333,236" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="441.333333333333,246" sap2010:WorkflowViewState.IdRef="Sequence_57">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Delete Files And Subfolders From Folder.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379.333333333333,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_34" UnSafe="False" WorkflowFileName="Sub Processes\Delete Files And Subfolders From Folder.xaml">
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Delete Files And Subfolders From Folder.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="379.333333333333,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_34" UnSafe="False" WorkflowFileName="Sub Processes\Delete Files And Subfolders From Folder.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolderPath">[Config("DownloadsFolder").ToString]</InArgument>
                               </ui:InvokeWorkflowFile.Arguments>
@@ -526,12 +526,12 @@
                         </ui:CommentOut.Body>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:CommentOut>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Framework\CloseAllApplications.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_40" UnSafe="False" WorkflowFileName="Framework\CloseAllApplications.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Framework\CloseAllApplications.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="478,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_40" UnSafe="False" WorkflowFileName="Framework\CloseAllApplications.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InArgument>
                           <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[CInt(Config("LongTimeout"))]</InArgument>
@@ -539,7 +539,7 @@
                           <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">[CInt(Config("ShortTimeout"))]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Framework\KillAllProcesses.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_36" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Framework\KillAllProcesses.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="478,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_36" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <scg:Dictionary x:TypeArguments="x:String, Argument" />
                         </ui:InvokeWorkflowFile.Arguments>
@@ -547,7 +547,7 @@
                     </Sequence>
                   </TryCatch.Try>
                   <TryCatch.Catches>
-                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="480.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="544.666666666667,22" sap2010:WorkflowViewState.IdRef="Catch`1_5">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -558,7 +558,7 @@
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Failed to close applications, so kill processes" sap:VirtualizedContainerService.HintSize="376,340.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                        <Sequence DisplayName="Failed to close applications, so kill processes" sap:VirtualizedContainerService.HintSize="400,370.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_26">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
