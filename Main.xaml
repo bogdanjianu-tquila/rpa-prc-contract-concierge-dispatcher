@@ -359,9 +359,9 @@
           </sap:WorkflowViewStateService.ViewState>
           <Transition.Condition>[SystemException Is Nothing And BusinessException is Nothing]</Transition.Condition>
           <Transition.To>
-            <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="144,134" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+            <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="581.333333333333,1952.66666666667" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
               <State.Entry>
-                <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="514.666666666667,1686.66666666667" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="534.666666666667,1796.66666666667" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -369,7 +369,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <TryCatch.Try>
-                    <Sequence sap:VirtualizedContainerService.HintSize="476,1448.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                    <Sequence sap:VirtualizedContainerService.HintSize="496,1548.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_47">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="sd:DataTable" Name="dtOtherFiles" />
                         <Variable x:TypeArguments="sd:DataTable" Name="dtProcessFiles" />
@@ -379,7 +379,7 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Extract Report Datatables.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" UnSafe="False" WorkflowFileName="Sub Processes\Extract Report Datatables.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Extract Report Datatables.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" UnSafe="False" WorkflowFileName="Sub Processes\Extract Report Datatables.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DtProcessFiles">[dtProcessFiles]</OutArgument>
                           <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DtOtherFiles">[dtOtherFiles]</OutArgument>
@@ -392,14 +392,26 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:InvokeWorkflowFile>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Create Report.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_43" UnSafe="False" WorkflowFileName="Sub Processes\Create Report.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Create Report.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="434,124" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_43" UnSafe="False" WorkflowFileName="Sub Processes\Create Report.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
-                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtProcessFiles">[dtProcessFiles]</InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_StrReportSpreadsheetID">[strReportSpreadsheetID]</InArgument>
-                          <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[CInt(Config("LongTimeout"))]</InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_UploadedFilesSheetName">[Config("UploadedFilesSheetName").ToString]</InArgument>
-                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtOtherFiles">[dtOtherFiles]</InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_OtherFilesSheetName">[Config("OtherFilesSheetName").ToString]</InArgument>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtProcessFiles">
+                            <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dtProcessFiles" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_StrReportSpreadsheetID">
+                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strReportSpreadsheetID" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">
+                            <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(Config(&quot;LongTimeout&quot;)) * 1000" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_UploadedFilesSheetName">
+                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;UploadedFilesSheetName&quot;).ToString" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtOtherFiles">
+                            <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="dtOtherFiles" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_OtherFilesSheetName">
+                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Config(&quot;OtherFilesSheetName&quot;).ToString" />
+                          </InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -408,7 +420,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:InvokeWorkflowFile>
-                      <uga:GSuiteApplicationScope Account="{x:Null}" ApiKey="{x:Null}" ContinueOnError="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Folder="{x:Null}" KeyPath="{x:Null}" Password="{x:Null}" SecureCredentialSecret="{x:Null}" ServiceAccountEmail="{x:Null}" TimeoutMS="{x:Null}" UserEmail="{x:Null}" AuthenticationType="OAuthClientID" DataStoreLocation="Orchestrator" DisplayName="GSuite Application Scope" HasDomainWideAccesss="False" sap:VirtualizedContainerService.HintSize="434,555.333333333333" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_2" KeyType="JSON" OAuthClient="UiPath" Services="Unselected">
+                      <uga:GSuiteApplicationScope Account="{x:Null}" ApiKey="{x:Null}" ContinueOnError="{x:Null}" CredentialID="{x:Null}" CredentialSecret="{x:Null}" Folder="{x:Null}" KeyPath="{x:Null}" Password="{x:Null}" SecureCredentialSecret="{x:Null}" ServiceAccountEmail="{x:Null}" UserEmail="{x:Null}" AuthenticationType="OAuthClientID" DataStoreLocation="Orchestrator" DisplayName="GSuite Application Scope" HasDomainWideAccesss="False" sap:VirtualizedContainerService.HintSize="434,605.333333333333" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_2" KeyType="JSON" OAuthClient="UiPath" Services="Unselected" TimeoutMS="[CInt(Config(&quot;LongTimeout&quot;))]">
                         <uga:GSuiteApplicationScope.AuthenticationScopes>
                           <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                             <InArgument x:TypeArguments="x:String">https://mail.google.com/</InArgument>
@@ -420,13 +432,13 @@
                             <ActivityAction.Argument>
                               <DelegateInArgument x:TypeArguments="ug:SimpleObjectContainer" Name="GSuiteScope" />
                             </ActivityAction.Argument>
-                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,442.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,482.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_60">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <uga:SendEmail AttachmentList="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" AuthScopesInvalid="False" Body="[&quot;Hello,&quot;+Environment.NewLine+Environment.NewLine+&quot;Here Is the Contracts Concierge report URL: &quot;+strReportURL+Environment.NewLine+Environment.NewLine+&quot;Regards,&quot;+Environment.NewLine+Environment.NewLine+&quot;RPA Robot&quot;]" DisplayName="Send Mail Message" sap:VirtualizedContainerService.HintSize="334,350.666666666667" sap2010:WorkflowViewState.IdRef="SendEmail_1" IsDraft="False" IsHTML="False" Subject="Test" To="[{&quot;bogdan@tquila-automation.com&quot;}]">
+                              <uga:SendEmail AttachmentList="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" AuthScopesInvalid="False" Body="[&quot;Hello,&quot;+Environment.NewLine+Environment.NewLine+&quot;Here Is the Contracts Concierge report URL: &quot;+strReportURL+Environment.NewLine+Environment.NewLine+&quot;Regards,&quot;+Environment.NewLine+Environment.NewLine+&quot;RPA Robot&quot;]" DisplayName="Send Mail Message" sap:VirtualizedContainerService.HintSize="338,360.666666666667" sap2010:WorkflowViewState.IdRef="SendEmail_1" IsDraft="False" IsHTML="False" Subject="Test" To="[{&quot;bogdan@tquila-automation.com&quot;}]">
                                 <uga:SendEmail.Attachments>
                                   <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
                                 </uga:SendEmail.Attachments>
