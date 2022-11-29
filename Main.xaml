@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1074.66666666667,832</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>738,772.666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Main2_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="98">
@@ -359,7 +359,7 @@
           </sap:WorkflowViewStateService.ViewState>
           <Transition.Condition>[SystemException Is Nothing And BusinessException is Nothing]</Transition.Condition>
           <Transition.To>
-            <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="581.333333333333,1951.33333333333" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+            <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="144,134" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
               <State.Entry>
                 <TryCatch DisplayName="Try to close all aplications" sap:VirtualizedContainerService.HintSize="534.666666666667,1795.33333333333" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                   <sap:WorkflowViewStateService.ViewState>
@@ -543,7 +543,7 @@
       </State.Transitions>
     </State>
     <x:Reference>__ReferenceID0</x:Reference>
-    <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="Read configuration file and initialize applications used in the process." DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="254,116.666666666667" sap2010:WorkflowViewState.IdRef="State_2">
+    <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="Read configuration file and initialize applications used in the process." DisplayName="Initialization" sap:VirtualizedContainerService.HintSize="1023.33333333333,3998.66666666667" sap2010:WorkflowViewState.IdRef="State_2">
       <State.Entry>
         <TryCatch DisplayName="Try initializing settings and applications" sap:VirtualizedContainerService.HintSize="976.666666666667,3559.33333333333" sap2010:WorkflowViewState.IdRef="TryCatch_2">
           <sap:WorkflowViewStateService.ViewState>
@@ -705,7 +705,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <uga:CreateNewSpreadsheet Columns="{x:Null}" ContinueOnError="{x:Null}" DriveTarget="{x:Null}" Rows="{x:Null}" AuthScopesInvalid="False" DisplayName="Create Report Spreadsheet" FileURL="[strReportURL]" sap:VirtualizedContainerService.HintSize="338,210" sap2010:WorkflowViewState.IdRef="CreateNewSpreadsheet_1" ParentFolderName="Contracts Concierge" ParentId="[Config(&quot;GoogleDrive_ReportFolderId&quot;).ToString]" ParentIdSelectionMode="Browse" SpreadsheetId="[strReportSpreadsheetID]" SpreadsheetName="[String.Format(Config(&quot;DispatcherReportName&quot;).ToString, DateTime.Now.ToString(&quot;MMddyyyy&quot;))]" />
+                            <uga:CreateNewSpreadsheet Columns="{x:Null}" ContinueOnError="{x:Null}" DriveTarget="{x:Null}" Rows="{x:Null}" AuthScopesInvalid="False" DisplayName="Create Report Spreadsheet" FileURL="[strReportURL]" sap:VirtualizedContainerService.HintSize="338,210" sap2010:WorkflowViewState.IdRef="CreateNewSpreadsheet_1" ParentFolderName="Contracts Concierge" ParentId="[Config(&quot;GoogleDrive_ReportFolderId&quot;).ToString]" ParentIdSelectionMode="Browse" SpreadsheetId="[strReportSpreadsheetID]" SpreadsheetName="[String.Format(Config(&quot;DispatcherReportName&quot;).ToString, DateTime.Now.ToString(&quot;MMddyyyy_HHmm&quot;))]" />
                           </Sequence>
                         </ActivityAction>
                       </uga:GSuiteApplicationScope.Body>
