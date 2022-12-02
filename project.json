@@ -4,13 +4,12 @@
   "main": "Main.xaml",
   "dependencies": {
     "TQA.G2": "[1.8.14]",
-    "UiPath.Cryptography.Activities": "[1.2.1]",
-    "UiPath.Excel.Activities": "[2.16.0]",
+    "UiPath.Excel.Activities": "[2.16.1]",
     "UiPath.GSuite.Activities": "[1.16.2]",
     "UiPath.Mail.Activities": "[1.18.1]",
     "UiPath.System.Activities": "[22.10.3]",
     "UiPath.Testing.Activities": "[22.10.0]",
-    "UiPath.UIAutomation.Activities": "[22.10.3]"
+    "UiPath.UIAutomation.Activities": "[22.10.4]"
   },
   "webServices": [],
   "entitiesStores": [],
@@ -31,7 +30,8 @@
     "executionType": "Workflow",
     "readyForPiP": false,
     "startsInPiP": false,
-    "mustRestoreAllDependencies": true
+    "mustRestoreAllDependencies": true,
+    "pipType": "ChildSession"
   },
   "designOptions": {
     "projectProfile": "Developement",
