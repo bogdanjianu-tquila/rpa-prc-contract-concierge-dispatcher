@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Recursive_function" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:te="clr-namespace:TQA_G2.Egnyte;assembly=TQA.G2" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Recursive_function" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:te="clr-namespace:TQA_G2.Egnyte;assembly=TQA.G2" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_StrFolderURL" Type="InArgument(x:String)" />
     <x:Property Name="in_DblDelay" Type="InArgument(x:Double)" />
@@ -53,13 +53,13 @@
   <this:Recursive_function.in_StrEgnyteFilePathRegex>
     <InArgument x:TypeArguments="x:String" />
   </this:Recursive_function.in_StrEgnyteFilePathRegex>
-  <mva:VisualBasic.Settings>
+  <VisualBasic.Settings>
     <x:Null />
-  </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>880.666666666667,1068.66666666667</sap:VirtualizedContainerService.HintSize>
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1010,2997.3333333333335</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Recursive_function_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="43">
+    <scg:List x:TypeArguments="x:String" Capacity="86">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -103,6 +103,8 @@
       <x:String>UiPath.Excel.Activities</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
       <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -152,182 +154,189 @@
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Extract Files" sap:VirtualizedContainerService.HintSize="782,1004" sap2010:WorkflowViewState.IdRef="Sequence_1">
-    <Sequence.Variables>
-      <Variable x:TypeArguments="x:Boolean" Name="boolNextPageEnabled" />
-      <Variable x:TypeArguments="x:String" Name="strFolderURL" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dtFilesDT" />
-      <Variable x:TypeArguments="x:Object" Default="[&quot;Extract Files&quot;]" Name="strSubProcessName" />
-      <Variable x:TypeArguments="x:Int32" Name="intNextPageCounter" />
-    </Sequence.Variables>
+  <Sequence sap:VirtualizedContainerService.HintSize="797.3333333333334,2932.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_56">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="740,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
-    <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="740,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
-    <te:Egnyte___Extract_Folder_Table DisplayName="Egnyte - Extract Folder Table" sap:VirtualizedContainerService.HintSize="740,22" sap2010:WorkflowViewState.IdRef="Egnyte___Extract_Folder_Table_1" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" out_DtFolderFiles="[dtFilesDT]" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtFilesDT.AsEnumerable.Reverse().CopyToDataTable()]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="740,580.666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_2" MaxIterations="2">
-      <ui:ForEachRow.Body>
-        <ActivityAction x:TypeArguments="sd:DataRow">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="706,462" sap2010:WorkflowViewState.IdRef="Sequence_42">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[Not(in_ArrFolderExtensions.Contains(Path.GetExtension(CurrentRow.Item(&quot;Item name&quot;).ToString.ToLower)))]" DisplayName="If File" sap:VirtualizedContainerService.HintSize="664,370" sap2010:WorkflowViewState.IdRef="If_13">
+    <Sequence DisplayName="Extract Files" sap:VirtualizedContainerService.HintSize="755.3333333333334,2845.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_1">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Boolean" Name="boolNextPageEnabled" />
+        <Variable x:TypeArguments="x:String" Name="strFolderURL" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dtFilesDT" />
+        <Variable x:TypeArguments="x:Object" Default="[&quot;Extract Files&quot;]" Name="strSubProcessName" />
+        <Variable x:TypeArguments="x:Int32" Name="intNextPageCounter" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message - Start Sub-Process" sap:VirtualizedContainerService.HintSize="693.3333333333334,94.66666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
+      <te:Egnyte___Extract_Folder_Table DisplayName="Egnyte - Extract Folder Table" sap:VirtualizedContainerService.HintSize="693.3333333333334,247.33333333333334" sap2010:WorkflowViewState.IdRef="Egnyte___Extract_Folder_Table_1" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" out_DtFolderFiles="[dtFilesDT]" />
+      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dtFilesDT.AsEnumerable.Reverse().CopyToDataTable()]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="693.3333333333334,2178" sap2010:WorkflowViewState.IdRef="ForEachRow_2" MaxIterations="2">
+        <ui:ForEachRow.Body>
+          <ActivityAction x:TypeArguments="sd:DataRow">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="659.3333333333334,2059.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_42">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="376,206" sap2010:WorkflowViewState.IdRef="Sequence_49">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="x:Boolean" Name="boolFileExists" />
-                  </Sequence.Variables>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Process File.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Sub Processes\Process File.xaml">
-                    <ui:InvokeWorkflowFile.Arguments>
-                      <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">[in_DblDelay]</InArgument>
-                      <InArgument x:TypeArguments="x:Int32" x:Key="in_IntExtraShortTimeout">[in_IntExtraShortTimeout]</InArgument>
-                      <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[in_IntLongTimeout]</InArgument>
-                      <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">[in_IntShortTimeout]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_StrItemName">[CurrentRow.Item("Item name").ToString]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_StrFileNameRegex">[in_StrFileNameRegex]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_StrFilePathRegex">[in_StrEgnyteFilePathRegex]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_StrLastUpdatedByRegex">[in_StrLastUpdatedByRegex]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_StrModifiedDateRegex">[in_StrModifiedDateRegex]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolder">[in_StrDownloadsFolder]</InArgument>
-                      <InArgument x:TypeArguments="sd:DataTable" x:Key="io_DtReportData">[io_DtReportData]</InArgument>
-                      <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrInScopeFileTypes">[in_ArrInScopeFileTypes]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_StrQueueName">[in_StrQueueName]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="in_StrStorageBucketName">[in_StrStorageBucketName]</InArgument>
-                      <InArgument x:TypeArguments="x:Int32" x:Key="in_IntCustomerPathIndex">[in_IntCustomerPathIndex]</InArgument>
-                      <InArgument x:TypeArguments="x:Int32" x:Key="in_IntRetryScopeRetryNumber">[in_IntRetryScopeRetryNumber]</InArgument>
-                      <InArgument x:TypeArguments="x:TimeSpan" x:Key="in_TmspRetryScopeRetryInterval">[in_TmspRetryScopeRetryInterval]</InArgument>
-                    </ui:InvokeWorkflowFile.Arguments>
+              <If Condition="[Not(in_ArrFolderExtensions.Contains(Path.GetExtension(CurrentRow.Item(&quot;Item name&quot;).ToString.ToLower)))]" DisplayName="If File" sap:VirtualizedContainerService.HintSize="617.3333333333334,1972" sap2010:WorkflowViewState.IdRef="If_13">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="400,202" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="boolFileExists" />
+                    </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                  </ui:InvokeWorkflowFile>
-                </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence sap:VirtualizedContainerService.HintSize="242,144.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_55">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="x:String" Name="strPreviousFolderURL" />
-                  </Sequence.Variables>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[in_ArrIgnoreFolders.Contains(CurrentRow.Item(&quot;Item name&quot;).ToString)]" DisplayName="Check If Folder Will Be Ignored" sap:VirtualizedContainerService.HintSize="200,52.6666666666667" sap2010:WorkflowViewState.IdRef="If_12">
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Process File.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="358,114.66666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Sub Processes\Process File.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">[in_DblDelay]</InArgument>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntExtraShortTimeout">[in_IntExtraShortTimeout]</InArgument>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[in_IntLongTimeout]</InArgument>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">[in_IntShortTimeout]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_StrItemName">[CurrentRow.Item("Item name").ToString]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_StrFileNameRegex">[in_StrFileNameRegex]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_StrFilePathRegex">[in_StrEgnyteFilePathRegex]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_StrLastUpdatedByRegex">[in_StrLastUpdatedByRegex]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_StrModifiedDateRegex">[in_StrModifiedDateRegex]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolder">[in_StrDownloadsFolder]</InArgument>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="io_DtReportData">[io_DtReportData]</InArgument>
+                        <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrInScopeFileTypes">[in_ArrInScopeFileTypes]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_StrQueueName">[in_StrQueueName]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_StrStorageBucketName">[in_StrStorageBucketName]</InArgument>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntCustomerPathIndex">[in_IntCustomerPathIndex]</InArgument>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntRetryScopeRetryNumber">[in_IntRetryScopeRetryNumber]</InArgument>
+                        <InArgument x:TypeArguments="x:TimeSpan" x:Key="in_TmspRetryScopeRetryInterval">[in_TmspRetryScopeRetryInterval]</InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:InvokeWorkflowFile>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="538.6666666666666,1589.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_55">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="strPreviousFolderURL" />
+                    </Sequence.Variables>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If.Then>
-                      <Sequence DisplayName="Folder Will Be Ignored" sap:VirtualizedContainerService.HintSize="376,186.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_50">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Folder &lt;&quot;+CurrentRow.Item(&quot;Item name&quot;).ToString+&quot;&gt; will be ignored.&quot;]" />
-                      </Sequence>
-                    </If.Then>
-                    <If.Else>
-                      <Sequence DisplayName="Open Folder" sap:VirtualizedContainerService.HintSize="376,744" sap2010:WorkflowViewState.IdRef="Sequence_54">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Opening folder&quot;]" />
-                        <Assign DisplayName="Assign Folder URL" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_7">
-                          <Assign.To>
-                            <OutArgument x:TypeArguments="x:String">[strFolderURL]</OutArgument>
-                          </Assign.To>
-                          <Assign.Value>
-                            <InArgument x:TypeArguments="x:String">[in_StrFolderURL+"/"+CurrentRow.Item("Item name").ToString]</InArgument>
-                          </Assign.Value>
-                        </Assign>
-                        <ui:RetryScope DisplayName="Retry Scope - Navigate To Folder" sap:VirtualizedContainerService.HintSize="334,199.333333333333" sap2010:WorkflowViewState.IdRef="RetryScope_4" NumberOfRetries="[in_IntRetryScopeRetryNumber]" RetryInterval="[in_TmspRetryScopeRetryInterval]">
-                          <ui:RetryScope.ActivityBody>
-                            <ActivityAction>
-                              <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To URL ()" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_2" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" in_StrURL="[strFolderURL]" />
-                            </ActivityAction>
-                          </ui:RetryScope.ActivityBody>
-                          <ui:RetryScope.Condition>
-                            <ActivityFunc x:TypeArguments="x:Boolean" />
-                          </ui:RetryScope.Condition>
+                    <If Condition="[in_ArrIgnoreFolders.Contains(CurrentRow.Item(&quot;Item name&quot;).ToString)]" DisplayName="Check If Folder Will Be Ignored" sap:VirtualizedContainerService.HintSize="496.6666666666667,1502" sap2010:WorkflowViewState.IdRef="If_12">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence DisplayName="Folder Will Be Ignored" sap:VirtualizedContainerService.HintSize="400,182" sap2010:WorkflowViewState.IdRef="Sequence_50">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                        </ui:RetryScope>
-                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Extract Files.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="334,114" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Sub Processes\Extract Files.xaml">
-                          <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderURL">[strFolderURL]</InArgument>
-                            <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">[in_DblDelay]</InArgument>
-                            <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[in_IntLongTimeout]</InArgument>
-                            <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">[in_IntShortTimeout]</InArgument>
-                            <InArgument x:TypeArguments="x:Int32" x:Key="in_IntExtraShortTimeout">[in_IntExtraShortTimeout]</InArgument>
-                            <InArgument x:TypeArguments="x:Int32" x:Key="in_IntRetryScopeRetryNumber">[in_IntRetryScopeRetryNumber]</InArgument>
-                            <InArgument x:TypeArguments="x:TimeSpan" x:Key="in_TmspRetryScopeRetryInterval">[in_TmspRetryScopeRetryInterval]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_StrFileNameRegex">[in_StrFileNameRegex]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_StrLastUpdatedByRegex">[in_StrLastUpdatedByRegex]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_StrModifiedDateRegex">[in_StrModifiedDateRegex]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolder">[in_StrDownloadsFolder]</InArgument>
-                            <InArgument x:TypeArguments="sd:DataTable" x:Key="io_DtReportData">[io_DtReportData]</InArgument>
-                            <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrInScopeFileTypes">[in_ArrInScopeFileTypes]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_StrQueueName">[in_StrQueueName]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_StrStorageBucketName">[in_StrStorageBucketName]</InArgument>
-                            <InArgument x:TypeArguments="x:Int32" x:Key="in_IntCustomerPathIndex">[in_IntCustomerPathIndex]</InArgument>
-                            <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrFolderExtensions">[in_ArrFolderExtensions]</InArgument>
-                            <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrIgnoreFolders">[in_ArrIgnoreFolders]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_StrEgnyteFilePathRegex">[in_StrEgnyteFilePathRegex]</InArgument>
-                          </ui:InvokeWorkflowFile.Arguments>
-                        </ui:InvokeWorkflowFile>
-                        <te:Egnyte___Navigate_Back DisplayName="Egnyte - Navigate Back ()" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_Back_2" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" />
-                      </Sequence>
-                    </If.Else>
-                  </If>
-                </Sequence>
-              </If.Else>
-            </If>
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEachRow.Body>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </ui:ForEachRow>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="358,94.66666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Folder &lt;&quot;+CurrentRow.Item(&quot;Item name&quot;).ToString+&quot;&gt; will be ignored.&quot;]" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Open Folder" sap:VirtualizedContainerService.HintSize="418,1139.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="376,94.66666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Opening folder&quot;]" />
+                          <Assign DisplayName="Assign Folder URL" sap:VirtualizedContainerService.HintSize="376,62.666666666666664" sap2010:WorkflowViewState.IdRef="Assign_7">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[strFolderURL]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[in_StrFolderURL+"/"+CurrentRow.Item("Item name").ToString]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:RetryScope DisplayName="Retry Scope - Navigate To Folder" sap:VirtualizedContainerService.HintSize="376,424.6666666666667" sap2010:WorkflowViewState.IdRef="RetryScope_4" NumberOfRetries="[in_IntRetryScopeRetryNumber]" RetryInterval="[in_TmspRetryScopeRetryInterval]">
+                            <ui:RetryScope.ActivityBody>
+                              <ActivityAction>
+                                <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To URL ()" sap:VirtualizedContainerService.HintSize="334,247.33333333333334" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_2" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" in_StrURL="[strFolderURL]" />
+                              </ActivityAction>
+                            </ui:RetryScope.ActivityBody>
+                            <ui:RetryScope.Condition>
+                              <ActivityFunc x:TypeArguments="x:Boolean" />
+                            </ui:RetryScope.Condition>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:RetryScope>
+                          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Extract Files.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="376,114.66666666666667" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Sub Processes\Extract Files.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderURL">[strFolderURL]</InArgument>
+                              <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">[in_DblDelay]</InArgument>
+                              <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[in_IntLongTimeout]</InArgument>
+                              <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">[in_IntShortTimeout]</InArgument>
+                              <InArgument x:TypeArguments="x:Int32" x:Key="in_IntExtraShortTimeout">[in_IntExtraShortTimeout]</InArgument>
+                              <InArgument x:TypeArguments="x:Int32" x:Key="in_IntRetryScopeRetryNumber">[in_IntRetryScopeRetryNumber]</InArgument>
+                              <InArgument x:TypeArguments="x:TimeSpan" x:Key="in_TmspRetryScopeRetryInterval">[in_TmspRetryScopeRetryInterval]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_StrFileNameRegex">[in_StrFileNameRegex]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_StrLastUpdatedByRegex">[in_StrLastUpdatedByRegex]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_StrModifiedDateRegex">[in_StrModifiedDateRegex]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolder">[in_StrDownloadsFolder]</InArgument>
+                              <InArgument x:TypeArguments="sd:DataTable" x:Key="io_DtReportData">[io_DtReportData]</InArgument>
+                              <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrInScopeFileTypes">[in_ArrInScopeFileTypes]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_StrQueueName">[in_StrQueueName]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_StrStorageBucketName">[in_StrStorageBucketName]</InArgument>
+                              <InArgument x:TypeArguments="x:Int32" x:Key="in_IntCustomerPathIndex">[in_IntCustomerPathIndex]</InArgument>
+                              <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrFolderExtensions">[in_ArrFolderExtensions]</InArgument>
+                              <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrIgnoreFolders">[in_ArrIgnoreFolders]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="in_StrEgnyteFilePathRegex">[in_StrEgnyteFilePathRegex]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                          </ui:InvokeWorkflowFile>
+                          <te:Egnyte___Navigate_Back DisplayName="Egnyte - Navigate Back ()" sap:VirtualizedContainerService.HintSize="376,195.33333333333334" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_Back_2" in_DblDefaultDelay="[in_DblDelay]" in_IntDefaultTimeoutL="[in_IntLongTimeout]" in_IntDefaultTimeoutS="[in_IntShortTimeout]" />
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEachRow.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ForEachRow>
+      <ui:LogMessage DisplayName="Log Message - End Sub-Process" sap:VirtualizedContainerService.HintSize="693.3333333333334,94.66666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[String.Format(&quot;Finished Sub-Process {0}&quot;, strSubProcessName)]" />
+    </Sequence>
   </Sequence>
 </Activity>
