@@ -3,12 +3,12 @@
   "description": "Robotic Enterprise Framework",
   "main": "Main.xaml",
   "dependencies": {
-    "TQA.G2": "[1.8.16]",
+    "TQA.G2": "[1.8.17]",
     "UiPath.Excel.Activities": "[2.16.1]",
     "UiPath.GSuite.Activities": "[1.16.2]",
     "UiPath.Mail.Activities": "[1.18.2]",
     "UiPath.System.Activities": "[22.10.4]",
-    "UiPath.Testing.Activities": "[22.10.1]",
+    "UiPath.Testing.Activities": "[22.10.2]",
     "UiPath.UIAutomation.Activities": "[22.10.4]"
   },
   "webServices": [],
