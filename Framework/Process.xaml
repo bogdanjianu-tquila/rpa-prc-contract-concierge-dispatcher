@@ -11,7 +11,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1025.3333333333333,865.3333333333334</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>986,865.3333333333334</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="110">
@@ -210,10 +210,10 @@
           <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ExtractCustomerPathIndex&quot;))" />
         </InArgument>
         <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrInScopeFileTypes">
-          <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;InScopeFileTypes&quot;).ToString.Split(&quot;,&quot;c)" />
+          <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;InScopeFileTypes&quot;).ToString.Split(&quot;,&quot;c, StringSplitOptions.TrimEntries)" />
         </InArgument>
         <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrFolderExtensions">
-          <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;FolderExensions&quot;).ToString.Split(&quot;,&quot;c)" />
+          <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;FolderExensions&quot;).ToString.Split(&quot;,&quot;c, StringSplitOptions.TrimEntries)" />
         </InArgument>
         <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrIgnoreFolders">
           <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;IgnoreFoldersNames&quot;).ToString.Split(&quot;,&quot;c, StringSplitOptions.TrimEntries)" />
