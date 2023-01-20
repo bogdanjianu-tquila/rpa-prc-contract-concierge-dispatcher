@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:te="clr-namespace:TQA_G2.Egnyte;assembly=TQA.G2" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:te="clr-namespace:TQA_G2.Egnyte;assembly=TQA.G2" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(sd:DataRow)" />
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_StrReportSpreadsheetID" Type="InArgument(x:String)" />
     <x:Property Name="in_StrStorageBucketName" Type="InArgument(x:String)" />
@@ -8,13 +8,13 @@
     <x:Property Name="in_StrOrchestratorQueueName" Type="InArgument(x:String)" />
     <x:Property Name="in_DtReportData" Type="InArgument(sd:DataTable)" />
   </x:Members>
-  <VisualBasic.Settings>
+  <mva:VisualBasic.Settings>
     <x:Null />
-  </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>986,865.3333333333334</sap:VirtualizedContainerService.HintSize>
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>942,861.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="110">
+    <scg:List x:TypeArguments="x:String" Capacity="58">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -41,41 +41,20 @@
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Runtime.InteropServices</x:String>
       <x:String>System.Windows.Forms</x:String>
-      <x:String>TQA_G2_Egnyte</x:String>
-      <x:String>System.Security</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>TQA_G2.Egnyte</x:String>
       <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Activities</x:String>
       <x:String>UiPath.Platform.ObjectLibrary</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
-      <x:String>System.Reflection</x:String>
-      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
-      <x:String>System.ComponentModel</x:String>
-      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
-      <x:String>System.Xml.Serialization</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
-      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
-      <x:String>UiPath.Shared.Activities.Business</x:String>
-      <x:String>UiPath.Excel</x:String>
-      <x:String>UiPath.Excel.Activities</x:String>
-      <x:String>UiPath.Platform.ResourceHandling</x:String>
-      <x:String>UiPath.Core.Activities.Storage</x:String>
-      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
-      <x:String>UiPath.GSuite.Activities.Sheets</x:String>
-      <x:String>UiPath.GSuite.Activities</x:String>
-      <x:String>UiPath.GSuite.Activities.Contracts</x:String>
-      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
-      <x:String>UiPath.Cryptography</x:String>
-      <x:String>System.Text</x:String>
-      <x:String>UiPath.Cryptography.Activities</x:String>
-      <x:String>UiPath.DataTableUtilities</x:String>
-      <x:String>UiPath.GSuite.Activities.Sheets.Enums</x:String>
-      <x:String>TQA_G2.Egnyte</x:String>
-      <x:String>GlobalVariablesNamespace</x:String>
-      <x:String>GlobalConstantsNamespace</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="94">
+    <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -102,45 +81,24 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
-      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
-      <AssemblyReference>System.Data.Entity</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
-      <AssemblyReference>TQA.G2_Egnyte</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>TQA.G2</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Platform</AssemblyReference>
-      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
-      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
-      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
-      <AssemblyReference>UiPath.Cryptography</AssemblyReference>
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
-      <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
-      <AssemblyReference>UiPath.Cryptography.Activities</AssemblyReference>
-      <AssemblyReference>TQA.G2</AssemblyReference>
-      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
-      <AssemblyReference>System.Memory.Data</AssemblyReference>
-      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
-      <AssemblyReference>System.Console</AssemblyReference>
-      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
-      <AssemblyReference>System.Security.Permissions</AssemblyReference>
-      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
-      <AssemblyReference>System.ComponentModel</AssemblyReference>
-      <AssemblyReference>System.Private.Uri</AssemblyReference>
-      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
-      <AssemblyReference>System.Data.Common</AssemblyReference>
-      <AssemblyReference>UiPath.Workflow</AssemblyReference>
-    </scg:List>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="400,732" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="400,507.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="strHashedFileName" />
-      <Variable x:TypeArguments="x:String" Name="strFileName" />
-      <Variable x:TypeArguments="x:String" Name="strFullFilePath" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dtCustomerFolders" />
       <Variable x:TypeArguments="x:String" Name="strCustomersURL" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -150,7 +108,7 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="358,96" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
-    <Assign DisplayName="Assign Customers URL" sap:VirtualizedContainerService.HintSize="358,63.333333333333336" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Assign Customers URL" sap:VirtualizedContainerService.HintSize="358,63.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[strCustomersURL]</OutArgument>
       </Assign.To>
@@ -158,65 +116,65 @@
         <InArgument x:TypeArguments="x:String">[in_Config("EgnyteCustomersURL").ToString]</InArgument>
       </Assign.Value>
     </Assign>
-    <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To URL" sap:VirtualizedContainerService.HintSize="358,250" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_1" in_DblDefaultDelay="[CDbl(in_Config(&quot;DefaultDelay&quot;))]" in_IntDefaultTimeoutL="[CInt(in_Config(&quot;LongTimeout&quot;))]" in_IntDefaultTimeoutS="[CInt(in_Config(&quot;ShortTimeout&quot;))]" in_StrURL="[strCustomersURL]" />
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Extract Files.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="358,115.33333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Sub Processes\Extract Files.xaml">
+    <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To URL" sap:VirtualizedContainerService.HintSize="358,25.3333333333333" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_1" in_DblDelay="[CDbl(in_Config(&quot;DefaultDelay&quot;))]" in_IntLongTimeout="[CInt(in_Config(&quot;LongTimeout&quot;))]" in_IntShortTimeout="[CInt(in_Config(&quot;ShortTimeout&quot;))]" in_StrURL="[strCustomersURL]" />
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Extract Files.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="358,115.333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Sub Processes\Extract Files.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderURL">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCustomersURL" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">
-          <VisualBasicValue x:TypeArguments="x:Double" ExpressionText="CDbl(in_Config(&quot;DefaultDelay&quot;))" />
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ShortTimeout&quot;))" />
         </InArgument>
         <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">
-          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;LongTimeout&quot;))" />
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;LongTimeout&quot;))" />
         </InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">
-          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ShortTimeout&quot;))" />
+        <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">
+          <mva:VisualBasicValue x:TypeArguments="x:Double" ExpressionText="CDbl(in_Config(&quot;DefaultDelay&quot;))" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderURL">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCustomersURL" />
         </InArgument>
         <InArgument x:TypeArguments="x:Int32" x:Key="in_IntExtraShortTimeout">
-          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ExtraShortTimeout&quot;))" />
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ExtraShortTimeout&quot;))" />
         </InArgument>
         <InArgument x:TypeArguments="x:Int32" x:Key="in_IntRetryScopeRetryNumber">
-          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;RetryScope_RetryNumber&quot;))" />
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;RetryScope_RetryNumber&quot;))" />
         </InArgument>
         <InArgument x:TypeArguments="x:TimeSpan" x:Key="in_TmspRetryScopeRetryInterval">
-          <VisualBasicValue x:TypeArguments="x:TimeSpan" ExpressionText="TimeSpan.Parse(in_Config(&quot;RetryScope_RetryInterval&quot;).ToString)" />
+          <mva:VisualBasicValue x:TypeArguments="x:TimeSpan" ExpressionText="TimeSpan.Parse(in_Config(&quot;RetryScope_RetryInterval&quot;).ToString)" />
         </InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_StrFileNameRegex">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;FileNameRegex&quot;).ToString" />
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;FileNameRegex&quot;).ToString" />
         </InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_StrLastUpdatedByRegex">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;LastUpdatedByRegex&quot;).ToString" />
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;LastUpdatedByRegex&quot;).ToString" />
         </InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_StrModifiedDateRegex">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ModifiedDateRegex&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrEgnyteFilePathRegex">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;EgnyteFilePathRegex&quot;).ToString" />
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ModifiedDateRegex&quot;).ToString" />
         </InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolder">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;DownloadsFolder&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="io_DtReportData">
-          <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_DtReportData" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrQueueName">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;OrchestratorQueueName&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrStorageBucketName">
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;FilesStorageBucket&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntCustomerPathIndex">
-          <VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ExtractCustomerPathIndex&quot;))" />
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;DownloadsFolder&quot;).ToString" />
         </InArgument>
         <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrInScopeFileTypes">
-          <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;InScopeFileTypes&quot;).ToString.Split(&quot;,&quot;c, StringSplitOptions.TrimEntries)" />
+          <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;InScopeFileTypes&quot;).ToString.Split(&quot;,&quot;c)" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrQueueName">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;OrchestratorQueueName&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrStorageBucketName">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;FilesStorageBucket&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntCustomerPathIndex">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ExtractCustomerPathIndex&quot;))" />
         </InArgument>
         <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrFolderExtensions">
-          <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;FolderExensions&quot;).ToString.Split(&quot;,&quot;c, StringSplitOptions.TrimEntries)" />
+          <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;FolderExensions&quot;).ToString.Split(&quot;,&quot;c)" />
         </InArgument>
         <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrIgnoreFolders">
-          <VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;IgnoreFoldersNames&quot;).ToString.Split(&quot;,&quot;c, StringSplitOptions.TrimEntries)" />
+          <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;IgnoreFoldersNames&quot;).ToString.Split(&quot;,&quot;c)" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrEgnyteFilePathRegex">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;EgnyteFilePathRegex&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtReportData">
+          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_DtReportData" />
         </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
