@@ -353,4 +353,4 @@ MigrationBackup/
 .screenshots/*
 .settings/*
 .local/*
-Exception_Screenshots/*
+Exceptions_Screenshots/*
