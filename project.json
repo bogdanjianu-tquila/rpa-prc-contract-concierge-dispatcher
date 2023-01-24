@@ -3,7 +3,7 @@
   "description": "Contracts Concierge Dispatcher",
   "main": "Main.xaml",
   "dependencies": {
-    "TQA.G2": "[1.8.20]",
+    "TQA.G2": "[1.8.21]",
     "UiPath.Excel.Activities": "[2.16.1]",
     "UiPath.GSuite.Activities": "[1.16.2]",
     "UiPath.Mail.Activities": "[1.18.2]",
@@ -15,7 +15,7 @@
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "22.10.4.0",
-  "projectVersion": "1.0.13",
+  "projectVersion": "1.0.14",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
@@ -30,8 +30,7 @@
     "executionType": "Workflow",
     "readyForPiP": false,
     "startsInPiP": false,
-    "mustRestoreAllDependencies": true,
-    "pipType": "ChildSession"
+    "mustRestoreAllDependencies": true
   },
   "designOptions": {
     "projectProfile": "Developement",
@@ -48,42 +47,36 @@
         "editingStatus": "InProgress",
         "testCaseId": "f796eb5a-ca82-41c2-bb86-1707c7cb5fb8",
         "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
         "fileName": "Tests\\GetTransactionDataTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
         "testCaseId": "403624ce-93c4-4e69-89e0-f127b2949cba",
         "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
         "fileName": "Tests\\InitAllApplicationsTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
         "testCaseId": "69dab7f9-44b4-40a9-89bb-1fd9df8221fa",
         "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
         "fileName": "Tests\\InitAllSettingsTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
         "testCaseId": "cfa72717-42a7-4738-abed-2f3d4a9bf689",
         "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
         "fileName": "Tests\\MainTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
         "testCaseId": "90176e8e-cc48-463f-b4ad-ff93b2ffe703",
         "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
         "fileName": "Tests\\ProcessTestCase.xaml"
       },
       {
         "editingStatus": "InProgress",
         "testCaseId": "137f93e4-9e0d-4731-9ae8-1255d89ed627",
         "testCaseType": "TestCase",
-        "executionTemplateType": "Local",
         "fileName": "Tests\\WorkflowTestCaseTemplate.xaml"
       }
     ],

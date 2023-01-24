@@ -21,7 +21,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>942,861.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>731.2,642.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
@@ -89,7 +89,6 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>TQA.G2</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
@@ -101,9 +100,11 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="400,540.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="375.2,577.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strEgnyteUsername" />
       <Variable x:TypeArguments="ss:SecureString" Name="sstrEgnytePwd" />
@@ -114,9 +115,9 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="358,96" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[in_Config(&quot;Cred_Egnyte&quot;).ToString]" CacheStrategy="None" DisplayName="Get Credential" sap:VirtualizedContainerService.HintSize="358,186.666666666667" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[sstrEgnytePwd]" Username="[strEgnyteUsername]" />
-    <te:Egnyte___Open_and_Login DisplayName="Egnyte - Open and Login" sap:VirtualizedContainerService.HintSize="358,25.3333333333333" sap2010:WorkflowViewState.IdRef="Egnyte___Open_and_Login_1" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_SstrPassword="[sstrEgnytePwd]" in_StrUsername="[strEgnyteUsername]" />
-    <te:Chrome___Close_Restore_Popup DisplayName="Chrome - Close Restore Popup" sap:VirtualizedContainerService.HintSize="358,25.3333333333333" sap2010:WorkflowViewState.IdRef="Chrome___Close_Restore_Popup_1" in_DblDelay="[in_DblDelay]" in_IntExtraShortTimeout="[in_IntExtraShortTimeout]" in_IntLongTimeout="[in_IntLongTimeout]" />
+    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[in_Config(&quot;Cred_Egnyte&quot;).ToString]" CacheStrategy="None" DisplayName="Get Credential" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="333.6,183.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[sstrEgnytePwd]" Username="[strEgnyteUsername]" />
+    <te:Egnyte___Open_and_Login DisplayName="Egnyte - Open and Login" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Egnyte___Open_and_Login_1" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_SstrPassword="[sstrEgnytePwd]" in_StrUsername="[strEgnyteUsername]" />
+    <te:Chrome___Close_Restore_Popup DisplayName="Chrome - Close Restore Popup" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Chrome___Close_Restore_Popup_1" in_DblDelay="[in_DblDelay]" in_IntExtraShortTimeout="[in_IntExtraShortTimeout]" in_IntLongTimeout="[in_IntLongTimeout]" />
   </Sequence>
 </Activity>
