@@ -14,7 +14,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1017.33333333333,919.333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>908.666666666667,919.333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SetTransactionStatus_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="52">
@@ -293,7 +293,7 @@
                   <av:PointCollection x:Key="ConnectorLocation">330,666 330,757.933333333333 310,757.933333333333</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="If a BussinessRuleException is thrown during the process, the transaction item's status is updated as Failed (Exception Type: Business).&#xA;" DisplayName="Business Exception" sap:VirtualizedContainerService.HintSize="200,196.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_14">
+              <Sequence sap2010:Annotation.AnnotationText="If a BussinessRuleException is thrown during the process, the transaction item's status is updated as Failed (Exception Type: Business).&#xA;" DisplayName="Business Exception" sap:VirtualizedContainerService.HintSize="579.333333333333,1463.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_14">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -389,7 +389,7 @@
                       <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="String.Format(in_Config(&quot;DispatcherEmail_Subject_Error&quot;).ToString, &quot;Business Exception&quot;)" />
                     </InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="in_StrEmailBody">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="String.Format(in_Config(&quot;Dispatcher_ErrorEmail_Body&quot;).ToString, &quot;Dispatcher&quot;, in_TransactionItem.SpecificContent(&quot;FileName&quot;).ToString, in_TransactionItem.SpecificContent(&quot;Customer Name&quot;).ToString, in_TransactionItem.SpecificContent(&quot;Egnyte File Path&quot;).ToString, in_TransactionItem.SpecificContent(&quot;Egnyte Direct Link&quot;).ToString, in_SystemException.Message, in_SystemException.Source)" />
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="String.Format(in_Config(&quot;Dispatcher_ErrorEmail_Body&quot;).ToString, &quot;Dispatcher&quot;, in_BusinessException.Message, in_BusinessException.Source)" />
                     </InArgument>
                     <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">
                       <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;LongTimeout&quot;)) * 1000" />
@@ -410,7 +410,7 @@
                   <av:Size x:Key="ShapeSize">200,180</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Sequence sap2010:Annotation.AnnotationText="If a system exception occurs during the process, the transaction item's status is updated as Failed (Exception Type: Application)." DisplayName="System Exception" sap:VirtualizedContainerService.HintSize="579.333333333333,2708.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_17">
+              <Sequence sap2010:Annotation.AnnotationText="If a system exception occurs during the process, the transaction item's status is updated as Failed (Exception Type: Application)." DisplayName="System Exception" sap:VirtualizedContainerService.HintSize="200,180" sap2010:WorkflowViewState.IdRef="Sequence_17">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Boolean" Name="QueueRetry" />
                   <Variable x:TypeArguments="x:String" Name="ScreenshotPath" />
@@ -652,7 +652,7 @@
                       <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="String.Format(in_Config(&quot;DispatcherEmail_Subject_Error&quot;).ToString, &quot;System Exception&quot;)" />
                     </InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="in_StrEmailBody">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="String.Format(in_Config(&quot;Dispatcher_ErrorEmail_Body&quot;).ToString, &quot;Dispatcher&quot;, in_TransactionItem.SpecificContent(&quot;FileName&quot;).ToString, in_TransactionItem.SpecificContent(&quot;Customer Name&quot;).ToString, in_TransactionItem.SpecificContent(&quot;Egnyte File Path&quot;).ToString, in_TransactionItem.SpecificContent(&quot;Egnyte Direct Link&quot;).ToString, in_SystemException.Message, in_SystemException.Source)" />
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="String.Format(in_Config(&quot;Dispatcher_ErrorEmail_Body&quot;).ToString, &quot;Dispatcher&quot;, in_SystemException.Message, in_SystemException.Source)" />
                     </InArgument>
                     <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">
                       <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;LongTimeout&quot;)) * 1000" />
