@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Initialize_Applications" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:te="clr-namespace:TQA_G2.Egnyte;assembly=TQA.G2" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Initialize_Applications" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:le="clr-namespace:LIB_G2Egnyte.Egnyte;assembly=LIB_G2Egnyte" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_DblDelay" Type="InArgument(x:Double)" />
@@ -21,7 +21,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>731.2,642.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>874.666666666667,816.666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
@@ -61,6 +61,7 @@
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>System.ComponentModel</x:String>
+      <x:String>LIB_G2Egnyte.Egnyte</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -101,10 +102,11 @@
       <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>LIB_G2Egnyte</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="375.2,577.6" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence sap2010:Annotation.AnnotationText="Open applications used in the process and do necessary initialization procedures (e.g., login)." DisplayName="Initialize All Applications" sap:VirtualizedContainerService.HintSize="400,537.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strEgnyteUsername" />
       <Variable x:TypeArguments="ss:SecureString" Name="sstrEgnytePwd" />
@@ -115,9 +117,9 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
-    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[in_Config(&quot;Cred_Egnyte&quot;).ToString]" CacheStrategy="None" DisplayName="Get Credential" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="333.6,183.2" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[sstrEgnytePwd]" Username="[strEgnyteUsername]" />
-    <te:Egnyte___Open_and_Login DisplayName="Egnyte - Open and Login" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Egnyte___Open_and_Login_1" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_SstrPassword="[sstrEgnytePwd]" in_StrUsername="[strEgnyteUsername]" />
-    <te:Chrome___Close_Restore_Popup DisplayName="Chrome - Close Restore Popup" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="Chrome___Close_Restore_Popup_1" in_DblDelay="[in_DblDelay]" in_IntExtraShortTimeout="[in_IntExtraShortTimeout]" in_IntLongTimeout="[in_IntLongTimeout]" />
+    <ui:LogMessage DisplayName="Log message (Initialize applications)" sap:VirtualizedContainerService.HintSize="358,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Opening applications...&quot;]" />
+    <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[in_Config(&quot;Cred_Egnyte&quot;).ToString]" CacheStrategy="None" DisplayName="Get Credential" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="358,184.666666666667" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[sstrEgnytePwd]" Username="[strEgnyteUsername]" />
+    <le:Egnyte___Open_and_Login DisplayName="Egnyte - Open and Login" sap:VirtualizedContainerService.HintSize="358,25.3333333333333" sap2010:WorkflowViewState.IdRef="Egnyte___Open_and_Login_2" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_SstrPassword="[sstrEgnytePwd]" in_StrUsername="[strEgnyteUsername]" />
+    <le:Chrome___Close_Restore_Popup DisplayName="Chrome - Close Restore Popup" sap:VirtualizedContainerService.HintSize="358,25.3333333333333" sap2010:WorkflowViewState.IdRef="Chrome___Close_Restore_Popup_2" in_DblDelay="[in_DblDelay]" in_IntExtraShortTimeout="[in_IntExtraShortTimeout]" in_IntLongTimeout="[in_IntLongTimeout]" />
   </Sequence>
 </Activity>

@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:te="clr-namespace:TQA_G2.Egnyte;assembly=TQA.G2" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:le="clr-namespace:LIB_G2Egnyte.Egnyte;assembly=LIB_G2Egnyte" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -11,7 +11,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>908.666666666667,816.666666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>874.666666666667,816.666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="58">
@@ -51,6 +51,7 @@
       <x:String>UiPath.Platform.ObjectLibrary</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>LIB_G2Egnyte.Egnyte</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -94,6 +95,8 @@
       <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
       <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>LIB_G2Egnyte</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
@@ -116,30 +119,72 @@
         <InArgument x:TypeArguments="x:String">[in_Config("EgnyteCustomersURL").ToString]</InArgument>
       </Assign.Value>
     </Assign>
-    <te:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To URL" sap:VirtualizedContainerService.HintSize="358,25.3333333333333" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_1" in_DblDelay="[CDbl(in_Config(&quot;DefaultDelay&quot;))]" in_IntLongTimeout="[CInt(in_Config(&quot;LongTimeout&quot;))]" in_IntShortTimeout="[CInt(in_Config(&quot;ShortTimeout&quot;))]" in_StrURL="[strCustomersURL]" />
+    <le:Egnyte___Navigate_To_URL DisplayName="Egnyte - Navigate To URL" sap:VirtualizedContainerService.HintSize="358,25.3333333333333" sap2010:WorkflowViewState.IdRef="Egnyte___Navigate_To_URL_2" in_DblDelay="[CDbl(in_Config(&quot;DefaultDelay&quot;))]" in_IntLongTimeout="[CInt(in_Config(&quot;LongTimeout&quot;))]" in_IntShortTimeout="[CInt(in_Config(&quot;ShortTimeout&quot;))]" in_StrURL="[strCustomersURL]" />
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Sub Processes\Extract Files.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="358,115.333333333333" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Sub Processes\Extract Files.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">[CInt(in_Config("ShortTimeout"))]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">[CInt(in_Config("LongTimeout"))]</InArgument>
-        <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">[CDbl(in_Config("DefaultDelay"))]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderURL">[strCustomersURL]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntExtraShortTimeout">[CInt(in_Config("ExtraShortTimeout"))]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntRetryScopeRetryNumber">[CInt(in_Config("RetryScope_RetryNumber"))]</InArgument>
-        <InArgument x:TypeArguments="x:TimeSpan" x:Key="in_TmspRetryScopeRetryInterval">[TimeSpan.Parse(in_Config("RetryScope_RetryInterval").ToString)]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrFileNameRegex">[in_Config("FileNameRegex").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrLastUpdatedByRegex">[in_Config("LastUpdatedByRegex").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrModifiedDateRegex">[in_Config("ModifiedDateRegex").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolder">[in_Config("DownloadsFolder").ToString]</InArgument>
-        <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrInScopeFileTypes">[in_Config("InScopeFileTypes").ToString.Split(","c)]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrQueueName">[in_Config("OrchestratorQueueName").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrStorageBucketName">[in_Config("FilesStorageBucket").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntCustomerPathIndex">[CInt(in_Config("ExtractCustomerPathIndex"))]</InArgument>
-        <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrFolderExtensions">[in_Config("FolderExensions").ToString.Split(","c)]</InArgument>
-        <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrIgnoreFolders">[in_Config("IgnoreFoldersNames").ToString.Split(","c)]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrEgnyteFilePathRegex">[in_Config("EgnyteFilePathRegex").ToString]</InArgument>
-        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtReportData">[in_DtReportData]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrQueueFolder">[in_Config("OrchestratorQueueFolder").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_StrSplitKeyword">[in_Config("CustomerName_SplitKeyword").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntShortTimeout">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ShortTimeout&quot;))" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntLongTimeout">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;LongTimeout&quot;))" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Double" x:Key="in_DblDelay">
+          <mva:VisualBasicValue x:TypeArguments="x:Double" ExpressionText="CDbl(in_Config(&quot;DefaultDelay&quot;))" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrFolderURL">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="strCustomersURL" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntExtraShortTimeout">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ExtraShortTimeout&quot;))" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntRetryScopeRetryNumber">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;RetryScope_RetryNumber&quot;))" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:TimeSpan" x:Key="in_TmspRetryScopeRetryInterval">
+          <mva:VisualBasicValue x:TypeArguments="x:TimeSpan" ExpressionText="TimeSpan.Parse(in_Config(&quot;RetryScope_RetryInterval&quot;).ToString)" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrFileNameRegex">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;FileNameRegex&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrLastUpdatedByRegex">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;LastUpdatedByRegex&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrModifiedDateRegex">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;ModifiedDateRegex&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrDownloadsFolder">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;DownloadsFolder&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrInScopeFileTypes">
+          <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;InScopeFileTypes&quot;).ToString.Split(&quot;,&quot;c)" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrQueueName">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;OrchestratorQueueName&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrStorageBucketName">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;FilesStorageBucket&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_IntCustomerPathIndex">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="CInt(in_Config(&quot;ExtractCustomerPathIndex&quot;))" />
+        </InArgument>
+        <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrFolderExtensions">
+          <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;FolderExensions&quot;).ToString.Split(&quot;,&quot;c)" />
+        </InArgument>
+        <InArgument x:TypeArguments="s:String[]" x:Key="in_ArrIgnoreFolders">
+          <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="in_Config(&quot;IgnoreFoldersNames&quot;).ToString.Split(&quot;,&quot;c)" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrEgnyteFilePathRegex">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;EgnyteFilePathRegex&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="sd:DataTable" x:Key="in_DtReportData">
+          <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="in_DtReportData" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrQueueFolder">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;OrchestratorQueueFolder&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_StrSplitKeyword">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;CustomerName_SplitKeyword&quot;).ToString" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
   </Sequence>
