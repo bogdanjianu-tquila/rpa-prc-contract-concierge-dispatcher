@@ -3,7 +3,7 @@
   "description": "Contracts Concierge Dispatcher",
   "main": "Main.xaml",
   "dependencies": {
-    "LIB_G2Egnyte": "[1.8.26]",
+    "LIB_G2Egnyte": "[1.8.27]",
     "UiPath.Excel.Activities": "[2.16.1]",
     "UiPath.GSuite.Activities": "[1.16.2]",
     "UiPath.Mail.Activities": "[1.18.2]",
