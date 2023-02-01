@@ -25,7 +25,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1428,3189.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1428,3296</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Process_File_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="84">
@@ -115,15 +115,16 @@
       <AssemblyReference>System.Linq.Async</AssemblyReference>
       <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
       <AssemblyReference>LIB_G2Egnyte</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Process_File" sap:VirtualizedContainerService.HintSize="1438,3124.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Process_File" sap:VirtualizedContainerService.HintSize="1438,3231.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Process File" sap:VirtualizedContainerService.HintSize="1396,3037.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Process File" sap:VirtualizedContainerService.HintSize="1396,3144" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="strSubProcessName" />
         <Variable x:TypeArguments="x:Boolean" Name="boolFileExists" />
@@ -197,7 +198,7 @@
       </If>
       <le:Egnyte___Open_File DisplayName="Egnyte - Open File" sap:VirtualizedContainerService.HintSize="1334,25.3333333333333" sap2010:WorkflowViewState.IdRef="Egnyte___Open_File_2" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrItemName="[in_StrItemName]" />
       <le:Egnyte___Extract_File_Details DisplayName="Egnyte - Extract File Details" sap:VirtualizedContainerService.HintSize="1334,25.3333333333333" sap2010:WorkflowViewState.IdRef="Egnyte___Extract_File_Details_2" in_DblDelay="[in_DblDelay]" in_IntLongTimeout="[in_IntLongTimeout]" in_IntShortTimeout="[in_IntShortTimeout]" in_StrFileNameRegex="[in_StrFileNameRegex]" in_StrFilePathRegex="[in_StrFilePathRegex]" in_StrLastUpdatedByRegex="[in_StrLastUpdatedByRegex]" in_StrModifiedDateRegex="[in_StrModifiedDateRegex]" out_StrDirectLink="[strDirectLink]" out_StrEgnyteFilePath="[strEgnyteFilePath]" out_StrFileID="[strFileID]" out_StrFileName="[strFileName]" out_StrLastUpdatedBy="[strLastUpdatedBy]" out_StrModifiedDate="[strModifiedDate]" />
-      <If sap2010:Annotation.AnnotationText="Only .pdf, .doc and .docx are in scope" Condition="[in_ArrInScopeFileTypes.Contains(Path.GetExtension(strFileName).ToString.ToLower)]" DisplayName="Check If In Scope File" sap:VirtualizedContainerService.HintSize="1334,1533.33333333333" sap2010:WorkflowViewState.IdRef="If_3">
+      <If sap2010:Annotation.AnnotationText="Only .pdf, .doc and .docx are in scope" Condition="[in_ArrInScopeFileTypes.Contains(Path.GetExtension(strFileName).ToString.ToLower)]" DisplayName="Check If In Scope File" sap:VirtualizedContainerService.HintSize="1334,1640" sap2010:WorkflowViewState.IdRef="If_3">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -206,7 +207,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence sap:VirtualizedContainerService.HintSize="888,1339.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <Sequence sap:VirtualizedContainerService.HintSize="888,1446" sap2010:WorkflowViewState.IdRef="Sequence_7">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="strDownloadedFilePath" />
               <Variable x:TypeArguments="x:Boolean" Name="boolDownloadedFileExists" />
@@ -373,7 +374,7 @@
               </sap:WorkflowViewStateService.ViewState>
             </ucas:UploadStorageFile>
             <ui:FileExistsX DisplayName="File Exists" Exists="[boolDownloadedFileExists]" sap:VirtualizedContainerService.HintSize="846,135.333333333333" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[strDownloadedFilePath]" />
-            <If Condition="[boolDownloadedFileExists]" DisplayName="Check If Downloaded File Exists" sap:VirtualizedContainerService.HintSize="846,332" sap2010:WorkflowViewState.IdRef="If_6">
+            <If Condition="[boolDownloadedFileExists]" DisplayName="Check If Downloaded File Exists" sap:VirtualizedContainerService.HintSize="846,438.666666666667" sap2010:WorkflowViewState.IdRef="If_6">
               <If.Then>
                 <Sequence sap:VirtualizedContainerService.HintSize="400,168.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_15">
                   <sap:WorkflowViewStateService.ViewState>
@@ -385,13 +386,31 @@
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence sap:VirtualizedContainerService.HintSize="400,112.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                <Sequence sap:VirtualizedContainerService.HintSize="400,275.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_16">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Throw DisplayName="Throw File Does Not Exist" Exception="[new System.Exception(&quot;Downloaded file does not exist at path &lt;&quot;+strDownloadedFilePath+&quot;&gt;&quot;)]" sap:VirtualizedContainerService.HintSize="358,25.3333333333333" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="358,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;File did not exist, no need to delete.&quot;]" />
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="358,53.3333333333333" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="400,112.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Throw DisplayName="Throw File Does Not Exist" Exception="[new System.Exception(&quot;Downloaded file does not exist at path &lt;&quot;+strDownloadedFilePath+&quot;&gt;&quot;)]" sap:VirtualizedContainerService.HintSize="358,25.3333333333333" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CommentOut>
                 </Sequence>
               </If.Else>
             </If>
