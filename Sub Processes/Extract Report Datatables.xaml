@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>942,1478.66666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1112,1492</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Extract_Report_Datatables_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="46">
@@ -69,15 +69,19 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>NPOI</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Extract_Report_Datatables" sap:VirtualizedContainerService.HintSize="950,1414" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Extract_Report_Datatables" sap:VirtualizedContainerService.HintSize="950,1427.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Extract Report Datatables" sap:VirtualizedContainerService.HintSize="908,1326.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Extract Report Datatables" sap:VirtualizedContainerService.HintSize="908,1340" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Default="Extract Report Datatables" Name="strSubProcessName" />
       </Sequence.Variables>
@@ -87,21 +91,24 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="846,96" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[String.Format(&quot;Started Sub-Process {0}&quot;, strSubProcessName)]" />
-      <If Condition="[in_DtReportData.AsEnumerable.Any(Function (drRow) drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.zip&quot;))]" DisplayName="Check If Transaction Data Contains Zip Files" sap:VirtualizedContainerService.HintSize="846,452" sap2010:WorkflowViewState.IdRef="If_1">
+      <If Condition="[in_DtReportData.AsEnumerable.Any(Function (drRow) Not((drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.pdf&quot;)) Or &#xD;&#xA;(drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.png&quot;)) Or &#xD;&#xA;(drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.jpg&quot;)) Or &#xD;&#xA;(drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.jpeg&quot;))))]" DisplayName="Check If Transaction Data Contains Other Files" sap:VirtualizedContainerService.HintSize="846,458.666666666667" sap2010:WorkflowViewState.IdRef="If_1">
         <If.Then>
-          <Sequence sap:VirtualizedContainerService.HintSize="400,286.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence sap:VirtualizedContainerService.HintSize="400,290" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="358,96" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Transaction data contains out of scope files.&quot;]" />
-            <Assign DisplayName="Assign Out Of Scope Files Datatable" sap:VirtualizedContainerService.HintSize="358,63.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign DisplayName="Assign Out Of Scope Files Datatable" sap:VirtualizedContainerService.HintSize="358,66.6666666666667" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
                 <OutArgument x:TypeArguments="sd:DataTable">[out_DtOtherFiles]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="sd:DataTable">[in_DtReportData.AsEnumerable.Where(Function (drRow) drRow.Item("File Name").ToString.ToLower.Trim.contains(".zip")).CopyToDataTable]</InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[in_DtReportData.AsEnumerable.Where(Function (drRow) Not((drRow.Item("File Name").ToString.ToLower.Trim.contains(".pdf")) Or 
+(drRow.Item("File Name").ToString.ToLower.Trim.contains(".png")) Or 
+(drRow.Item("File Name").ToString.ToLower.Trim.contains(".jpg")) Or 
+(drRow.Item("File Name").ToString.ToLower.Trim.contains(".jpeg")))).CopyToDataTable]</InArgument>
               </Assign.Value>
             </Assign>
           </Sequence>
@@ -117,21 +124,24 @@
           </Sequence>
         </If.Else>
       </If>
-      <If Condition="[in_DtReportData.AsEnumerable.Any(Function (drRow) Not drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.zip&quot;))]" DisplayName="Check If Transaction Data Contains Files" sap:VirtualizedContainerService.HintSize="846,452" sap2010:WorkflowViewState.IdRef="If_2">
+      <If Condition="[in_DtReportData.AsEnumerable.Any(Function (drRow) (drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.pdf&quot;)) Or &#xA;(drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.png&quot;)) Or &#xA;(drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.jpg&quot;)) Or &#xA;(drRow.Item(&quot;File Name&quot;).ToString.ToLower.Trim.contains(&quot;.jpeg&quot;)))]" DisplayName="Check If Transaction Data Contains Files" sap:VirtualizedContainerService.HintSize="846,458.666666666667" sap2010:WorkflowViewState.IdRef="If_2">
         <If.Then>
-          <Sequence sap:VirtualizedContainerService.HintSize="400,286.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence sap:VirtualizedContainerService.HintSize="400,290" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="358,96" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Transaction data contains files for the process.&quot;]" />
-            <Assign DisplayName="Assign Process Files Datatable" sap:VirtualizedContainerService.HintSize="358,63.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign DisplayName="Assign Process Files Datatable" sap:VirtualizedContainerService.HintSize="358,66.6666666666667" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
                 <OutArgument x:TypeArguments="sd:DataTable">[out_DtProcessFiles]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="sd:DataTable">[in_DtReportData.AsEnumerable.Where(Function (drRow) Not drRow.Item("File Name").ToString.ToLower.Trim.contains(".zip")).CopyToDataTable]</InArgument>
+                <InArgument x:TypeArguments="sd:DataTable" xml:space="preserve">[in_DtReportData.AsEnumerable.Where(Function (drRow) (drRow.Item("File Name").ToString.ToLower.Trim.contains(".pdf")) Or 
+(drRow.Item("File Name").ToString.ToLower.Trim.contains(".png")) Or 
+(drRow.Item("File Name").ToString.ToLower.Trim.contains(".jpg")) Or 
+(drRow.Item("File Name").ToString.ToLower.Trim.contains(".jpeg"))).CopyToDataTable]</InArgument>
               </Assign.Value>
             </Assign>
           </Sequence>
